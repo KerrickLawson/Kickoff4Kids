@@ -1,0 +1,57 @@
+﻿@model Kickoff4Kids420.Models.School
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>School</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SchoolName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SchoolName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SchoolAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SchoolAddress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.City)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.City)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.State)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.State)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ZipCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ZipCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PhoneNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PhoneNumber)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.SchoolId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

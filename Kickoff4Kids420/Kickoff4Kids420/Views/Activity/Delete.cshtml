@@ -1,0 +1,40 @@
+﻿@model Kickoff4Kids420.Models.Activity
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Activity</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ActivityName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ActivityName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PointValue)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PointValue)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

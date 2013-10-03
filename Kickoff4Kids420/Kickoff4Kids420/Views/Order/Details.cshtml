@@ -1,0 +1,50 @@
+﻿@model Kickoff4Kids420.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Order</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserProfiles.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserProfiles.UserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Products.ProductName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Products.ProductName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.OrderDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OrderDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProductName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.OrderId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

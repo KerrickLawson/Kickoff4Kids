@@ -1,0 +1,36 @@
+﻿@model Kickoff4Kids420.Models.Activity
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Activity</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ActivityName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ActivityName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PointValue)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PointValue)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ActivityId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
