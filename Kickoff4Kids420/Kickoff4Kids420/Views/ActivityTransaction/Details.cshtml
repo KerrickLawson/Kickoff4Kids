@@ -10,10 +10,10 @@
     <legend>ActivityTransaction</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.UserId)
+         @Html.DisplayNameFor(model => model.UserProfiles.UserName)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.UserId)
+        @Html.DisplayFor(model => model.UserProfiles.UserName)
     </div>
 
     <div class="display-label">
@@ -21,6 +21,13 @@
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.ActivityDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Activity.ActivityName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Activity.ActivityName)
     </div>
 </fieldset>
 <p>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
@@ -12,6 +13,7 @@ namespace Kickoff4Kids420.Models
         public int UserId { get; set; }
         public int ProductId { get; set; }
         public DateTime OrderDate { get; set; }
+        [DisplayName("Product Name")]
         public string ProductName { get; set; }
         public int Price { get; set; }
         public virtual Product Products { get; set; }

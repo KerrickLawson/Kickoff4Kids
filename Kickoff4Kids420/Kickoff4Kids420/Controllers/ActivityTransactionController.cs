@@ -18,7 +18,8 @@ namespace Kickoff4Kids420.Controllers
 
         public ActionResult Index()
         {
-            return View(db.ActivityTransactions.ToList());
+            var activitytransactions = db.ActivityTransactions.Include(a => a.UserProfiles).Include(a => a.Activity);
+            return View(activitytransactions.ToList());
         }
 
         //
@@ -39,6 +40,8 @@ namespace Kickoff4Kids420.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.UserId = new SelectList(db.UserProfiles, "UserId", "UserName");
+            ViewBag.ActivityId = new SelectList(db.Activities, "ActivityId", "ActivityName");
             return View();
         }
 
@@ -56,6 +59,8 @@ namespace Kickoff4Kids420.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.UserId = new SelectList(db.UserProfiles, "UserId", "UserName", activitytransaction.UserId);
+            ViewBag.ActivityId = new SelectList(db.Activities, "ActivityId", "ActivityName", activitytransaction.ActivityId);
             return View(activitytransaction);
         }
 
@@ -69,6 +74,8 @@ namespace Kickoff4Kids420.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.UserId = new SelectList(db.UserProfiles, "UserId", "UserName", activitytransaction.UserId);
+            ViewBag.ActivityId = new SelectList(db.Activities, "ActivityId", "ActivityName", activitytransaction.ActivityId);
             return View(activitytransaction);
         }
 
@@ -85,6 +92,8 @@ namespace Kickoff4Kids420.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.UserId = new SelectList(db.UserProfiles, "UserId", "UserName", activitytransaction.UserId);
+            ViewBag.ActivityId = new SelectList(db.Activities, "ActivityId", "ActivityName", activitytransaction.ActivityId);
             return View(activitytransaction);
         }
 
