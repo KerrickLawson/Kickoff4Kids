@@ -14,7 +14,6 @@ namespace Kickoff4Kids420.Controllers
 
             return View();
         }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";
@@ -28,5 +27,7 @@ namespace Kickoff4Kids420.Controllers
 
             return View();
         }
+
+        
     }
 }

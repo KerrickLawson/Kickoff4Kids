@@ -1,0 +1,21 @@
+@model IEnumerable<Kickoff4Kids420.Models.UserProfile>
+@{
+    
+    ViewBag.Title = "Index";
+}
+
+<h2 class="well-large">Users</h2>
+
+
+<ul>
+    <li>
+        @Html.ActionLink("Home", "Index", "Main")
+    </li>
+    <li>
+        @Html.ActionLink("Manage User Roles", "Users", "Main")
+    </li>
+    <li>
+        @Html.ActionLink("Create New Roles", "Roles", "Main")
+    </li>
+        
+</ul>

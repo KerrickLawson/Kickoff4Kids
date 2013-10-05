@@ -16,8 +16,9 @@ namespace Kickoff4Kids420.Models
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int PointTotal { get; set; }
-        public int SchoolId { get; set; }
+        public string EmailAddress { get; set; }
+        public int? PointTotal { get; set; }
+        public int? SchoolId { get; set; }
         public virtual School Schools { get; set; }
         public ICollection<Order> Orders { get; set; }
     }

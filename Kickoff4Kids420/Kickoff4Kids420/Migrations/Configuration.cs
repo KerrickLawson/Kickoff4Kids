@@ -1,3 +1,7 @@
+using System.Web.Security;
+using Microsoft.Ajax.Utilities;
+using WebMatrix.WebData;
+
 namespace Kickoff4Kids420.Migrations
 {
     using System;
@@ -14,6 +18,8 @@ namespace Kickoff4Kids420.Migrations
 
         protected override void Seed(Kickoff4Kids420.Models.Kickoff4KidsDb context)
         {
+
+            
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
@@ -26,6 +32,45 @@ namespace Kickoff4Kids420.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            SeedMembership();
+        }
+
+        private void SeedMembership()
+        {
+            WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName",
+                autoCreateTables: true);
+
+            var roles = (SimpleRoleProvider) Roles.Provider;
+            var membership = (SimpleMembershipProvider) Membership.Provider;
+            // Admin Role
+            if (!roles.RoleExists("Admin"))
+            {
+                roles.CreateRole("Admin");
+            }
+            if (membership.GetUser("Chad", false) == null)
+            {
+                membership.CreateUserAndAccount("Chad", "123");
+            }
+            if (!roles.GetRolesForUser("Chad").Contains("Admin"))
+            {
+                roles.AddUsersToRoles(new []{"Chad"}, new []{"admin"});
+            }
+
+            // Teacher Role
+            if (!roles.RoleExists("Teacher"))
+            {
+                roles.CreateRole("Teacher");
+            }
+            if (membership.GetUser("Teacher1", false) == null)
+            {
+                membership.CreateUserAndAccount("Teacher1", "123");
+            }
+            if (!roles.GetRolesForUser("Teacher1").Contains("Teacher"))
+            {
+                roles.AddUsersToRoles(new []{"Teacher1"}, new []{"teacher"});
+            }
+
+
         }
     }
 }

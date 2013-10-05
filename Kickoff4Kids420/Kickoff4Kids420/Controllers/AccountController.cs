@@ -77,7 +77,18 @@ namespace Kickoff4Kids420.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password, 
+                        new
+                        {
+                            FirstName = model.FirstName,
+                            LastName = model.LastName,
+                            EmailAddress = model.EmailAddress
+                        });
+                    // Student Role: Sets all users registering from the site as a Student role
+                    if (!Roles.RoleExists("Student"))
+                        Roles.CreateRole("Student");
+
+                    Roles.AddUserToRole(model.UserName, "student");
                     WebSecurity.Login(model.UserName, model.Password);
                     return RedirectToAction("Index", "Home");
                 }
