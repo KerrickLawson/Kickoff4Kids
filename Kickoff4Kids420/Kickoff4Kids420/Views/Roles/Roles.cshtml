@@ -1,0 +1,36 @@
+@model String[]
+@{
+    
+    ViewBag.Title = "Roles";
+}
+
+<h2>Roles</h2>
+
+
+<ul>
+    @foreach (var role in Model)
+    {
+        <li>@role</li>
+    }
+</ul>
+
+
+
+@using (Html.BeginForm("AddRole", "Roles"))
+{ 
+    
+    
+    <div>
+        
+        <label>Add Role</label>
+        <input type="text" name="rolename" />
+        <input type="submit" value="Add" />
+    </div>
+
+}
+<p>
+    @Html.ActionLink("Home", "Users", "Roles")
+   
+</p>
+
+
