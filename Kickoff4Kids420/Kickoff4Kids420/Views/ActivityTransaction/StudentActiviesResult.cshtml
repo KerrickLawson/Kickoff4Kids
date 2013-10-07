@@ -1,0 +1,12 @@
+﻿@model Kickoff4Kids420.Models.UserProfile
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Completed Activities for @Model.UserName</h2>
+@Html.Partial("_Transactions", Model.ActivityTransactions)
+<p>
+    @Html.ActionLink("Back to Students", "Index")
+</p>

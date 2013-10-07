@@ -20,6 +20,7 @@ namespace Kickoff4Kids420.Models
         public int? PointTotal { get; set; }
         public int? SchoolId { get; set; }
         public virtual School Schools { get; set; }
-        public ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<ActivityTransaction> ActivityTransactions { get; set; } 
     }
 }

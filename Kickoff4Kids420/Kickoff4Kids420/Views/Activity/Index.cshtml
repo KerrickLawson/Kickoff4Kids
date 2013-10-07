@@ -4,12 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Currently Eligible Activities</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add Activity", "Create")
 </p>
-<table>
+<table class="table table-striped table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ActivityName)
@@ -23,23 +23,23 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ActivityName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PointValue)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ActivityId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ActivityId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ActivityId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActivityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PointValue)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ActivityId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ActivityId })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -22,19 +22,6 @@ namespace Kickoff4Kids420.Controllers
         }
 
         //
-        // GET: /Activity/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            Activity activity = db.Activities.Find(id);
-            if (activity == null)
-            {
-                return HttpNotFound();
-            }
-            return View(activity);
-        }
-
-        //
         // GET: /Activity/Create
 
         public ActionResult Create()

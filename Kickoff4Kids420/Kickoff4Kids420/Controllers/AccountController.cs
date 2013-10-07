@@ -15,6 +15,7 @@ namespace Kickoff4Kids420.Controllers
     [Authorize]   
     public class AccountController : Controller
     {
+        private Kickoff4KidsDb db = new Kickoff4KidsDb();
         //
         // GET: /Account/Login
 
@@ -61,6 +62,7 @@ namespace Kickoff4Kids420.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.SchoolId = new SelectList(db.Schools, "SchoolId", "SchoolName");
             return View();
         }
 

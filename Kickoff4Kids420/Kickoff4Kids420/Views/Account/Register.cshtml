@@ -36,6 +36,11 @@
                 @Html.TextBoxFor(m => m.LastName)
             </li>
             <li>
+                @Html.LabelFor(model => model.SchoolId, "Schools")
+                @Html.DropDownList("SchoolId", String.Empty)
+                @Html.ValidationMessageFor(model => model.SchoolId)
+            </li>
+            <li>
                 @Html.LabelFor(m => m.EmailAddress)
                 @Html.TextBoxFor(m => m.EmailAddress)
             </li>

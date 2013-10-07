@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -15,24 +16,11 @@ namespace Kickoff4Kids420.Controllers
 
         //
         // GET: /ActivityTransaction/
-
+        
         public ActionResult Index()
         {
             var activitytransactions = db.ActivityTransactions.Include(a => a.UserProfiles).Include(a => a.Activity);
             return View(activitytransactions.ToList());
-        }
-
-        //
-        // GET: /ActivityTransaction/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            ActivityTransaction activitytransaction = db.ActivityTransactions.Find(id);
-            if (activitytransaction == null)
-            {
-                return HttpNotFound();
-            }
-            return View(activitytransaction);
         }
 
         //
@@ -56,6 +44,11 @@ namespace Kickoff4Kids420.Controllers
             {
                 db.ActivityTransactions.Add(activitytransaction);
                 db.SaveChanges();
+                //UserProfile updUserProfile = db.UserProfiles.Find(activitytransaction.UserId);
+                //Activity act = db.Activities.Find(activitytransaction.ActivityId);
+                //int points = act.PointValue;
+                //UpdateStudent(updUserProfile, points);
+                
                 return RedirectToAction("Index");
             }
 
@@ -63,7 +56,24 @@ namespace Kickoff4Kids420.Controllers
             ViewBag.ActivityId = new SelectList(db.Activities, "ActivityId", "ActivityName", activitytransaction.ActivityId);
             return View(activitytransaction);
         }
+        //public void UpdateStudent(UserProfile user, int points)
+        //{
+        //    var stud = db.UserProfiles.FirstOrDefault(c => c.UserId == user.UserId);
+        //    stud.PointTotal += points;
+        //    db.SaveChanges();
+        //}
+        //public void AddPoints(int userId, int activityId)
+        //{
+        //    UserProfile profile = db.UserProfiles.Find(userId);
+        //    Activity activity = db.Activities.Find(activityId);
+        //    profile.PointTotal += activity.PointValue;
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(profile).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //    }
 
+        //}
         //
         // GET: /ActivityTransaction/Edit/5
 
@@ -121,6 +131,15 @@ namespace Kickoff4Kids420.Controllers
             db.ActivityTransactions.Remove(activitytransaction);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public ActionResult StudentActiviesResult([Bind(Prefix = "id")]int userId)
+        {
+            var student = db.UserProfiles.Find(userId);
+            if (student != null)
+            {
+                return View(student);
+            }
+            return HttpNotFound();
         }
 
         protected override void Dispose(bool disposing)

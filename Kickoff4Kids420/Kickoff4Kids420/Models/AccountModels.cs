@@ -81,6 +81,10 @@ namespace Kickoff4Kids420.Models
         [Required]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email Address")]
+        public string SchoolId { get; set; }
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
 
         
