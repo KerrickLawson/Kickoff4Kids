@@ -42,12 +42,13 @@ namespace Kickoff4Kids420.Controllers
         {
             if (ModelState.IsValid)
             {
+                UserProfile updUserProfile = db.UserProfiles.Find(activitytransaction.UserId);
+                Activity act = db.Activities.Find(activitytransaction.ActivityId);
+                int points = act.PointValue;
                 db.ActivityTransactions.Add(activitytransaction);
                 db.SaveChanges();
-                //UserProfile updUserProfile = db.UserProfiles.Find(activitytransaction.UserId);
-                //Activity act = db.Activities.Find(activitytransaction.ActivityId);
-                //int points = act.PointValue;
-                //UpdateStudent(updUserProfile, points);
+                
+                AddStudentPoints(updUserProfile, points);
                 
                 return RedirectToAction("Index");
             }
@@ -56,12 +57,18 @@ namespace Kickoff4Kids420.Controllers
             ViewBag.ActivityId = new SelectList(db.Activities, "ActivityId", "ActivityName", activitytransaction.ActivityId);
             return View(activitytransaction);
         }
-        //public void UpdateStudent(UserProfile user, int points)
-        //{
-        //    var stud = db.UserProfiles.FirstOrDefault(c => c.UserId == user.UserId);
-        //    stud.PointTotal += points;
-        //    db.SaveChanges();
-        //}
+        public void AddStudentPoints(UserProfile user, int points)
+        {
+            var stud = db.UserProfiles.FirstOrDefault(c => c.UserId == user.UserId);
+            stud.PointTotal += points;
+            db.SaveChanges();
+        }
+        public void SubtractStudentPoints(UserProfile user, int points)
+        {
+            var stud = db.UserProfiles.FirstOrDefault(c => c.UserId == user.UserId);
+            stud.PointTotal -= points;
+            db.SaveChanges();
+        }
         //public void AddPoints(int userId, int activityId)
         //{
         //    UserProfile profile = db.UserProfiles.Find(userId);
@@ -128,8 +135,13 @@ namespace Kickoff4Kids420.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ActivityTransaction activitytransaction = db.ActivityTransactions.Find(id);
+            UserProfile updUserProfile = db.UserProfiles.Find(activitytransaction.UserId);
+            Activity act = db.Activities.Find(activitytransaction.ActivityId);
+            int points = act.PointValue;
+            SubtractStudentPoints(updUserProfile, points);
             db.ActivityTransactions.Remove(activitytransaction);
             db.SaveChanges();
+            
             return RedirectToAction("Index");
         }
         public ActionResult StudentActiviesResult([Bind(Prefix = "id")]int userId)

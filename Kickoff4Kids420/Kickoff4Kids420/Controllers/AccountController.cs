@@ -76,6 +76,7 @@ namespace Kickoff4Kids420.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.PointTotal = 0;
                 // Attempt to register the user
                 try
                 {
@@ -84,7 +85,9 @@ namespace Kickoff4Kids420.Controllers
                         {
                             FirstName = model.FirstName,
                             LastName = model.LastName,
-                            EmailAddress = model.EmailAddress
+                            EmailAddress = model.EmailAddress,
+                            SchoolId = model.SchoolId,
+                            PointTotal = model.PointTotal
                         });
                     // Student Role: Sets all users registering from the site as a Student role
                     if (!Roles.RoleExists("Student"))

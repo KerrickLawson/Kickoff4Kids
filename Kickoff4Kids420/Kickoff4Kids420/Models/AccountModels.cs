@@ -79,13 +79,13 @@ namespace Kickoff4Kids420.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Required]
-        [DataType(DataType.EmailAddress)]
         [Display(Name = "Email Address")]
-        public string SchoolId { get; set; }
+        public int SchoolId { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
+        public int PointTotal { get; set; }
 
         
     }

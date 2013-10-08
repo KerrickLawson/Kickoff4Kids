@@ -9,12 +9,12 @@ using Kickoff4Kids420.Models;
 
 namespace Kickoff4Kids420.Controllers
 {
-    public class StudentController : Controller
+    public class UserController : Controller
     {
         private Kickoff4KidsDb db = new Kickoff4KidsDb();
 
         //
-        // GET: /Student/
+        // GET: /User/
 
         public ActionResult Index()
         {
@@ -23,7 +23,47 @@ namespace Kickoff4Kids420.Controllers
         }
 
         //
-        // GET: /Student/Edit/5
+        // GET: /User/Details/5
+
+        public ActionResult Details(int id = 0)
+        {
+            UserProfile userprofile = db.UserProfiles.Find(id);
+            if (userprofile == null)
+            {
+                return HttpNotFound();
+            }
+            return View(userprofile);
+        }
+
+        //
+        // GET: /User/Create
+
+        public ActionResult Create()
+        {
+            ViewBag.SchoolId = new SelectList(db.Schools, "SchoolId", "SchoolName");
+            return View();
+        }
+
+        //
+        // POST: /User/Create
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(UserProfile userprofile)
+        {
+            if (ModelState.IsValid)
+            {
+                db.UserProfiles.Add(userprofile);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.SchoolId = new SelectList(db.Schools, "SchoolId", "SchoolName", userprofile.SchoolId);
+            return View(userprofile);
+        }
+
+        //
+        // GET: /User/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
@@ -37,7 +77,7 @@ namespace Kickoff4Kids420.Controllers
         }
 
         //
-        // POST: /Student/Edit/5
+        // POST: /User/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -54,7 +94,7 @@ namespace Kickoff4Kids420.Controllers
         }
 
         //
-        // GET: /Student/Delete/5
+        // GET: /User/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
@@ -67,7 +107,7 @@ namespace Kickoff4Kids420.Controllers
         }
 
         //
-        // POST: /Student/Delete/5
+        // POST: /User/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
