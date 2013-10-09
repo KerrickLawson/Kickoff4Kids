@@ -20,10 +20,12 @@
                 @Html.ActionLink("Kickoff 4 Kids", "Index", "Home", null, new { @class = "brand" })
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("Manage Roles", "Index", "Roles")</li>
+                        @if (Session["MyMenu"] == null)
+                        {
+                            Session["MyMenu"] = Html.Partial("~/Views/Shared/_Menu.cshtml");
+                        }
+                        @Session["MyMenu"]
+
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>

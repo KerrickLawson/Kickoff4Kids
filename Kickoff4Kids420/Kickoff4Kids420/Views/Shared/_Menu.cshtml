@@ -1,0 +1,46 @@
+﻿@using Antlr.Runtime
+@{
+    var menus = new[]
+                {
+                   new { LinkText="About", ActionName="About",ControllerName="Home",Roles="Anonymous"  },
+                   new { LinkText="Contact", ActionName="Contact",ControllerName="Home",Roles="Anonymous"  },
+                   new { LinkText="Home", ActionName="Administrator",ControllerName="Home",Roles="Admin"  },
+                   new { LinkText="Home", ActionName="Teacher",ControllerName="Teacher",Roles="Teacher"  },
+                   new { LinkText="Home", ActionName="Student",ControllerName="Student",Roles="Student"  },
+                   new { LinkText="Activity", ActionName="Index",ControllerName="Activity",Roles="Admin,Teacher"  },
+                   new { LinkText="Completed Activities", ActionName="Index",ControllerName="ActivityTransaction",Roles="Admin,Teacher"  },
+                   new { LinkText="Schools", ActionName="Index",ControllerName="School",Roles="Admin"  },
+                   new { LinkText="Users", ActionName="Index",ControllerName="User",Roles="Admin,Teacher"  },
+                   new { LinkText="Manage Roles", ActionName="Index",ControllerName="Roles",Roles="Admin"  },
+                   new { LinkText="Reports", ActionName="Index",ControllerName="Report",Roles="Admin,Teacher,Student"  }                                     
+                };
+}  
+<div class="nav-collapse collapse">
+    <ul class="nav">
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+            String[] roles = Roles.GetRolesForUser();
+            var links = from item in menus
+                        where item.Roles.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries)
+                        .Any(x => roles.Contains(x) || x == "All")
+                        select item;
+            foreach (var link in links)
+            {
+                @:
+                <li> @Html.ActionLink(link.LinkText, link.ActionName, link.ControllerName)</li>
+            }
+        }
+        else
+        {
+            var links = from item in menus
+                        where item.Roles.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries)
+                        .Any(x => new String[] { "All", "Anonymous" }.Contains(x))
+                        select item;
+            foreach (var link in links)
+            {
+                @:
+                <li> @Html.ActionLink(link.LinkText, link.ActionName, link.ControllerName)</li>
+            }
+        }
+    </ul>
+</div>

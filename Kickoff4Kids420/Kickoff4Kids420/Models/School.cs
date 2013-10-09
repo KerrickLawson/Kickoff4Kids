@@ -22,5 +22,6 @@ namespace Kickoff4Kids420.Models
         public int ZipCode { get; set; }
         [DisplayName("Phone Number")]
         public int PhoneNumber { get; set; }
+        public virtual ICollection<UserProfile> UserProfiles { get; set; }
     }
 }

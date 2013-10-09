@@ -52,7 +52,8 @@
                     @Html.DisplayFor(modelItem => item.Schools.SchoolName)
                 </td>
                 <td>
-                    @Html.ActionLink("Completed Activities", "StudentActiviesResult", "ActivityTransaction", new { id = item.UserId }, null)
+                    @Html.ActionLink("Completed Activities", "StudentActiviesResult", "ActivityTransaction", new { id = item.UserId }, null) |
+                    @Html.ActionLink("Remove User", "Delete", new { id = item.UserId })
                 </td>
             </tr>
         }

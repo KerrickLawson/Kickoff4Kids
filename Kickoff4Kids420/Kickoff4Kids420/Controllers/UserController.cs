@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Kickoff4Kids420.Models;
 
 namespace Kickoff4Kids420.Controllers
@@ -114,6 +115,8 @@ namespace Kickoff4Kids420.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             UserProfile userprofile = db.UserProfiles.Find(id);
+            string[] rolesArray = Roles.GetRolesForUser(userprofile.UserName);
+            Roles.RemoveUserFromRoles(userprofile.UserName, rolesArray);
             db.UserProfiles.Remove(userprofile);
             db.SaveChanges();
             return RedirectToAction("Index");

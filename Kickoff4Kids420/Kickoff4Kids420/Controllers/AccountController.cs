@@ -36,14 +36,35 @@ namespace Kickoff4Kids420.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                return RedirectToLocal(returnUrl);
+                Session["MyMenu"] = null;
+                return RedirectToAction("RedirectToDefault");
             }
 
             // If we got this far, something failed, redisplay form
             ModelState.AddModelError("", "The user name or password provided is incorrect.");
             return View(model);
         }
+        public ActionResult RedirectToDefault()
+        {
 
+            String[] roles = Roles.GetRolesForUser();
+            if (roles.Contains("Admin"))
+            {
+                return RedirectToAction("Administrator", "Home");
+            }
+            else if (roles.Contains("Teacher"))
+            {
+                return RedirectToAction("Teacher", "Home");
+            }
+            else if (roles.Contains("Student"))
+            {
+                return RedirectToAction("Student", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
         //
         // POST: /Account/LogOff
 
@@ -52,7 +73,7 @@ namespace Kickoff4Kids420.Controllers
         public ActionResult LogOff()
         {
             WebSecurity.Logout();
-
+            Session["MyMenu"] = null;
             return RedirectToAction("Index", "Home");
         }
 
