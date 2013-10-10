@@ -10,6 +10,7 @@ namespace Kickoff4Kids420.ViewModels
     {
         public List<Cart> CartItems { get; set; }
         public int CartTotal { get; set; }
-        //public UserProfile UserProfile { get; set; }
+        public int PointTotal { get; set; }
+        public string UserName { get; set; }
     }
 }

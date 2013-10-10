@@ -16,13 +16,15 @@ namespace Kickoff4Kids420.Controllers
         // GET: /ShoppingCart/
         public ActionResult Index()
         {
-            //string userId = Membership.GetUser().ProviderUserKey.ToString();
+            int userId = Convert.ToInt32(Membership.GetUser().ProviderUserKey.ToString());
+            UserProfile user = db.UserProfiles.Find(userId);          
             var cart = ShoppingCart.GetCart(this.HttpContext);
             var viewModel = new ShoppingCartViewModel
             {
                 CartItems = cart.GetCartItems(),
                 CartTotal = cart.GetTotal(),
-                //UserProfile = db.UserProfiles.Find(userId)
+                PointTotal = (int)user.PointTotal,
+                UserName = user.UserName
 
             };
             return View(viewModel);
@@ -47,7 +49,7 @@ namespace Kickoff4Kids420.Controllers
             // Remove the item from the cart
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
-            // Get the name of the album to display confirmation
+            // Get the name of the product to display confirmation
             string productName = db.Carts
                 .Single(item => item.RecordId == id).Product.ProductName;
 
