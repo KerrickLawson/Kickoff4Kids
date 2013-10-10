@@ -42,9 +42,13 @@ namespace Kickoff4Kids420.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Fetch User Profile
                 UserProfile updUserProfile = db.UserProfiles.Find(activitytransaction.UserId);
+                //Fetch Activity
                 Activity act = db.Activities.Find(activitytransaction.ActivityId);
+                //Fetch point value for completed activity
                 int points = act.PointValue;
+                //Add points
                 db.ActivityTransactions.Add(activitytransaction);
                 db.SaveChanges();
                 
@@ -135,9 +139,13 @@ namespace Kickoff4Kids420.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ActivityTransaction activitytransaction = db.ActivityTransactions.Find(id);
+            //Fetch User Profile
             UserProfile updUserProfile = db.UserProfiles.Find(activitytransaction.UserId);
+            //Fetch Activity
             Activity act = db.Activities.Find(activitytransaction.ActivityId);
+            //Fetch Points for that activity
             int points = act.PointValue;
+            //Pass profile and points to subtract
             SubtractStudentPoints(updUserProfile, points);
             db.ActivityTransactions.Remove(activitytransaction);
             db.SaveChanges();

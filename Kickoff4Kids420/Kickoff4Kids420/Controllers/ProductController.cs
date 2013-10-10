@@ -18,7 +18,8 @@ namespace Kickoff4Kids420.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Products.ToList());
+            var products = db.Products.Include(p => p.Categories);
+            return View(products.ToList());
         }
 
         //
@@ -39,6 +40,7 @@ namespace Kickoff4Kids420.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName");
             return View();
         }
 
@@ -56,6 +58,7 @@ namespace Kickoff4Kids420.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName", product.CategoryId);
             return View(product);
         }
 
@@ -69,6 +72,7 @@ namespace Kickoff4Kids420.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName", product.CategoryId);
             return View(product);
         }
 
@@ -85,6 +89,7 @@ namespace Kickoff4Kids420.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName", product.CategoryId);
             return View(product);
         }
 

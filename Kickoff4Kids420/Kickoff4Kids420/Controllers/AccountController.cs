@@ -36,6 +36,7 @@ namespace Kickoff4Kids420.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
+                MigrateShoppingCart(model.UserName);
                 Session["MyMenu"] = null;
                 return RedirectToAction("RedirectToDefault");
             }
@@ -113,7 +114,7 @@ namespace Kickoff4Kids420.Controllers
                     // Student Role: Sets all users registering from the site as a Student role
                     if (!Roles.RoleExists("Student"))
                         Roles.CreateRole("Student");
-
+                    MigrateShoppingCart(model.UserName);
                     Roles.AddUserToRole(model.UserName, "student");
                     WebSecurity.Login(model.UserName, model.Password);
                     return RedirectToAction("Index", "Home");
@@ -361,6 +362,14 @@ namespace Kickoff4Kids420.Controllers
 
             ViewBag.ShowRemoveButton = externalLogins.Count > 1 || OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             return PartialView("_RemoveExternalLoginsPartial", externalLogins);
+        }
+        private void MigrateShoppingCart(string UserName)
+        {
+            // Associate shopping cart items with logged-in user
+            var cart = ShoppingCart.GetCart(this.HttpContext);
+
+            cart.MigrateCart(UserName);
+            Session[ShoppingCart.CartSessionKey] = UserName;
         }
 
         #region Helpers

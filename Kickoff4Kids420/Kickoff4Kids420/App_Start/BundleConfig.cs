@@ -27,6 +27,10 @@ namespace Kickoff4Kids420
                       "~/Content/site.css",
                       "~/Content/bootstrap-responsive.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/custom").Include(
+                    "~/Scripts/Custom/k4kcart.js"
+                ));
+
             
         }
     }

@@ -189,12 +189,13 @@
     <Compile Include="Controllers\ActivityController.cs" />
     <Compile Include="Controllers\ActivityTransactionController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
-    <Compile Include="Controllers\OrderController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SchoolController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -203,13 +204,18 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\ActivityTransaction.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Kickoff4KidsDb.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\School.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
+    <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-responsive.css" />
@@ -294,6 +300,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Custom\k4kcart.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -341,25 +348,10 @@
     <Content Include="Views\School\Create.cshtml" />
     <Content Include="Views\School\Edit.cshtml" />
     <Content Include="Views\School\Delete.cshtml" />
-    <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\Product\Details.cshtml" />
-    <Content Include="Views\Product\Create.cshtml" />
-    <Content Include="Views\Product\Edit.cshtml" />
-    <Content Include="Views\Product\Delete.cshtml" />
     <Content Include="Views\Activity\Index.cshtml" />
     <Content Include="Views\Activity\Create.cshtml" />
     <Content Include="Views\Activity\Edit.cshtml" />
     <Content Include="Views\Activity\Delete.cshtml" />
-    <Content Include="Views\Category\Index.cshtml" />
-    <Content Include="Views\Category\Details.cshtml" />
-    <Content Include="Views\Category\Create.cshtml" />
-    <Content Include="Views\Category\Edit.cshtml" />
-    <Content Include="Views\Category\Delete.cshtml" />
-    <Content Include="Views\Order\Index.cshtml" />
-    <Content Include="Views\Order\Details.cshtml" />
-    <Content Include="Views\Order\Create.cshtml" />
-    <Content Include="Views\Order\Edit.cshtml" />
-    <Content Include="Views\Order\Delete.cshtml" />
     <Content Include="Views\ActivityTransaction\Create.cshtml" />
     <Content Include="Views\ActivityTransaction\Edit.cshtml" />
     <Content Include="Views\ActivityTransaction\Delete.cshtml" />
@@ -380,6 +372,20 @@
     <Content Include="Views\Home\Student.cshtml" />
     <Content Include="Views\Home\Teacher.cshtml" />
     <Content Include="Views\Home\Administrator.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\Delete.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\Details.cshtml" />
+    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Category\Delete.cshtml" />
+    <Content Include="Views\Checkout\Payment.cshtml" />
+    <Content Include="Views\Checkout\Complete.cshtml" />
+    <Content Include="Views\ShoppingCart\_UserCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

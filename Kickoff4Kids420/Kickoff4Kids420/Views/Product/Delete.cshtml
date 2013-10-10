@@ -23,6 +23,13 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Price)
     </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Categories.CategoryName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Categories.CategoryName)
+    </div>
 </fieldset>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
