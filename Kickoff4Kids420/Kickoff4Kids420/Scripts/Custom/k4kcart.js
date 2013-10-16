@@ -1,26 +1,48 @@
-﻿$(document).ready(function() {
+﻿$(document).ready(function () {
+    
+    var shoppingCart = function () {
 
-$(function () {
-    // Document.ready -> link up remove event handler
-    $(".RemoveLink").click(function () {
-        // Get the id from the link
-        var recordToDelete = $(this).attr("data-id");
-        if (recordToDelete != '') {
-            // Perform the ajax post
-            $.post("/ShoppingCart/RemoveFromCart", { "id": recordToDelete },
-                function (data) {
-                    // Successful requests get here
-                    // Update the page elements
-                    if (data.ItemCount == 0) {
-                        $('#row-' + data.DeleteId).fadeOut('slow');
-                    } else {
-                        $('#item-count-' + data.DeleteId).text(data.ItemCount);
-                    }
-                    $('#cart-total').text(data.CartTotal);
-                    $('#update-message').text(data.Message);
-                    $('#cart-status').text('Cart (' + data.CartCount + ')');
-                });
-        }
-    });
-});
+        var removeLink = $(".RemoveLink"), updateMessage = $('#update-message'),
+            cartTotal = $('#cart-total'), cartStatus = $('#cart-status'),
+            studentPointTotal = parseInt($('#studentPointTotal').text()), purchaseBtn = $('#purchaseBtn');
+        
+        init = function() {
+            if (parseInt(cartTotal.text()) > studentPointTotal || studentPointTotal === 0) {
+                purchaseBtn.hide();
+                $('#warning-message').text('You do not currently have the funds to make this purchase.');
+            } 
+        };
+        removeLink.click(function () {
+            var recordToDelete = $(this).attr("data-id");
+            if (recordToDelete != '') {
+                $.post("/ShoppingCart/RemoveFromCart", { "id": recordToDelete },
+                    function (data) {
+                        if (data.ItemCount == 0) {
+                            $('#row-' + data.DeleteId).fadeOut('slow');
+                        } else {
+                            $('#item-count-' + data.DeleteId).text(data.ItemCount);
+                        }
+                        cartTotal.text(data.CartTotal);
+                        updateMessage.text(data.Message);
+                        cartStatus.text('Cart (' + data.CartCount + ')');
+                        if (parseInt(cartTotal.text()) > studentPointTotal) {
+                            purchaseBtn.fadeOut();
+                            $('#warning-message').fadeIn();
+                        } else {
+                            purchaseBtn.fadeIn();
+                            $('#warning-message').fadeOut();
+                        }
+                        if (parseInt(cartTotal.text()) === 0) {
+                            purchaseBtn.fadeOut();
+                            $('#warning-message').fadeOut();
+                            
+                        }
+                    });
+            }
+        });
+        return { init: init };
+    }();
+    shoppingCart.init();
+
+
 })

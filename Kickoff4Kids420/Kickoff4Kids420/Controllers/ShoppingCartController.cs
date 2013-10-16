@@ -19,6 +19,10 @@ namespace Kickoff4Kids420.Controllers
             int userId = Convert.ToInt32(Membership.GetUser().ProviderUserKey.ToString());
             UserProfile user = db.UserProfiles.Find(userId);          
             var cart = ShoppingCart.GetCart(this.HttpContext);
+            if (user.PointTotal == null)
+            {
+                user.PointTotal = 0;
+            }
             var viewModel = new ShoppingCartViewModel
             {
                 CartItems = cart.GetCartItems(),

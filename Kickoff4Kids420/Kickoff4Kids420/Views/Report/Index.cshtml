@@ -2,4 +2,29 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Report</h2>
+<div >
+
+    <table class="table table-bordered table-hover table-striped" >
+        <caption></caption>
+        <thead>
+            <tr>
+                <th>Last Name </th>
+                <th>First Name</th>
+                <th><center> Total Points</center></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Bond</td>
+                <td>Jackson</td>
+                <td><center>50</center></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    @Html.ActionLink("Test Report","TestReport","Report",null,new {@class="btn"})
+
+ 
+</div>

@@ -75,7 +75,7 @@ namespace Kickoff4Kids420.Controllers
         {
             WebSecurity.Logout();
             Session["MyMenu"] = null;
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //

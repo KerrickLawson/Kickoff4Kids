@@ -4,30 +4,35 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Product Categories</h2>
+<div class="span2">
+    <p class="btn">
+        @Html.ActionLink("Create New", "Create")
+    </p>
+</div>
+<div class="span4">
+    <table class="table table-striped table-hover table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th></th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }, new { @class = " btn btn-small margin-right" })
+                    @Html.ActionLink("Details", "Details", new { id = item.CategoryId }, new { @class = " btn btn-small margin-right" })
+                    @Html.ActionLink(" ", "Delete", new { id = item.CategoryId }, new { @class = "icon icon-trash" })
+                </td>
+            </tr>
+        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CategoryId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CategoryId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CategoryId })
-        </td>
-    </tr>
-}
-
-</table>
+    </table>
+</div>
+<div class="row"></div>

@@ -27,7 +27,7 @@
             @Html.LabelFor(model => model.ActivityDate)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ActivityDate)
+            <input class="text-box single-line" data-val="true" data-val-date="The field Activity Date must be a date." id="ActivityDate" name="ActivityDate" type="date" value="">
             @Html.ValidationMessageFor(model => model.ActivityDate)
         </div>
 

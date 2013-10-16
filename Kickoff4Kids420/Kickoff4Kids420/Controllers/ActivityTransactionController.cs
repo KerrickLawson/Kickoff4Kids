@@ -48,11 +48,13 @@ namespace Kickoff4Kids420.Controllers
                 Activity act = db.Activities.Find(activitytransaction.ActivityId);
                 //Fetch point value for completed activity
                 int points = act.PointValue;
-                //Add points
+                //Add Points
+                updUserProfile.PointTotal += points;
+
                 db.ActivityTransactions.Add(activitytransaction);
                 db.SaveChanges();
                 
-                AddStudentPoints(updUserProfile, points);
+                //AddStudentPoints(updUserProfile, points);
                 
                 return RedirectToAction("Index");
             }
@@ -61,18 +63,18 @@ namespace Kickoff4Kids420.Controllers
             ViewBag.ActivityId = new SelectList(db.Activities, "ActivityId", "ActivityName", activitytransaction.ActivityId);
             return View(activitytransaction);
         }
-        public void AddStudentPoints(UserProfile user, int points)
-        {
-            var stud = db.UserProfiles.FirstOrDefault(c => c.UserId == user.UserId);
-            stud.PointTotal += points;
-            db.SaveChanges();
-        }
-        public void SubtractStudentPoints(UserProfile user, int points)
-        {
-            var stud = db.UserProfiles.FirstOrDefault(c => c.UserId == user.UserId);
-            stud.PointTotal -= points;
-            db.SaveChanges();
-        }
+        //public void AddStudentPoints(UserProfile user, int points)
+        //{
+        //    var stud = db.UserProfiles.FirstOrDefault(c => c.UserId == user.UserId);
+        //    stud.PointTotal += points;
+        //    db.SaveChanges();
+        //}
+        //public void SubtractStudentPoints(UserProfile user, int points)
+        //{
+        //    var stud = db.UserProfiles.FirstOrDefault(c => c.UserId == user.UserId);
+        //    stud.PointTotal -= points;
+        //    db.SaveChanges();
+        //}
         //public void AddPoints(int userId, int activityId)
         //{
         //    UserProfile profile = db.UserProfiles.Find(userId);
@@ -145,8 +147,7 @@ namespace Kickoff4Kids420.Controllers
             Activity act = db.Activities.Find(activitytransaction.ActivityId);
             //Fetch Points for that activity
             int points = act.PointValue;
-            //Pass profile and points to subtract
-            SubtractStudentPoints(updUserProfile, points);
+            updUserProfile.PointTotal -= points;
             db.ActivityTransactions.Remove(activitytransaction);
             db.SaveChanges();
             

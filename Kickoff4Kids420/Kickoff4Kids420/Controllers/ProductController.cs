@@ -34,6 +34,14 @@ namespace Kickoff4Kids420.Controllers
             }
             return View(product);
         }
+//Shop products ordered bu name
+        public ActionResult Shop()
+        {
+            var products = db.Products
+                .OrderBy(r => r.ProductName);
+
+            return View(products);
+        }
 
         //
         // GET: /Product/Create

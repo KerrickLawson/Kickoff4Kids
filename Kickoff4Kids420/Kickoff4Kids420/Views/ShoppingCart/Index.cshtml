@@ -3,16 +3,13 @@
 @{
     ViewBag.Title = "Index";
 }
-
 <h3>
     <em>Review</em> your cart:
 </h3>
-<p class="btn-large">
-    @Html.ActionLink("Purchase", "Payment", "Checkout")
-</p>
+@Html.ActionLink("Back to Products", "Index", "Product")
 <div id="update-message">
 </div>
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover table-bordered">
     <tr>
         <th>
             Product Name
@@ -61,7 +58,11 @@
         
     </tr>
 </table>
-<h3>@Model.UserName, Your current point total is: @Model.PointTotal</h3>
+<p class="btn btn-large" id="purchaseBtn">
+    @Html.ActionLink("Purchase", "Payment", "Checkout")
+</p>
+<h3>@Model.UserName, Your current point total is: <span id="studentPointTotal">@Model.PointTotal</span></h3>
+<p id="warning-message" class="lead red"></p>
 
 @section scripts
 {

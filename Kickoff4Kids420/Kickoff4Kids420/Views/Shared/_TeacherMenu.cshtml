@@ -1,0 +1,30 @@
+﻿@*Insert Teacher Menu*@
+<ul class="nav">
+    <li class="dropdown">
+        <a class="dropdown-toggle text-large" data-toggle="dropdown" href="#">Reports<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li>
+                @Html.ActionLink("Report 1", "Index", "Report")
+            </li>
+            <li>
+                @Html.ActionLink("Report 2", "TestReport", "Report")
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle text-large" data-toggle="dropdown" href="#">Activities<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li>
+                @Html.ActionLink("Input Completed Activity", "Index", "ActivityTransaction")
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle text-large pull-right" data-toggle="dropdown" href="#">My Account<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li>
+                @Html.ActionLink("Change password", "Manage", "Account")
+            </li>
+        </ul>
+    </li>
+</ul>

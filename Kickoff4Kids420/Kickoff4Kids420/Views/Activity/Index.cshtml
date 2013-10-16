@@ -5,41 +5,45 @@
 }
 
 <h2>Currently Eligible Activities</h2>
-
-<p>
-    @Html.ActionLink("Add Activity", "Create")
-</p>
-<table class="table table-striped table-hover table-bordered">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ActivityName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PointValue)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class=" span2">
+    <p class="btn">
+        @Html.ActionLink("Add Activity", "Create")
+    </p>
+</div>
+<div class="span8">
+    <table class="table table-bordered table-hover table-striped">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ActivityName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PointValue)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ActivityId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ActivityId })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.ActivityName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PointValue)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActivityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PointValue)
+                </td>
+                <td class="span2">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ActivityId }, new { @class = " btn btn-small margin-right" })
+                    @Html.ActionLink(" ", "Delete", new { id = item.ActivityId }, new { @class = "icon icon-trash" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<div class="row"></div>

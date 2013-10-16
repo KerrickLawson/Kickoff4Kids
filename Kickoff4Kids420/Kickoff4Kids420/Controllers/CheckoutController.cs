@@ -13,48 +13,31 @@ namespace Kickoff4Kids420.Controllers
         Kickoff4KidsDb db = new Kickoff4KidsDb();
         
         //
-        // GET: /Checkout/Payment
-        public ActionResult Payment()
+        // GET: /Checkout/Confirmation
+        public ActionResult Confirmation(int id)
         {
             return View();
         }
         //
-        // POST: /Checkout/Payment
+        // POST: /Checkout/Confirmation
         [HttpPost]
-        public ActionResult Payment(FormCollection values)
+        public ActionResult Confirmation()
         {
-            var order = new Order();
-            TryUpdateModel(order);
-            const string PromoCode = "hello";
+            //var order = new Order();
+            //TryUpdateModel(order);
+            
+            //        order.UserName = User.Identity.Name;
+            //        order.OrderDate = DateTime.Now;
  
-            try
-            {
-                if (string.Equals(values["PromoCode"], PromoCode,
-                    StringComparison.OrdinalIgnoreCase) == false)
-                {
-                    return View("Error");
-                }
-                else
-                {
-                    order.UserName = User.Identity.Name;
-                    order.OrderDate = DateTime.Now;
- 
-                    //Save Order
-                    db.Orders.Add(order);
-                    db.SaveChanges();
-                    //Process the order
-                    var cart = ShoppingCart.GetCart(this.HttpContext);
-                    cart.CreateOrder(order);
- 
-                    return RedirectToAction("Complete",
-                        new { id = order.OrderId });
-                }
-            }
-            catch
-            {
-                //Invalid - redisplay with errors
-                return View("Error");
-            }
+            //        //Save Order
+            //        db.Orders.Add(order);
+            //        db.SaveChanges();
+            //        //Process the order
+            //        var cart = ShoppingCart.GetCart(this.HttpContext);
+            //        cart.CreateOrder(order);
+
+            return View("Complete");
+             
         }
         //
         // GET: /Checkout/Complete

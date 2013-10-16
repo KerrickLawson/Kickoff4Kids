@@ -1,0 +1,29 @@
+﻿/*larger border on tables*/
+table.table-border-overload
+{
+    border-left:3px;
+    border: 3px solid #dddddd;
+}
+/*table font size change*/
+td.td-text-small
+{
+    font-size:small;
+}
+/*text align center*/
+.text-center-align
+{
+    vertical-align:middle;
+}
+/*right margin*/
+.margin-right
+{
+    margin-right:2px;
+}
+.red {
+    color: red;
+}
+/*Navbar Text Enlarge*/
+.text-large
+{
+    font-size:larger;
+}

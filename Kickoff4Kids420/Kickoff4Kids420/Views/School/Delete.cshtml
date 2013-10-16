@@ -10,21 +10,21 @@
 <fieldset>
     <legend>School</legend>
 
-    <div class="display-label">
+   <div class="display-label">
          @Html.DisplayNameFor(model => model.SchoolName)
     </div>
-    <div class="display-field">
+   <div class="display-field">
         @Html.DisplayFor(model => model.SchoolName)
     </div>
 
-    <div class="display-label">
+   <div class="display-label">
          @Html.DisplayNameFor(model => model.SchoolAddress)
     </div>
-    <div class="display-field">
+   <div class="display-field">
         @Html.DisplayFor(model => model.SchoolAddress)
     </div>
 
-    <div class="display-label">
+   <div class="display-label">
          @Html.DisplayNameFor(model => model.City)
     </div>
     <div class="display-field">
@@ -38,7 +38,7 @@
         @Html.DisplayFor(model => model.State)
     </div>
 
-    <div class="display-label">
+   <div class="display-label">
          @Html.DisplayNameFor(model => model.ZipCode)
     </div>
     <div class="display-field">
@@ -55,7 +55,7 @@
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <p>
-        <input type="submit" value="Delete" /> |
+        <input class="btn btn-danger" type="submit" value="Delete">|
         @Html.ActionLink("Back to List", "Index")
     </p>
 }

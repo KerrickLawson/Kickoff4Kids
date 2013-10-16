@@ -1,0 +1,64 @@
+﻿@*Insert Admin Menu*@
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+<ul class="nav">
+     <li class="dropdown">
+         <a class="dropdown-toggle text-large" data-toggle="dropdown" href="#">Reports<b class="caret"></b></a>
+         <ul class="dropdown-menu">
+             <li>
+                 @Html.ActionLink("Report 1", "Index", "Report")
+             </li>
+             <li>
+                 @Html.ActionLink("Report 2", "TestReport", "Report")
+             </li>
+         </ul>
+     </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle text-large" data-toggle="dropdown" href="#">Store Items<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li>
+                @Html.ActionLink("Modify Awards", "Index", "Product")
+            </li>
+            <li>
+                @Html.ActionLink("Add Product Category", "Index", "Category")
+            </li>  
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle text-large" data-toggle="dropdown" href="#">Activities<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li>
+                @Html.ActionLink("View Completed Activities", "Index", "ActivityTransaction")
+            </li>
+            <li>
+                @Html.ActionLink("Input Completed Activities", "Create", "ActivityTransaction")
+            </li>
+            <li>
+                @Html.ActionLink("Add Reward Activity", "Index", "Activity")
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle text-large" data-toggle="dropdown" href="#">Accounts<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li>
+                @Html.ActionLink("View Student Accounts", "Index", "User")
+            </li>
+            <li>
+                @Html.ActionLink("Edit User Roles", "Index", "Roles")
+            </li>
+            <li>
+                @Html.ActionLink("Add/Remove Schools", "Index", "School")
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle text-large pull-right" data-toggle="dropdown" href="#">My Account<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li>
+                @Html.ActionLink("Change password", "Manage", "Account")
+            </li>
+        </ul>
+    </li>
+    </ul>

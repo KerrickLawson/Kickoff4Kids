@@ -1,15 +1,18 @@
 ﻿@model IEnumerable<Kickoff4Kids420.Models.ActivityTransaction>
 
-    @{
+@{
     ViewBag.Title = "Index";
-    }
+}
 
-    <h2>All Completed Activities</h2>
+<h2>All Completed Activities</h2>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
+<div class="span2">
+    <p class="btn">
+        @Html.ActionLink("Add New", "Create")
     </p>
-    <table class="table table-striped table-hover">
+    </div>
+<div class="span8">
+    <table class="table table-striped table-hover table-bordered">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.UserProfiles.UserName)
@@ -20,26 +23,39 @@
             <th>
                 @Html.DisplayNameFor(model => model.Activity.ActivityName)
             </th>
-            <th></th>
+            <th>
+                Points Earned
+            </th>
+            <th>
+                Modify
+            </th>
         </tr>
 
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserProfiles.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ActivityDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Activity.ActivityName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ActivityTransactionId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ActivityTransactionId })
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserProfiles.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActivityDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activity.ActivityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activity.PointValue)
+                </td>
+                <td class="text-right span2">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ActivityTransactionId }, new { @class = " btn btn-small margin-right" })
+                    @Html.ActionLink(" ", "Delete", new { id = item.ActivityTransactionId }, new { @class = " icon icon-trash" })
+                </td>
+            </tr>
         }
 
     </table>
+</div>
+<div class="row">
+
+</div>
+

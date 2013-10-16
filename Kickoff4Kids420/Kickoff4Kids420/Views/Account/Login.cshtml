@@ -4,46 +4,69 @@
     ViewBag.Title = "Log in";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-</hgroup>
+<div class="well">
+    <div class="row-fluid">
+        <div class="span6">
+            <hgroup class="title">
+                <h1><img src="~/Images/KickOffForKids2.png" /> </h1>
+            </hgroup>
+        </div>
+        <div class="span6">
+            <section id="loginForm">
+                <h2>Login to Your Account</h2>
+                @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                
+                    <fieldset>
+                        <ol style="list-style: none;">
+                            <li>
+                                @Html.LabelFor(m => m.UserName)
+                                @Html.TextBoxFor(m => m.UserName)
+                                @Html.ValidationMessageFor(m => m.UserName)
+                            </li>
+                            <li>
+                                @Html.LabelFor(m => m.Password)
+                                @Html.PasswordFor(m => m.Password)
+                                @Html.ValidationMessageFor(m => m.Password)
+                            </li>
+                            <li>
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+                            </li>
+                        </ol>                                                                                                                                                                                                                                                  <input type="submit" value="Log in" />
+                    </fieldset>
+                    <p>
+                        @Html.ActionLink("Register", "Register") if you don't have an account.
+                    </p>
+                }
+            </section>
+        </div>
+    </div>
+</div>
 
-<section id="loginForm">
-<h2>Use a local account to log in.</h2>
-@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Log in Form</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
-                @Html.ValidationMessageFor(m => m.UserName)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-                @Html.ValidationMessageFor(m => m.Password)
-            </li>
-            <li>
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
-            </li>
-        </ol>
-        <input type="submit" value="Log in" />
-    </fieldset>
-    <p>
-        @Html.ActionLink("Register", "Register") if you don't have an account.
-    </p>
-}
-</section>
 
-<section class="social" id="socialLoginForm">
-    <h2>Use another service to log in.</h2>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-</section>
+@*<div class="row-fluid">
+    <div class="text-center span4">       
+            <h2>K4K's Mission</h2>
+        <p class="text-left">
+            K4K House will establish a Competition Outreach Achievement Center amongst high schools to improve school attendance, grades, good behavior, physical activity and community service. 
+            It’s a points based competition, by which high schools students will be competing to earn points for themselves and collectively for their school.
+        </p>
+</div>
+    <div class=" text-center span4">
+        <h2>K4K's Competition</h2>
+        <p class="text-left">It’s a points based competition, by which high schools students will be competing to earn points for themselves and collectively for their school.</p>
+    </div>
+    <div class="text-center span4">
+        <h2>Learn More...</h2>
+        <p class="text-left">Visit K4K's main page for more information and news.</p>
+        <p><a class="btn btn-danger" href="http://www.amobiokoyefoundation.org/wp-kick4kids/services/kickoff-4-kids-house">K4K Site &raquo;</a></p>
+    </div>
+</div>*@
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

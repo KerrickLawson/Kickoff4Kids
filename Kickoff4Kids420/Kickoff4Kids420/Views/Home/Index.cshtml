@@ -2,25 +2,57 @@
     ViewBag.Title = "Home Page";  
 }
 
-<div class="hero-unit">
-    <h1>Kickoff 4 Kids</h1>
-    <p class="lead">Blah Blah</p>
-    <p><a href="" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>
-<div class="row">
-    <div class="span4">
-        <h2>K4K Info here</h2>
-        <p>Blah Blah </p>
-        <p><a class="btn" href="">Learn more &raquo;</a></p>
+
+
+    <div class="hero-unit text-center ">
+        <div id="myCarousel" class="carousel slide">
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+                <li data-target="#myCarousel" data-slide-to="4"></li>
+                <li data-target="#myCarousel" data-slide-to="5"></li>
+                <li data-target="#myCarousel" data-slide-to="6"></li>
+                <li data-target="#myCarousel" data-slide-to="7"></li>
+                <li data-target="#myCarousel" data-slide-to="8"></li>
+                <li data-target="#myCarousel" data-slide-to="9"></li>
+                <li data-target="#myCarousel" data-slide-to="10"></li>
+            </ol>
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+                <div class="active item"><center> <img src="~/Images/download%20(1).jpg" height ="300" width ="700"/center> </div>
+                <div class="item">       <center> <img src="~/Images/banner.jpg"         height ="500" width ="700"       </center> </div>
+                <div class="item">       <center> <img src="~/Images/banner11.jpg"       height ="500" width ="700"     </center> </div>
+                <div class="item">       <center> <img src="~/Images/banner2.jpg"        height ="500" width ="700"      </center> </div>
+                <div class="item">       <center> <img src="~/Images/banner3.jpg"        height ="500" width ="700"      </center> </div>
+                <div class="item">       <center> <img src="~/Images/download%20(2).jpg" height ="500" width ="700"/center> </div>
+                <div class="item">       <center> <img src="~/Images/download.jpg"       height ="500" width ="700"     </center> </div>
+                <div class="item">       <center> <img src="~/Images/images%20(3).jpg"   height ="500" width ="700" </center> </div>
+                <div class="item">       <center> <img src="~/Images/images%20(4).jpg"   height ="500" width ="700" </center> </div>
+                <div class="item">       <center> <img src="~/Images/images%20(6).jpg"   height ="700" width ="500" </center> </div>
+                <div class="item">       <center> <img src="~/Images/images.jpg"         height ="500" width ="700"       </center> </div>
+
+            </div>
+            <!-- Carousel nav -->
+            <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+        </div>
     </div>
-    <div class="span4">
-        <h2>K4K is awesome</h2>
-        <p>Blah Blah</p>
-        <p><a class="btn" href="">Learn more &raquo;</a></p>
+    <div class="row">
+        <div class="text-center span4">
+            <h2>Log in to K4K House</h2>
+            <p></p>
+            <p><a class="btn btn-danger" href="/Account/Login">Log In &raquo;</a></p>
+        </div>
+        <div class=" text-center span4">
+            <h2>Register for K4K House</h2>
+            <p></p>
+            <p><a class="btn btn-danger" href="/Account/Register">Register &raquo;</a></p>
+        </div>
+        <div class="text-center span4">
+            <h2>Learn more about Kickoff 4 Kids</h2>
+            <p></p>
+            <p><a class="btn btn-danger" href="http://www.amobiokoyefoundation.org/wp-kick4kids/services/kickoff-4-kids-house">K4K Site &raquo;</a></p>
+        </div>
     </div>
-    <div class="span4">
-        <h2>Check KFK out</h2>
-        <p>Blah Blah</p>
-        <p><a class="btn" href="http://www.amobiokoyefoundation.org/wp-kick4kids/services/kickoff-4-kids-house">Go to K4K Site &raquo;</a></p>
-    </div>
-</div>
