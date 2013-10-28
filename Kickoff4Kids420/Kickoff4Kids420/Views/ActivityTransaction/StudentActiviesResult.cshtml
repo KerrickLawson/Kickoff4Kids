@@ -5,8 +5,16 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Completed Activities for @Model.UserName</h2>
-@Html.Partial("_Transactions", Model.ActivityTransactions)
-<p>
-    @Html.ActionLink("Back to Students", "Index", "User")
-</p>
+<div class="container">
+    <div class="panel panel-red">
+        <div class="panel-heading">
+            <h2 class="panel-title">Completed Activities for @Model.UserName</h2>
+        </div>
+
+        @Html.Partial("_Transactions", Model.ActivityTransactions)
+
+        <p >
+            @Html.ActionLink("Back to Students", "Index", "User")
+        </p>
+    </div>
+</div>

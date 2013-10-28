@@ -4,8 +4,10 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Available Products</h2>
+@section Styles {
+    @Styles.Render("~/pricing/css")
+}
+@*<h2>Available Products</h2>
 <img src="~/Images/school%20reward.jpg" />
 <table class="table table-striped table-hover table-bordered">
     <tr>
@@ -42,4 +44,41 @@
         </tr>
     }
 
-</table>
+</table>*@
+
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Available Products</h1>
+    </div>
+</div>
+<div class="container">
+    <!-- Pricing -->
+    @*<div class="row margin-bottom-40">*@
+@foreach (var item in Model)
+{
+    <div class="col-md-3 col-sm-6">
+        <div class="pricing hover-effect">
+            <div class="pricing-head">
+                <h3>@item.ProductName <span>@item.Categories.CategoryName</span></h3>
+                <h4>@item.Price <span>Points</span></h4>
+            </div>            
+            @*<ul class="pricing-content list-unstyled">
+                <li><i class="icon-tags"></i> At vero eos</li>
+                <li><i class="icon-asterisk"></i> No Support</li>
+                <li><i class="icon-heart"></i> Fusce condimentum</li>
+                <li><i class="icon-star"></i> Ut non libero</li>
+                <li><i class="icon-shopping-cart"></i> Consecte adiping elit</li>
+            </ul>*@
+            <div class="pricing-footer">
+                @*<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .</p>*@
+                @*<button type="submit" class="btn-u-red">@Html.ActionLink("Add to Cart", "AddToCart", "ShoppingCart", new { id = item.ProductId }, "")</button>*@
+                <a length="0" href="/ShoppingCart/AddToCart/@item.ProductId" class="btn-u-red">Add to Cart</a>
+
+            </div>
+        </div>
+    </div>
+    
+}
+   
+     </div>
+@*</div>*@

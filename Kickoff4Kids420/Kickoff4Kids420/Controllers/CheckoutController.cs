@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
+using System.Web.Security;
 using Kickoff4Kids420.Models;
+using Kickoff4Kids420.ViewModels;
 
 namespace Kickoff4Kids420.Controllers
 {
@@ -14,29 +17,57 @@ namespace Kickoff4Kids420.Controllers
         
         //
         // GET: /Checkout/Confirmation
-        public ActionResult Confirmation(int id)
+        public ActionResult Confirmation()
         {
-            return View();
+            int userId = Convert.ToInt32(Membership.GetUser().ProviderUserKey.ToString());
+            UserProfile user = db.UserProfiles.Find(userId);
+            var cart = ShoppingCart.GetCart(this.HttpContext);
+            var viewModel = new ConfirmationViewModel
+            {
+                CartItems = cart.GetCartItems(),
+                CartTotal = cart.GetTotal(),
+                PointTotal = (int)user.PointTotal,
+                UserName = user.UserName,
+                Balance = (int)user.PointTotal - cart.GetTotal()
+            };
+            //if (user.PointTotal < cart.GetTotal())
+            //{
+                return View(viewModel);
+            //}
+            //else
+            //{
+            //    return RedirectToActionPermanent("Index", "ShoppingCart");
+            //}
+
+
         }
         //
         // POST: /Checkout/Confirmation
-        [HttpPost]
-        public ActionResult Confirmation()
-        {
-            //var order = new Order();
-            //TryUpdateModel(order);
-            
-            //        order.UserName = User.Identity.Name;
-            //        order.OrderDate = DateTime.Now;
- 
-            //        //Save Order
-            //        db.Orders.Add(order);
-            //        db.SaveChanges();
-            //        //Process the order
-            //        var cart = ShoppingCart.GetCart(this.HttpContext);
-            //        cart.CreateOrder(order);
 
-            return View("Complete");
+        public ActionResult CompletingResult()
+        {
+            int userId = Convert.ToInt32(Membership.GetUser().ProviderUserKey.ToString());
+            UserProfile user = db.UserProfiles.Find(userId);
+            var cart = ShoppingCart.GetCart(this.HttpContext);
+
+            var order = new Order();
+            TryUpdateModel(order);
+
+            order.UserId = userId;
+            order.UserName = User.Identity.Name;
+            order.OrderDate = DateTime.Now;
+            order.UserProfiles = user;
+            order.FirstName = user.FirstName;
+            order.LastName = user.LastName;
+            
+            //Save Order
+            db.Orders.Add(order);
+            user.PointTotal -= cart.GetTotal();
+            db.SaveChanges();
+            //Process Order
+            cart.CreateOrder(order);
+
+            return RedirectToAction("Complete", new {id = order.OrderId});
              
         }
         //
@@ -47,7 +78,7 @@ namespace Kickoff4Kids420.Controllers
             bool isValid = db.Orders.Any(
                 o => o.OrderId == id &&
                 o.UserName == User.Identity.Name);
- 
+
             if (isValid)
             {
                 return View(id);
@@ -55,8 +86,10 @@ namespace Kickoff4Kids420.Controllers
             else
             {
                 return View("Error");
-            }
+            }          
         }
-    }
+            
+        }
 }
+
 

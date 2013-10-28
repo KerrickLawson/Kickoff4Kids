@@ -3,69 +3,77 @@
 @{
     ViewBag.Title = "Index";
 }
-<h3>
-    <em>Review</em> your cart:
-</h3>
-@Html.ActionLink("Back to Products", "Index", "Product")
-<div id="update-message">
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Review Your Cart - Your current point total is: <span id="studentPointTotal">@Model.PointTotal</span> </h1>
+    </div>
 </div>
-<table class="table table-striped table-hover table-bordered">
-    <tr>
-        <th>
-            Product Name
-        </th>
-        <th>
-            Price (each)
-        </th>
-        <th>
-            Quantity
-        </th>
-        <th></th>
-    </tr>
-    @foreach (var item in
-        Model.CartItems)
-    {
-        <tr id="row-@item.RecordId">
-            <td>
-                @Html.ActionLink(item.Product.ProductName,
-                    "Details", "Product", new { id = item.ProductId }, null)
-            </td>
-            <td>
-                @item.Product.Price
-            </td>
-            <td id="item-count-@item.RecordId">
-                @item.Count
-            </td>
-            <td>
-                
-                <a href="#" class="RemoveLink"
-                   data-id="@item.RecordId">
-                    Remove
-                    from cart
-                </a>
-            </td>
-        </tr>
-    }
-    <tr>
-        <td>
-            Total
-        </td>
-        <td></td>
-        <td></td>
-        <td id="cart-total">
-            @Model.CartTotal
-        </td>
-        
-    </tr>
-</table>
-<p class="btn btn-large" id="purchaseBtn">
-    @Html.ActionLink("Purchase", "Payment", "Checkout")
-</p>
-<h3>@Model.UserName, Your current point total is: <span id="studentPointTotal">@Model.PointTotal</span></h3>
-<p id="warning-message" class="lead red"></p>
 
-@section scripts
+<strong id="update-message"></strong> 
+<div class="container">
+<div class="panel panel-red margin-bottom-40">
+    <div class="panel-heading">
+        <h1 class="panel-title">Shopping Cart</h1>
+    </div>
+    <table class="table table-striped table-hover table-bordered">
+        <tr>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Price (each)
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in
+            Model.CartItems)
+        {
+            <tr id="row-@item.RecordId">
+                <td>
+                    @Html.ActionLink(item.Product.ProductName,
+                        "Details", "Product", new { id = item.ProductId }, null)
+                </td>
+                <td>
+                    @item.Product.Price
+                </td>
+                <td id="item-count-@item.RecordId">
+                    @item.Count
+                </td>
+                <td>
+
+                    <a href="#" class="RemoveLink"
+                       data-id="@item.RecordId">
+                        <i class="icon-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+                <b>Total</b>
+            </td>
+            <td id="cart-total"><b>@Model.CartTotal</b></td>
+            <td></td>
+            <td></td>
+
+        </tr>
+    </table>
+</div>
+    </div>
+        <div class="container">
+            <h4 id="purchaseBtn" class="text-center-align">@Html.ActionLink("Complete Your Purchase", "Confirmation", "Checkout")</h4>
+        </div>
+        @*<h3>@Model.UserName, Your current point total is: <span id="studentPointTotal">@Model.PointTotal</span></h3>*@
+@*<p id="warning-message" class="lead red"></p>*@
+
+    <h3 id="warning-message" class="text-danger"></h3>
+
+
+        @section scripts
 {
-    @Scripts.Render("~/bundles/custom")
-}
+            @Scripts.Render("~/bundles/custom")
+        }
 

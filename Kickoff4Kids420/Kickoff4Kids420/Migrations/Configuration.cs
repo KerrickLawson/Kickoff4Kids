@@ -47,13 +47,13 @@ namespace Kickoff4Kids420.Migrations
             {
                 roles.CreateRole("Admin");
             }
-            if (membership.GetUser("Chad", false) == null)
+            if (membership.GetUser("Admin", false) == null)
             {
-                membership.CreateUserAndAccount("Chad", "123");
+                membership.CreateUserAndAccount("Admin", "123");
             }
-            if (!roles.GetRolesForUser("Chad").Contains("Admin"))
+            if (!roles.GetRolesForUser("Admin").Contains("Admin"))
             {
-                roles.AddUsersToRoles(new []{"Chad"}, new []{"admin"});
+                roles.AddUsersToRoles(new []{"Admin"}, new []{"admin"});
             }
 
             // Teacher Role

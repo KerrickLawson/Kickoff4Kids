@@ -18,7 +18,7 @@ namespace Kickoff4Kids420.Controllers
 
         public ActionResult Index()
         {
-            var orders = db.Orders.Include(o => o.Products).Include(o => o.UserProfiles);
+            var orders = db.Orders.Include(o => o.UserProfiles);
             return View(orders.ToList());
         }
 
@@ -36,33 +36,12 @@ namespace Kickoff4Kids420.Controllers
         }
 
         //
-        // GET: /Order/Create
 
-        public ActionResult Create()
-        {
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "ProductName");
-            ViewBag.UserId = new SelectList(db.UserProfiles, "UserId", "UserName");
-            return View();
-        }
 
         //
         // POST: /Order/Create
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Order order)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Orders.Add(order);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "ProductName", order.ProductId);
-            ViewBag.UserId = new SelectList(db.UserProfiles, "UserId", "UserName", order.UserId);
-            return View(order);
-        }
 
         //
         // GET: /Order/Edit/5
@@ -74,7 +53,6 @@ namespace Kickoff4Kids420.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "ProductName", order.ProductId);
             ViewBag.UserId = new SelectList(db.UserProfiles, "UserId", "UserName", order.UserId);
             return View(order);
         }
@@ -92,7 +70,6 @@ namespace Kickoff4Kids420.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "ProductName", order.ProductId);
             ViewBag.UserId = new SelectList(db.UserProfiles, "UserId", "UserName", order.UserId);
             return View(order);
         }

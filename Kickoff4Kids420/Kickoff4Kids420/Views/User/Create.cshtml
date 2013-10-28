@@ -3,72 +3,83 @@
 @{
     ViewBag.Title = "Create";
 }
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Create User</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="panel panel-red">
+        <div class="panel-heading">
+            <h2 class="panel-title">New User</h2>
+        </div>
+        <div class=" panel-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
 
-<h2>Create</h2>
+                <fieldset>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.UserName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.UserName)
+                        @Html.ValidationMessageFor(model => model.UserName)
+                    </div>
 
-    <fieldset>
-        <legend>New User</legend>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.FirstName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.FirstName)
+                        @Html.ValidationMessageFor(model => model.FirstName)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.UserName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.UserName)
-            @Html.ValidationMessageFor(model => model.UserName)
-        </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.LastName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.LastName)
+                        @Html.ValidationMessageFor(model => model.LastName)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.FirstName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.FirstName)
-            @Html.ValidationMessageFor(model => model.FirstName)
-        </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.SchoolId, "Schools")
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownList("SchoolId", String.Empty)
+                        @Html.ValidationMessageFor(model => model.SchoolId)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LastName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LastName)
-            @Html.ValidationMessageFor(model => model.LastName)
-        </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.EmailAddress)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.EmailAddress)
+                        @Html.ValidationMessageFor(model => model.EmailAddress)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.SchoolId, "Schools")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("SchoolId", String.Empty)
-            @Html.ValidationMessageFor(model => model.SchoolId)
-        </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PointTotal)
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.EditorFor(model => model.PointTotal)
+                        @Html.ValidationMessageFor(model => model.PointTotal)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.EmailAddress)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.EmailAddress)
-            @Html.ValidationMessageFor(model => model.EmailAddress)
-        </div>
+                    <p>
+                        <input class="btn-u btn-u-red" type="submit" value="Create">
+                    </p>
+                </fieldset>
+            }
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PointTotal)
+            <div>
+                @Html.ActionLink("Back to Students", "Index")
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PointTotal)
-            @Html.ValidationMessageFor(model => model.PointTotal)
-        </div>
-
-        <p>
-            <input class="btn btn-primary" type="submit" value="Create">
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    </div>
 </div>
 
 @section Scripts {

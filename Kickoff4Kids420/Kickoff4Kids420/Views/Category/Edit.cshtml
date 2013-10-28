@@ -4,34 +4,47 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>Category</legend>
-
-        @Html.HiddenFor(model => model.CategoryId)
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CategoryName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CategoryName)
-            @Html.ValidationMessageFor(model => model.CategoryName)
-        </div>
-
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Edit Category</h1>
+    </div>
 </div>
+<div class="container">
+    <div class="panel panel-red">
+        <div class="panel-heading">
+            <h1 class="panel-title">Category</h1>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <fieldset>
+
+                    @Html.HiddenFor(model => model.CategoryId)
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CategoryName)
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.EditorFor(model => model.CategoryName)
+                        @Html.ValidationMessageFor(model => model.CategoryName)
+                    </div>
+
+                    <p>
+                        <input class="btn-u btn-u-red" type="submit" value="Save" />
+                    </p>
+                </fieldset>
+            }
+
+            <div>
+                @Html.ActionLink("Back to Product Categories", "Index")
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

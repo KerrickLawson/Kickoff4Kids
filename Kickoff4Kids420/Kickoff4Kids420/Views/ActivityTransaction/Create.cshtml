@@ -3,50 +3,61 @@
 @{
     ViewBag.Title = "Create";
 }
-
-<h2>Create</h2>
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>ActivityTransaction</legend>
-        @Html.HiddenFor(model => model.UserProfiles)
-        <div class="editor-label">
-            @Html.LabelFor(model => model.UserId, "UserProfiles")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("UserId", String.Empty)
-            @Html.ValidationMessageFor(model => model.UserId)
-        </div>
-        
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ActivityDate)
-        </div>
-        <div class="editor-field">
-           <input class="text-box single-line" data-val="true" data-val-date="The field Activity Date must be a date." id="ActivityDate" name="ActivityDate" type="date" value="">
-            @Html.ValidationMessageFor(model => model.ActivityDate)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ActivityId, "Activity")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("ActivityId", String.Empty)
-            @Html.ValidationMessageFor(model => model.ActivityId)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Create Activity Transaction</h1>
+    </div>
 </div>
+<div class="container">
+    <div class="panel panel-red">
+        <div class="panel-heading">
+            <h1 class="panel-title">New Activity Transaction</h1>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
 
+                <fieldset>
+
+                    @Html.HiddenFor(model => model.UserProfiles)
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.UserId, "UserProfiles")
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.DropDownList("UserId", String.Empty)
+                        @Html.ValidationMessageFor(model => model.UserId)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ActivityDate)
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        <input class="text-box single-line" data-val="true" data-val-date="The field Activity Date must be a date." id="ActivityDate" name="ActivityDate" type="date" value="">
+                        @Html.ValidationMessageFor(model => model.ActivityDate)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ActivityId, "Activity")
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.DropDownList("ActivityId", String.Empty)
+                        @Html.ValidationMessageFor(model => model.ActivityId)
+                    </div>
+
+                    <p>
+                        <input class="btn-u btn-u-red" type="submit" value="Create" />
+                    </p>
+                </fieldset>
+            }
+
+            <div>
+                @Html.ActionLink("Back to Completed Activities", "Index")
+            </div>
+        </div>
+    </div>
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

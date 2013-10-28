@@ -5,70 +5,80 @@
     var roles = ((string[])ViewBag.Roles).OrderBy(x => x);
 }
 
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">User Roles</h1>
+    </div>
+</div>
+<div class=" container">
+    <div class=" panel panel-red">
+        <div class="panel-heading">
+            <h2 class=" panel-title">Users</h2>
+        </div>
 
-<h2>Users</h2>
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>UserId</th>
+                    <th>Username            </th>
+                    @foreach (var role in roles)
+                    {
+                        <th>
+                            @role
+                        </th>
+                    }
+
+                </tr>
 
 
-<table class="table table-striped table-hover table-bordered">
-    <thead>
-        <tr>
-            <th>UserId</th>
-            <th>Username            </th>
-            @foreach (var role in roles)
-            {
-                <th>@role
-                </th>
-            }
-
-        </tr>
-
-
-    </thead>
-    <tbody>
-        @foreach (var user in Model)
-        {
-            <tr>
-                <td>
-                    @user.UserId
-                </td>
-                <td>
-                    @user.UserName
-                </td>
-
-                @foreach (var role in roles)
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
                 {
-                    <td>
-                        @using (Html.BeginForm("UserToRole", "Roles"))
+                    <tr>
+                        <td>
+                            @user.UserId
+                        </td>
+                        <td>
+                            @user.UserName
+                        </td>
+
+                        @foreach (var role in roles)
                         {
-                            <input type="hidden" value="@user.UserName" name="username" />
-                            <input type="hidden" value="@role" name="rolename" />
-                            <input type="checkbox" name="ischecked" onclick="this.form.submit();" value="true" checked="@System.Web.Security.Roles.IsUserInRole(@user.UserName, role)" />
-                            
+                            <td>
+                                @using (Html.BeginForm("UserToRole", "Roles"))
+                                {
+                                    <input type="hidden" value="@user.UserName" name="username" />
+                                    <input type="hidden" value="@role" name="rolename" />
+                                    <input type="checkbox" name="ischecked" onclick="this.form.submit();" value="true" checked="@System.Web.Security.Roles.IsUserInRole(@user.UserName, role)" />
+
+                                }
+
+
+                            </td>
                         }
+                        @*<td>
+                                @WebSecurity.GetCreateDate(user.UserName)
+                            </td>
+                            <td>
+                                @WebSecurity.GetLastPasswordFailureDate(user.UserName)
+                            </td>
+                            <td>
+                                @WebSecurity.GetPasswordChangedDate(user.UserName)
+                            </td>
+                            <td>
+                                @WebSecurity.GetPasswordFailuresSinceLastSuccess(user.UserName)
+                            </td>*@
 
+                    </tr>
 
-                    </td>
                 }
-                @*<td>
-                    @WebSecurity.GetCreateDate(user.UserName)
-                </td>
-                <td>
-                    @WebSecurity.GetLastPasswordFailureDate(user.UserName)
-                </td>
-                <td>
-                    @WebSecurity.GetPasswordChangedDate(user.UserName)
-                </td>
-                <td>
-                    @WebSecurity.GetPasswordFailuresSinceLastSuccess(user.UserName)
-                </td>*@
+            </tbody>
+        </table>
 
-            </tr>  
-        
-        }
-    </tbody>
-</table>
+        <p>
+            @Html.ActionLink("Finished", "Index", "Roles")
 
-<p>
-    @Html.ActionLink("Finished", "Index", "Roles")
-  
-</p>
+        </p>
+    </div>
+</div>

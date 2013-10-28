@@ -4,31 +4,44 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Create Category</h1>
+    </div>
+</div>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>New Category</legend>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CategoryName)
+<div class="container">
+    <div class="panel panel-red">
+        <div class="panel-heading">
+            <h2 class="panel-title">New Category</h2>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CategoryName)
-            @Html.ValidationMessageFor(model => model.CategoryName)
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <fieldset>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CategoryName)
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.EditorFor(model => model.CategoryName)
+                        @Html.ValidationMessageFor(model => model.CategoryName)
+                    </div>
+
+                    <p>
+                        <input class="btn-u btn-u-red" type="submit" value="Create" />
+                    </p>
+                </fieldset>
+            }
+
+            <div>
+                @Html.ActionLink("Back to Product Categories", "Index")
+            </div>
         </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    </div>
 </div>
 
 @section Scripts {

@@ -1,0 +1,64 @@
+﻿@model Kickoff4Kids420.ViewModels.ConfirmationViewModel
+
+@{
+    ViewBag.Title = "Confirmation";
+}
+
+    <div class="breadcrumbs margin-bottom-40">
+        <div class="container">
+            <h1 class="pull-left">Confirm Your Order:</h1>
+        </div>
+    </div>
+<div class="container">
+    <ul class="list-inline">
+        <li class="lead"><b>Current Point Total:</b><span class="text-warning"> @Model.PointTotal</span></li>
+        <li class="lead"><b>Cost:</b><span class="text-warning"> @Model.CartTotal (Points)</span></li>
+        <li class="lead"><b>Balance Remaining After Purchase:</b><span class="text-warning"> @Model.Balance </span></li>
+    </ul>
+    @*<dl>
+            <dt>Current Point Total:</dt>
+            <dd>@Model.PointTotal</dd>
+            <dt>Order Cost:</dt>
+            <dd>@Model.CartTotal</dd>
+            <dt>Balance Remaining After Purchase:</dt>
+            <dd>@Model.Balance</dd>
+        </dl>*@
+    <div class="panel panel-red margin-bottom-40">
+        <div class="panel-heading">
+            <h1 class="panel-title">Your Order:</h1>
+        </div>
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>
+                    Item Name
+                </th>
+                <th>
+                    Item Price
+                </th>
+                <th>
+                    Number Purchased
+                </th>
+            </tr>
+            @foreach (var item in Model.CartItems)
+            {
+                <tr>
+                    <td>
+                        @item.Product.ProductName
+                    </td>
+                    <td>
+                        @item.Product.Price
+                    </td>
+                    <td>
+                        @item.Count
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+
+    </div>
+    <span class="lead text-success">@Html.ActionLink("Proceed with Purchase", "CompletingResult", "Checkout") | </span>
+    <span class="lead text-warning">@Html.ActionLink("Back to Cart", "Index", "ShoppingCart")</span>
+</div>
+ 

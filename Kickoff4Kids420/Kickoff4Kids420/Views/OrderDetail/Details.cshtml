@@ -1,0 +1,60 @@
+﻿@model Kickoff4Kids420.Models.OrderDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Details for @Model.Order.FirstName @Model.Order.LastName 's order</h1>
+    </div>
+</div>
+<div class="container">
+
+    <div class="container">
+        <div class="headline"><h2>Order #@Model.OrderId</h2></div>
+        <dl>
+            <dt>UserName</dt>
+            <dd>@Html.DisplayFor(model => model.Order.UserName)</dd>
+            <dt>Product Name</dt>
+            <dd>@Html.DisplayFor(model => model.Product.ProductName)</dd>
+            <dt>Quantity</dt>
+            <dd>@Html.DisplayFor(model => model.Quantity)</dd>
+            <dt>Unit Price</dt>
+            <dd>@Html.DisplayFor(model => model.UnitPrice)</dd>
+        </dl>
+    </div>
+    @*<fieldset>
+            <legend>OrderDetail</legend>
+
+            <div class="display-label">
+                 @Html.DisplayNameFor(model => model.Order.UserName)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Order.UserName)
+            </div>
+
+            <div class="display-label">
+                 @Html.DisplayNameFor(model => model.Product.ProductName)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Product.ProductName)
+            </div>
+
+            <div class="display-label">
+                 @Html.DisplayNameFor(model => model.Quantity)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Quantity)
+            </div>
+
+            <div class="display-label">
+                 @Html.DisplayNameFor(model => model.UnitPrice)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.UnitPrice)
+            </div>
+        </fieldset>*@
+    <p class="lead">
+        @Html.ActionLink("Back to Orders", "Index", "Order")
+    </p>
+</div>

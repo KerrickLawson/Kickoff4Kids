@@ -4,10 +4,19 @@
     ViewBag.Title = "Checkout Complete";
 }
 
-<h2>Checkout Complete</h2>
-<p>Thanks for your order! Your order number is: @Model</p>
-<p>
-    Return to the Kickoff 4 Kids House Homepage!
-    @Html.ActionLink("Home",
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Checkout Complete</h1>
+    </div>
+</div>
+<div class="alert alert-success">
+
+    <h4>Thanks for your order!</h4>
+    For your reference, your order number is @Model . Thank you for your participation in the program!
+</div>
+<p class="lead">
+    Return to the Kickoff 4 Kids House<span class="text-danger">
+    @Html.ActionLink("HomePage!",
 "Index", "Home")
+</span>  
 </p>

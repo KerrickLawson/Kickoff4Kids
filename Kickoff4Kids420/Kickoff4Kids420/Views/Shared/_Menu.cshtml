@@ -16,8 +16,6 @@
                 };
 }*@  
     
-<div class="nav-collapse collapse">
-<ul class="nav">
     @if (HttpContext.Current.User.Identity.IsAuthenticated)
     {
         if (User.IsInRole("Admin"))
@@ -37,8 +35,7 @@
     {
         @Html.Partial("_UnauthenticatedMenu")
     }
-</ul>
-</div>
+
 @*<div class="nav-collapse collapse">
     <ul class="nav">
         @if (HttpContext.Current.User.Identity.IsAuthenticated)

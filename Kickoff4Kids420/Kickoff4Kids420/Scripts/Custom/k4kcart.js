@@ -1,7 +1,5 @@
-﻿$(document).ready(function () {
-    
+﻿$(document).ready(function () {   
     var shoppingCart = function () {
-
         var removeLink = $(".RemoveLink"), updateMessage = $('#update-message'),
             cartTotal = $('#cart-total'), cartStatus = $('#cart-status'),
             studentPointTotal = parseInt($('#studentPointTotal').text()), purchaseBtn = $('#purchaseBtn');
@@ -10,7 +8,11 @@
             if (parseInt(cartTotal.text()) > studentPointTotal || studentPointTotal === 0) {
                 purchaseBtn.hide();
                 $('#warning-message').text('You do not currently have the funds to make this purchase.');
-            } 
+                if (parseInt(cartTotal.text()) === 0){}
+            }
+            if (parseInt(cartTotal.text()) === 0) {
+                purchaseBtn.hide();
+            }
         };
         removeLink.click(function () {
             var recordToDelete = $(this).attr("data-id");
@@ -34,8 +36,7 @@
                         }
                         if (parseInt(cartTotal.text()) === 0) {
                             purchaseBtn.fadeOut();
-                            $('#warning-message').fadeOut();
-                            
+                            $('#warning-message').fadeOut();                           
                         }
                     });
             }
@@ -43,6 +44,4 @@
         return { init: init };
     }();
     shoppingCart.init();
-
-
 })

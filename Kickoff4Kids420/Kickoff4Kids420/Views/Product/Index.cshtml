@@ -3,16 +3,22 @@
 @{
     ViewBag.Title = "Available Products";
 }
-
-<h2>Available Products</h2>
-
-<div class=" span2">
-    <p class="btn">
-        @Html.ActionLink("Create New", "Create")
-    </p>
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Currently Available Products</h1>
+    </div>
 </div>
-<div class="span8">
-    <table class="table table-bordered table-hover table-border">
+<div class="container">
+<div class="panel panel-red margin-bottom-40">
+    <div class="panel-heading">
+        <h1 class="panel-title">Products</h1>
+    </div>
+    <div class= "span2">
+        <p class="icon-plus-sign">
+           @Html.ActionLink("Create New", "Create")
+        </p>
+    </div>
+    <table class="table table-bordered table-hover table-striped">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.ProductName)
@@ -23,7 +29,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Categories.CategoryName)
             </th>
-            <th></th>
+            <th>Status</th>
         </tr>
 
         @foreach (var item in Model)
@@ -39,11 +45,13 @@
                     @Html.DisplayFor(modelItem => item.Categories.CategoryName)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class = " btn btn-small margin-right" }) |
-                    @Html.ActionLink(" ", "Delete", new { id = item.ProductId }, new { @class = "icon icon-trash" })
+                    @Html.ActionLink(" ", "Edit", new { id = item.ProductId }, new { @class = "icon-edit" }) |
+                    @Html.ActionLink(" ", "Delete", new { id = item.ProductId }, new { @class = "icon-trash" })
                 </td>
             </tr>
         }
 
     </table>
 </div>
+</div>
+

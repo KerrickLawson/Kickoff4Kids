@@ -4,37 +4,60 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Delete Product</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="panel panel-red">
+        <div class="panel-heading">
+            <h1 class="panel-title">Delete</h1>
+        </div>
+        <div class=" panel-body">
+            <h4>Are you sure you want to delete this Product?</h4>
+            <form role="form">
+                <fieldset>
+                    <legend></legend>
+                    <div class="form-group">
+                        <div class="display-label">
+                            <strong> @Html.DisplayNameFor(model => model.ProductName)</strong>
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.ProductName)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="display-label">
+                            <strong> @Html.DisplayNameFor(model => model.Price)</strong>
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.Price)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="display-label">
+                            <strong> @Html.DisplayNameFor(model => model.Categories.CategoryName)</strong>
+                        </div>
+                        <div class="display-field margin-bottom-10">
+                            @Html.DisplayFor(model => model.Categories.CategoryName)
+                        </div>
+                    </div>
 
-<h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>Product</legend>
+                </fieldset>
+            </form>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ProductName)
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <p>
+                    <input class="btn-u btn-u-red" type="submit" value="Delete" />
+                </p>
+                
+                <div>
+                    @Html.ActionLink("Back to Available Products", "Index")
+                </div>
+            }
+        </div>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductName)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Price)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Price)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Categories.CategoryName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Categories.CategoryName)
-    </div>
-</fieldset>
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-}
+</div>

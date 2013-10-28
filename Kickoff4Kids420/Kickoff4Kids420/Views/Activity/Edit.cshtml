@@ -3,50 +3,62 @@
 @{
     ViewBag.Title = "Edit";
 }
-
-<h2>Edit</h2>
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>Activity</legend>
-
-        @Html.HiddenFor(model => model.ActivityId)
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ActivityName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ActivityName)
-            @Html.ValidationMessageFor(model => model.ActivityName)
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Edit Activity</h1>
+    </div>
+</div>
+<div class=" container">
+    <div class="panel panel-red">
+        <div class="panel-heading">
+            <h2 class="panel-title">Activity</h2>
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Description)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Description)
-            @Html.ValidationMessageFor(model => model.Description)
-        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PointValue)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PointValue)
-            @Html.ValidationMessageFor(model => model.PointValue)
-        </div>
+                <fieldset>
 
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
-}
+                    @Html.HiddenFor(model => model.ActivityId)
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ActivityName)
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.EditorFor(model => model.ActivityName)
+                        @Html.ValidationMessageFor(model => model.ActivityName)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Description)
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.EditorFor(model => model.Description)
+                        @Html.ValidationMessageFor(model => model.Description)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PointValue)
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.EditorFor(model => model.PointValue)
+                        @Html.ValidationMessageFor(model => model.PointValue)
+                    </div>
+
+                    <p>
+                        <input class="btn-u btn-u-red" type="submit" value="Save" />
+                    </p>
+                </fieldset>
+            }
+
+            <div>
+                @Html.ActionLink("Back to Current Activities", "Index")
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts {

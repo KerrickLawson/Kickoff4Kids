@@ -1,58 +1,162 @@
 ﻿@{
     ViewBag.Title = "Home Page";  
 }
+<div class="slider-inner">
+    <div id="da-slider" class="da-slider">
+        <div class="da-slide">
+            <h2><i> Kickoff 4 Kids</i> <br /> <i>House</i> <br /> <i>2013</i></h2>
 
+            <div class="da-img"><img src="~/Images/k4k.jpg" height="300" width="600" alt="" /></div>
+        </div>
+        <div class="da-slide">
+            <h2><i>Earn Points</i> <br /> <i>and</i> <br /> <i>win prizes today!</i></h2>
 
+            <div class="da-img"><img src="~/Images/rewards.jpg" height="300" width="600" alt="image01" /></div>
+        </div>
+        <div class="da-slide">
+            <h2><i>Get Involved</i> <br /> <i>With</i> <br /> <i>K4K House</i></h2>
 
-    <div class="hero-unit text-center ">
-        <div id="myCarousel" class="carousel slide">
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
-                <li data-target="#myCarousel" data-slide-to="4"></li>
-                <li data-target="#myCarousel" data-slide-to="5"></li>
-                <li data-target="#myCarousel" data-slide-to="6"></li>
-                <li data-target="#myCarousel" data-slide-to="7"></li>
-                <li data-target="#myCarousel" data-slide-to="8"></li>
-                <li data-target="#myCarousel" data-slide-to="9"></li>
-                <li data-target="#myCarousel" data-slide-to="10"></li>
-            </ol>
-            <!-- Carousel items -->
-            <div class="carousel-inner">
-                <div class="active item"><center> <img src="~/Images/download%20(1).jpg" height ="300" width ="700"/center> </div>
-                <div class="item">       <center> <img src="~/Images/banner.jpg"         height ="500" width ="700"       </center> </div>
-                <div class="item">       <center> <img src="~/Images/banner11.jpg"       height ="500" width ="700"     </center> </div>
-                <div class="item">       <center> <img src="~/Images/banner2.jpg"        height ="500" width ="700"      </center> </div>
-                <div class="item">       <center> <img src="~/Images/banner3.jpg"        height ="500" width ="700"      </center> </div>
-                <div class="item">       <center> <img src="~/Images/download%20(2).jpg" height ="500" width ="700"/center> </div>
-                <div class="item">       <center> <img src="~/Images/download.jpg"       height ="500" width ="700"     </center> </div>
-                <div class="item">       <center> <img src="~/Images/images%20(3).jpg"   height ="500" width ="700" </center> </div>
-                <div class="item">       <center> <img src="~/Images/images%20(4).jpg"   height ="500" width ="700" </center> </div>
-                <div class="item">       <center> <img src="~/Images/images%20(6).jpg"   height ="700" width ="500" </center> </div>
-                <div class="item">       <center> <img src="~/Images/images.jpg"         height ="500" width ="700"       </center> </div>
-
+            <div class="da-img"><img src="/Images/student01.jpg" height="300" width="600" alt="image01" /></div>
+        </div>
+        <div class="da-arrows">
+            <span class="da-arrows-prev"></span>
+            <span class="da-arrows-next"></span>
+        </div>
+    </div><!--/da-slider-->
+</div><!--/slider-->
+<!--=== End Slider ===-->
+<!--=== Purchase Block ===-->
+<div class="purchase">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <span>Kickoff 4 Kids (K4K) was founded in 2007 by NFL defensive lineman Amobi Okoye.</span>
+                <p>The Foundation’s mission is giving hope to kids, communities and building unity amongst children around the world.</p>
             </div>
-            <!-- Carousel nav -->
-            <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-            <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+            <div class="col-md-3">
+                <a href="http://www.amobiokoyefoundation.org/wp-kick4kids/" class="btn-buy hover-effect">Learn More</a>
+            </div>
         </div>
     </div>
+</div><!--/row-->
+<!-- End Purchase Block -->
+<!--=== Content Part ===-->
+<div class="container">
+    <!-- Service Blocks -->
     <div class="row">
-        <div class="text-center span4">
-            <h2>Log in to K4K House</h2>
-            <p></p>
-            <p><a class="btn btn-danger" href="/Account/Login">Log In &raquo;</a></p>
+        <div class="col-md-4">
+            <div class="service">
+                <i class="icon-book service-icon"></i>
+                <div class="desc">
+                    <h4>Academics</h4>
+                    <p>Get additional points by attending class, earning good grades, and by reaching graduation milestone!</p>
+                </div>
+            </div>
         </div>
-        <div class=" text-center span4">
-            <h2>Register for K4K House</h2>
-            <p></p>
-            <p><a class="btn btn-danger" href="/Account/Register">Register &raquo;</a></p>
+        <div class="col-md-4">
+            <div class="service">
+                <i class="icon-trophy service-icon"></i>
+                <div class="desc">
+                    <h4>Extracurricular Activities</h4>
+                    <p>Earn points by joining the various activities avaliable at your school such as the schools' football or chess team!'</p>
+                </div>
+            </div>
         </div>
-        <div class="text-center span4">
-            <h2>Learn more about Kickoff 4 Kids</h2>
-            <p></p>
-            <p><a class="btn btn-danger" href="http://www.amobiokoyefoundation.org/wp-kick4kids/services/kickoff-4-kids-house">K4K Site &raquo;</a></p>
+        <div class="col-md-4">
+            <div class="service">
+                <i class="icon-group service-icon"></i>
+                <div class="desc">
+                    <h4>Community Service</h4>
+                    <p>Help your community and earn points at the same time! Volunteer your services and show proof of your involvement to your teacher.   </p>
+                </div>
+            </div>
         </div>
-    </div>
+    </div><!--/row-->
+</div>
+<!-- End Service Blokcs -->
+<!-- Info Blokcs -->
+<!--=== Index Footer ===-->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 md-margin-bottom-40">
+                <!-- About -->
+                <div class="headline"><h2>About</h2></div>
+                <p class="margin-bottom-25 md-margin-bottom-40">Board of Directors <br />
+Chairman – Amobi Okoye <br/>
+Augustine Okoye<br />
+Pastor Kenneth Tate
+Harris County Sheriff Adrian Garcia<br />
+City of Katy Mayor Don Elder<br />
+Cynthia Stafford<br />
+Dr. Imo Aisiku<br />
+Judge Jimmy Thornton</p>
+
+                <!-- Monthly Newsletter -->
+                <div class="headline"><h2>Monthly Newsletter</h2></div>
+                <p>Subscribe to our newsletter and stay up to date with the latest news and deals!</p>
+                <form class="footer-subsribe">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Email Address">
+                        <span class="input-group-btn">
+                            <button class="btn-u" type="button">Subscribe</button>
+                        </span>
+                    </div><!-- /input-group -->
+                </form>
+            </div><!--/col-md-4-->
+
+            <div class="col-md-4 md-margin-bottom-40">
+                <div class="posts">
+                    <div class="headline"><h2>Recent Post</h2></div>
+                    <dl class="dl-horizontal">
+
+                        <li><a href="http://www.amobiokoyefoundation.org/wp-kick4kids/archives/677" title="Kickoff 4 Kids Charity Casino Night">Kickoff 4 Kids Charity Casino Night</a></li>
+                        <li><a href="http://www.amobiokoyefoundation.org/wp-kick4kids/archives/665" title="Sports Mentoring Camp: Sat March 9th">Sports Mentoring Camp: Sat March 9th</a></li>
+                        <li><a href="http://www.amobiokoyefoundation.org/wp-kick4kids/archives/659" title="CARDS PLAY">CARDS PLAY</a></li>
+                        <li><a href="http://www.amobiokoyefoundation.org/wp-kick4kids/archives/647" title="5th Annual Family Christmas party">5th Annual Family Christmas party</a></li>
+                        <li><a href="http://www.amobiokoyefoundation.org/wp-kick4kids/archives/639" title="Kickoff 4 Kids Fall Festival">Kickoff 4 Kids Fall Festival</a></li>
+                        </ul>
+
+
+
+                        @*<dt><a href="#"><img src="assets/img/sliders/elastislide/6.jpg" alt="" /></a></dt>
+                        <dd>
+                            <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
+                        </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt><a href="#"><img src="assets/img/sliders/elastislide/10.jpg" alt="" /></a></dt>
+                        <dd>
+                            <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
+                        </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt><a href="#"><img src="assets/img/sliders/elastislide/11.jpg" alt="" /></a></dt>
+                        <dd>
+                            <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>*@
+                        </dd>
+                    </dl>
+                </div>
+            </div><!--/col-md-4-->
+
+            <div class="col-md-4">
+                <!-- Monthly Newsletter -->
+                <div class="headline"><h2>Contact Us</h2></div>
+                <address class="md-margin-bottom-40">
+                    1832 Snake River Road <br />
+                    Katy Tx 77449 <br />
+                    Phone:  281-398-4201 <br />
+                    Fax: 281-398-4211 <br />
+                    Email: Info@amobiokoyefoundation.org
+                </address>
+            </div><!--/col-md-4-->
+        </div><!--/row-->
+    </div><!--/container-->
+</div><!--/footer-->
+<!--=== End Index Footer ===-->
+@section scripts
+{
+    @Scripts.Render("~/bundles/index")
+}
+
+

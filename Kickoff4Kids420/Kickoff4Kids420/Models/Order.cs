@@ -18,6 +18,9 @@ namespace Kickoff4Kids420.Models
         public int UserId { get; set; }
         [ScaffoldColumn(false)]
         public string UserName { get; set; }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public System.DateTime OrderDate { get; set; }
         [DisplayName("Product Name")]
         [ScaffoldColumn(false)]

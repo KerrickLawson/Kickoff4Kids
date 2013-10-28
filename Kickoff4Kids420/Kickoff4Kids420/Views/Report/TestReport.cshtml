@@ -1,5 +1,107 @@
-﻿@{
+﻿@model IEnumerable<Kickoff4Kids420.Models.School>
+
+@{
     ViewBag.Title = "TestReport";
 }
 
-<h2>TestReport</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TestReport</title>
+</head>
+<body>
+    <h1>Test Report 1</h1>
+    @*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+    <div id="container" style="width:100%; height:400px;"></div>
+    <script>$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Fruit Consumption'
+        },
+        xAxis: {
+            categories: ['Apples', 'Bananas', 'Oranges']
+        },
+        yAxis: {
+            title: {
+                text: 'Fruit eaten'
+            }
+        },
+        series: [{
+            name: 'Jane',
+            data: [1, 0, 4]
+        }, {
+            name: 'John',
+            data: [5, 7, 3]
+        }]
+    });
+});</script>
+    <div class="span8 offset2">
+        <table class="table table-bordered table-hover table-condensed table-border-overload">
+           <caption>Test Report Table</caption>
+          <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.SchoolName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SchoolAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.State)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ZipCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+                <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@Html.DisplayFor(modelItem => item.SchoolName)</th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SchoolAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.State)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ZipCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td class="text-right span3">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.SchoolId }, new { @class = " btn btn-small margin-right" })
+                        @Html.ActionLink("Details", "Details", new { id = item.SchoolId }, new { @class = " btn btn-small margin-right" })
+                        @Html.ActionLink(" ", "Delete", new { id = item.SchoolId }, new { @class = "icon icon-trash" })
+                    </td>
+                </tr>
+            }
+          </tbody>
+        </table>
+
+
+    </div>
+    <div class="row"></div>
+
+</body>
+</html>

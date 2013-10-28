@@ -36,7 +36,7 @@ namespace Kickoff4Kids420.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                MigrateShoppingCart(model.UserName);
+                //MigrateShoppingCart(model.UserName);
                 Session["MyMenu"] = null;
                 return RedirectToAction("RedirectToDefault");
             }
@@ -48,23 +48,23 @@ namespace Kickoff4Kids420.Controllers
         public ActionResult RedirectToDefault()
         {
 
-            String[] roles = Roles.GetRolesForUser();
-            if (roles.Contains("Admin"))
-            {
-                return RedirectToAction("Administrator", "Home");
-            }
-            else if (roles.Contains("Teacher"))
-            {
-                return RedirectToAction("Teacher", "Home");
-            }
-            else if (roles.Contains("Student"))
-            {
-                return RedirectToAction("Student", "Home");
-            }
-            else
-            {
+            //String[] roles = Roles.GetRolesForUser();
+            //if (roles.Contains("Admin"))
+            //{
+            //    return RedirectToAction("Administrator", "Home");
+            //}
+            //else if (roles.Contains("Teacher"))
+            //{
+            //    return RedirectToAction("Teacher", "Home");
+            //}
+            //else if (roles.Contains("Student"))
+            //{
+            //    return RedirectToAction("Student", "Home");
+            //}
+            //else
+            //{
                 return RedirectToAction("Index", "Home");
-            }
+            
         }
         //
         // POST: /Account/LogOff

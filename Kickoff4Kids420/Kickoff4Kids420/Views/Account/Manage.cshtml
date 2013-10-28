@@ -3,13 +3,15 @@
     ViewBag.Title = "Manage Account";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-</hgroup>
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">@ViewBag.Title - You're logged in as @User.Identity.Name</h1>
+    </div><!--/container-->
+</div><!--/breadcrumbs-->
 
-<p class="message-success">@ViewBag.StatusMessage</p>
 
-<p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
+
+
 
 @if (ViewBag.HasLocalPassword)
 {
@@ -19,7 +21,7 @@ else
 { 
     @Html.Partial("_SetPasswordPartial")
 }
-
+<div class="text-center text-success">@ViewBag.StatusMessage</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

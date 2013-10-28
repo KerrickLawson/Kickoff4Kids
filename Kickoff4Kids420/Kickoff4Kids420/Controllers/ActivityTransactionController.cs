@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Kickoff4Kids420.Models;
 
 namespace Kickoff4Kids420.Controllers
@@ -28,7 +30,13 @@ namespace Kickoff4Kids420.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.UserProfiles, "UserId", "UserName");
+            //Mark, get all user names of students.
+            var usernames = Roles.GetUsersInRole("Student");
+            //Fetch all of these profiles.
+            var studentUsers = db.UserProfiles
+                 .Where(x => usernames.Contains(x.UserName)).ToList();
+            //Pass this subset into the select list, good to go! :) Now we need to LINQ query! 
+            ViewBag.UserId = new SelectList(studentUsers, "UserId", "UserName");
             ViewBag.ActivityId = new SelectList(db.Activities, "ActivityId", "ActivityName");
             return View();
         }

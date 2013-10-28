@@ -3,74 +3,89 @@
 @{
     ViewBag.Title = "Edit";
 }
-
-<h2>Edit</h2>
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>School</legend>
-
-        @Html.HiddenFor(model => model.SchoolId)
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.SchoolName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.SchoolName)
-            @Html.ValidationMessageFor(model => model.SchoolName)
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Edit School</h1>
+    </div>
+</div>
+<div class=" container">
+    <div class="panel panel-red">
+        <div class="panel-heading">
+            <h2 class="panel-title">School</h2>
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.SchoolAddress)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.SchoolAddress)
-            @Html.ValidationMessageFor(model => model.SchoolAddress)
-        </div>
+        <div class="panel-body">
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.City)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.City)
-            @Html.ValidationMessageFor(model => model.City)
-        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.State)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.State)
-            @Html.ValidationMessageFor(model => model.State)
-        </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ZipCode)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ZipCode)
-            @Html.ValidationMessageFor(model => model.ZipCode)
-        </div>
+                <fieldset>
+                    <legend>School</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PhoneNumber)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PhoneNumber)
-            @Html.ValidationMessageFor(model => model.PhoneNumber)
-        </div>
+                    @Html.HiddenFor(model => model.SchoolId)
 
-        <p>
-            <input class="btn btn-warning" type="submit" value="Save">
-        </p>
-    </fieldset>
-}
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.SchoolName)
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.EditorFor(model => model.SchoolName)
+                        @Html.ValidationMessageFor(model => model.SchoolName)
+                    </div>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.SchoolAddress)
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.EditorFor(model => model.SchoolAddress)
+                        @Html.ValidationMessageFor(model => model.SchoolAddress)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.City)
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.EditorFor(model => model.City)
+                        @Html.ValidationMessageFor(model => model.City)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.State)
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.EditorFor(model => model.State)
+                        @Html.ValidationMessageFor(model => model.State)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ZipCode)
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.EditorFor(model => model.ZipCode)
+                        @Html.ValidationMessageFor(model => model.ZipCode)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PhoneNumber)
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.EditorFor(model => model.PhoneNumber)
+                        @Html.ValidationMessageFor(model => model.PhoneNumber)
+                    </div>
+
+                    <p>
+                        <input class="btn-u btn-u-red" type="submit" value="Save" />
+                    </p>
+                </fieldset>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
