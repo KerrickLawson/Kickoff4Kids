@@ -244,6 +244,7 @@
     <Content Include="Content\header2-red.css" />
     <Content Include="Content\Images\breadcrumbs.png" />
     <Content Include="Content\Images\html5andcss3.png" />
+    <Content Include="Content\page_404_error.css" />
     <Content Include="Content\page_log_reg_v1.css" />
     <Content Include="Content\page_pricing.css" />
     <Content Include="Content\parallax-slider.css" />
@@ -375,6 +376,7 @@
     <Content Include="Images\K4Klogo.PNG" />
     <Content Include="Images\KickOffForKids2.png" />
     <Content Include="Content\Images\up.png" />
+    <Content Include="Content\Images\panoramic-louisvillebw.jpg" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\back-to-top.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -495,6 +497,7 @@
     <Content Include="Views\Order\Delete.cshtml" />
     <Content Include="Views\OrderDetail\Index.cshtml" />
     <Content Include="Views\OrderDetail\Details.cshtml" />
+    <Content Include="Views\Home\Gallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

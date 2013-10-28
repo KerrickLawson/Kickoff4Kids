@@ -41,6 +41,9 @@ namespace Kickoff4Kids420
             bundles.Add(new StyleBundle("~/pricing/css").Include(
                         "~/Content/page_pricing.css"
                 ));
+            bundles.Add(new StyleBundle("~/404/css").Include(
+                        "~/Content/page_404_error.css"
+                ));
 
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
                     "~/Scripts/Custom/k4kcart.js"

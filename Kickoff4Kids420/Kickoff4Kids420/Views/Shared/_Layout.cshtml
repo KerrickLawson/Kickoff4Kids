@@ -34,29 +34,21 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @*Insert Small Kickoff 4 Kids Logo Here*@
-                    @*<img src="http://www.logomaker.com/logo-images/b306f6fd148faab7.gif" />
-                    <a href="http://www.logomaker.com"><img src="http://www.logomaker.com/images/logos.gif" alt="website design" border="0" /></a>*@
-                    @*Insert Logo Reference Here*@
-                    @*<a class="navbar-brand" href="index.html">
-                        <img id="logo-header" src="assets/img/logo1-default.png" alt="Logo">
-                    </a>*@
-
                     <img class="pull-left" src="~/Images/K4Klogo.PNG" />
                         </div>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse navbar-responsive-collapse">
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown active">
+                                @*<li class="dropdown active">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
                                         Home
                                         <i class="icon-angle-down"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
+                                    </a>*@
+
                                         <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
-                                    </ul>
-                                </li>
+
+
                                 @if (Session["MyMenu"] == null)
         {
             Session["MyMenu"] = Html.Partial("~/Views/Shared/_Menu.cshtml");
@@ -86,7 +78,7 @@
                         <div class="col-md-6">
                             <p class="copyright-space">
                                 2013 &copy; Kickoff 4 Kids. ALL Rights Reserved.
-                                <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+                                @*<a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>*@
                             </p>
                         </div>
                         <div class="col-md-6 pull-right">

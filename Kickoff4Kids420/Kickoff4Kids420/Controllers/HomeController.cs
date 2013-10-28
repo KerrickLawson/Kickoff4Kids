@@ -28,27 +28,14 @@ namespace Kickoff4Kids420.Controllers
 
             return View();
         }
-
-        public ActionResult Administrator()
+        public ActionResult Gallery()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
         }
 
-        public ActionResult Teacher()
-        {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
-
-        public ActionResult Student()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
 
         
     }
