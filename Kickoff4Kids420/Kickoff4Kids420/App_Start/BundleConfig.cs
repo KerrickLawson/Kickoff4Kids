@@ -46,7 +46,8 @@ namespace Kickoff4Kids420
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
-                    "~/Scripts/Custom/k4kcart.js"
+                    "~/Scripts/Custom/k4kcart.js",
+                    "~/Scripts/Custom/k4korder.js"
                     
                 ));
             bundles.Add(new ScriptBundle("~/bundles/index").Include(                   

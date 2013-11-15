@@ -10,54 +10,54 @@
     </div>
 </div>
 <div class="container">
-<div class="panel panel-red margin-bottom-40">
-    <div class="panel-heading">
-        <h1 class="panel-title">New Product</h1>
-    </div>
-    <div class="panel-body">
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true)
+    <div class="panel panel-red margin-bottom-40">
+        <div class="panel-heading">
+            <h1 class="panel-title">New Product</h1>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
 
-            <fieldset>
+                <fieldset>
 
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.ProductName)
-                </div>
-                <div class="editor-field margin-bottom-10">
-                    @Html.EditorFor(model => model.ProductName)
-                    @Html.ValidationMessageFor(model => model.ProductName)
-                </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ProductName)
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.EditorFor(model => model.ProductName)
+                        @Html.ValidationMessageFor(model => model.ProductName)
+                    </div>
 
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.Price)
-                </div>
-                <div class="editor-field margin-bottom-10">
-                    @Html.EditorFor(model => model.Price)
-                    @Html.ValidationMessageFor(model => model.Price)
-                </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Price)
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.EditorFor(model => model.Price)
+                        @Html.ValidationMessageFor(model => model.Price)
+                    </div>
 
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.CategoryId, "Categories")
-                </div>
-                <div class="editor-field margin-bottom-10">
-                    @Html.DropDownList("CategoryId", String.Empty)
-                    @Html.ValidationMessageFor(model => model.CategoryId)
-                </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CategoryId, "Categories")
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.DropDownList("CategoryId", String.Empty)
+                        @Html.ValidationMessageFor(model => model.CategoryId)
+                    </div>
 
-                <p>
-                    <input class="btn-u btn-u-red" type="submit" value="Create" />
-                </p>
-            </fieldset>
-        }
+                    <p>
+                        <input class="btn-u btn-u-red" type="submit" value="Create" />
+                    </p>
+                </fieldset>
+            }
 
-        <div>
-            @Html.ActionLink("Back to Available Products", "Index")
+            <div>
+                @Html.ActionLink("Back to Available Products", "Index")
+            </div>
         </div>
     </div>
 </div>
-    </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -18,13 +18,16 @@ namespace Kickoff4Kids420.Models
         public int UserId { get; set; }
         [ScaffoldColumn(false)]
         public string UserName { get; set; }
-
+        [DisplayName("First Name")]
         public string FirstName { get; set; }
+        [DisplayName("Last Name")]
         public string LastName { get; set; }
+        [DisplayName("Order Date")]
         public System.DateTime OrderDate { get; set; }
         [DisplayName("Product Name")]
         [ScaffoldColumn(false)]
         public int Total { get; set; }
+        public bool IsFulfilled { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
         public virtual UserProfile UserProfiles{ get; set; }
 

@@ -1,0 +1,32 @@
+﻿@model Kickoff4Kids420.Models.FrontPage
+
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Current Front Page Text</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="col-lg-12">
+        <div class="headline"><h2>Current Text</h2></div>
+        <dl>
+            <dt>Main Text</dt>
+            <dd>@Model.MainText</dd>
+            <dt>Button Text</dt>
+            <dd>@Model.MainButton</dd>
+            <dt>Headline One</dt>
+            <dd>@Model.HeaderOneText</dd>
+            <dt>Headline One Comment</dt>
+            <dd>@Model.HeaderOneComment</dd>
+            <dt>Headline Two</dt>
+            <dd>@Model.HeaderTwoText</dd>
+            <dt>Headline Two Comment</dt>
+            <dd>@Model.HeaderTwoComment</dd>
+            <dt>Headline Three</dt>
+            <dd>@Model.HeaderThreeText</dd>
+            <dt>Headline Three Comment</dt>
+            <dd>@Model.HeaderThreeComment</dd>
+        </dl>
+    </div>
+
+    <h4>@Html.ActionLink("Edit Front Page Text", "Edit", new { id = 1 })</h4>
+</div>

@@ -6,6 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Kickoff4Kids420.Models;
+using PagedList;
+using PagedList.Mvc;
+
 
 namespace Kickoff4Kids420.Controllers
 {
@@ -16,10 +19,42 @@ namespace Kickoff4Kids420.Controllers
         //
         // GET: /Product/
 
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString, int? page)
         {
-            var products = db.Products.Include(p => p.Categories);
-            return View(products.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Product_Name_desc" : "";
+            ViewBag.CategorySortParm = sortOrder == "Category" ? "Category_desc" : "Category";
+            var products = from p in db.Products
+                           select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(p => p.ProductName.ToUpper().Contains(searchString.ToUpper()));
+
+            }
+            switch (sortOrder)
+            {
+                case "Product_Name_desc":
+                    products = products.OrderByDescending(p => p.ProductName);
+                    break;
+                case "Category":
+                    products = products.OrderBy(p => p.Categories);
+                    break;
+                case "Category_desc":
+                    products = products.OrderByDescending(p => p.Categories);
+                    break;
+                default:
+                    products = products.OrderBy(p => p.ProductName);
+                    break;
+            }
+
+            if (Request.HttpMethod != "GET")
+            {
+                page = 1;
+            }
+            int pageSize = 2;
+            int pageNumber = (page ?? 1);
+            //var products = db.Products.Include(p => p.Categories);
+            return View(products.ToPagedList(pageNumber, pageSize));
         }
 
         //

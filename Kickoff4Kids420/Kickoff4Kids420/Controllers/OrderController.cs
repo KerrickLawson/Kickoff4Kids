@@ -21,6 +21,16 @@ namespace Kickoff4Kids420.Controllers
             var orders = db.Orders.Include(o => o.UserProfiles);
             return View(orders.ToList());
         }
+        public ActionResult FulfilledOrders()
+        {
+            var orders = db.Orders.Include(o => o.UserProfiles);
+            return View(orders.ToList());
+        }
+        public ActionResult UnFulfilledOrders()
+        {
+            var orders = db.Orders.Include(o => o.UserProfiles);
+            return View(orders.ToList());
+        }
 
         //
         // GET: /Order/Details/5
@@ -96,6 +106,21 @@ namespace Kickoff4Kids420.Controllers
         {
             Order order = db.Orders.Find(id);
             db.Orders.Remove(order);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult OrderFulfilled(int orderId, bool? ischecked)
+        {
+            Order order = db.Orders.Find(orderId);
+            if (ischecked.HasValue && ischecked.Value)
+            {
+                order.IsFulfilled = true;
+            }
+            else
+            {
+                order.IsFulfilled = false;
+            }
             db.SaveChanges();
             return RedirectToAction("Index");
         }

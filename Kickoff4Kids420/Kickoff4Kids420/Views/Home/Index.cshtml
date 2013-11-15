@@ -1,21 +1,22 @@
-﻿@{
-    ViewBag.Title = "Home Page";  
+﻿@model Kickoff4Kids420.Models.FrontPage
+@{
+    ViewBag.Title = "Kickoff 4 Kids";  
 }
 <div class="slider-inner">
     <div id="da-slider" class="da-slider">
         <div class="da-slide">
             <h2><i> Kickoff 4 Kids</i> <br /> <i>House</i> <br /> <i>2013</i></h2>
-            <div class="da-img"><img src="~/Images/k4k.jpg" height="300" width="600" alt="" /></div>
+            <div class="da-img"><img src="~/Images/k4knew.png" height="300" width="600" alt="" /></div>
         </div>
         <div class="da-slide">
             <h2><i>Earn Points</i> <br /> <i>and</i> <br /> <i>win prizes today!</i></h2>
 
-            <div class="da-img"><img src="~/Images/rewards.jpg" height="300" width="600" alt="image01" /></div>
+            <div class="da-img"><img src="~/Images/apple.png" height="300" width="600" alt="image01" /></div>
         </div>
         <div class="da-slide">
             <h2><i>Get Involved</i> <br /> <i>And</i> <br /> <i>Make a Difference!</i></h2>
 
-            <div class="da-img"><img src="/Images/student01.jpg" height="300" width="600" alt="image01" /></div>
+            <div class="da-img"><img src="/Images/students.png" height="300" width="600" alt="image01" /></div>
         </div>
         <div class="da-arrows">
             <span class="da-arrows-prev"></span>
@@ -27,11 +28,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-                <span>Are you interested in earning cool rewards while having fun? There's no time to waste!</span>
+                <span>@Model.MainText</span>
                 @*<p>The Foundation’s mission is to give hope to kids, communities and to build unity amongst the children of Louisville, KY.</p>*@
             </div>
             <div class="col-md-3">
-                <a href="/Account/Register" class="btn-buy hover-effect">Join the Competition!</a>
+                <a href="/Account/Register" class="btn-buy hover-effect">@Model.MainButton</a>
             </div>
         </div>
     </div>
@@ -42,8 +43,8 @@
             <div class="service">
                 <i class="icon-book service-icon"></i>
                 <div class="desc">
-                    <h4>Academics</h4>
-                    <p>By excelling in the classroom students will have the opportunity to accumulate points and earn rewards based of their academic accomplishments!</p>
+                    <h4>@Model.HeaderOneText</h4>
+                    <p>@Model.HeaderOneComment</p>
                 </div>
             </div>
         </div>
@@ -51,8 +52,8 @@
             <div class="service">
                 <i class="icon-trophy service-icon"></i>
                 <div class="desc">
-                    <h4>Extracurricular Activities</h4>
-                    <p>Get involved with extracurricular activities at your school and earn points while you having fun!</p>
+                    <h4>@Model.HeaderTwoText</h4>
+                    <p>@Model.HeaderTwoComment</p>
                 </div>
             </div>
         </div>
@@ -60,8 +61,8 @@
             <div class="service">
                 <i class="icon-group service-icon"></i>
                 <div class="desc">
-                    <h4>Community Service</h4>
-                    <p>Contribute to your community and earn points at the same time! Volunteer your services and gain experiences that will last a lifetime!   </p>
+                    <h4>@Model.HeaderThreeText</h4>
+                    <p>@Model.HeaderThreeComment</p>
                 </div>
             </div>
         </div>

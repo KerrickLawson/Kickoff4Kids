@@ -86,6 +86,7 @@ namespace Kickoff4Kids420.Models
         [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
         public int PointTotal { get; set; }
+        public int CumulativePointTotal { get; set; }
 
         
     }

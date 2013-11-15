@@ -28,10 +28,14 @@ namespace Kickoff4Kids420.Controllers
 
          return View(model);
         }
-        //public ActionResult testreport2()
-        //{
-        //    var model = db.
-        //}
+        public ActionResult testreport2()
+        {
+            var model = db.Schools
+                .OrderBy(x => x.SchoolName)
+                .Take(10);
+
+            return View(model);
+        }
 
         protected override void Dispose(bool disposing)
         {

@@ -1,0 +1,62 @@
+﻿@model Kickoff4Kids420.Models.FrontPage
+
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Edit Front Page Text</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="panel panel-red margin-bottom-40">
+        <div class="panel-heading">
+            <h3 class="panel-title">Current Text</h3>
+        </div>
+        <div class="panel-body">
+            <form action="/frontpage/Edit/1" method="post" class="margin-bottom-40">
+                @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                        <input data-val="true" data-val-number="The field Id must be a number." data-val-required="The Id field is required." id="Id" name="Id" type="hidden" value="1" />
+
+                        <div class="form-group">
+                            <label for="MainText">Main Text</label>
+                            <input class="form-control" id="MainText" name="MainText" type="text" value="@Model.MainText" />
+                        </div>
+                        <div class="form-group">
+                            <label for="MainButton">Main Button</label>
+                            <input class="form-control" id="MainButton" name="MainButton" type="text" value="@Model.MainButton" />
+                        </div>
+                        <div class="form-group">
+                            <label for="HeaderOneText">Header One Text</label>
+                            <input class="form-control" id="HeaderOneText" name="HeaderOneText" type="text" value="@Model.HeaderOneText" />
+                        </div>
+                        <div class="form-group">
+                            <label for="HeaderOneComment">Header One Comment</label>
+                            <input class="form-control" id="HeaderOneComment" name="HeaderOneComment" type="text" value="@Model.HeaderOneComment" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="HeaderTwoText">Header Two Text</label>
+                            <input class="form-control" id="HeaderTwoText" name="HeaderTwoText" type="text" value="@Model.HeaderTwoText" />
+                        </div>
+                        <div class="form-group">
+                            <label for="HeaderTwoComment">Header Two Comment</label>
+                            <input class="form-control" id="HeaderTwoComment" name="HeaderTwoComment" type="text" value="@Model.HeaderTwoComment" />
+                        </div>
+                        <div class="form-group">
+                            <label for="HeaderThreeText">Header Three Text</label>
+                            <input class="form-control" id="HeaderThreeText" name="HeaderThreeText" type="text" value="@Model.HeaderThreeText" />
+                        </div>
+                        <div class="form-group">
+                            <label for="HeaderTwoText">Header Three Comment</label>
+                            <input class="form-control" id="HeaderThreeComment" name="HeaderThreeComment" type="text" value="@Model.HeaderThreeComment" />
+                        </div>
+
+                        <button type="submit" class="btn-u btn-u-red">Submit Changes</button>
+
+                    </form>
+                </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

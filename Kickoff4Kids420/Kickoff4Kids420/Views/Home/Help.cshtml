@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "Help";
+    
+}
+
+@*Page for documentation, good luck.*@ 
+
+
+
+<body>
+<div style="padding-left: 10%;">
+    
+    <h1>Help Guide</h1></div>
+    <div style="padding-left: 15%;">
+        <p>
+            The Kickoff 4 Kids House is an interactive, web-based system to reward students for good behavior, good grades and extracurricular involvement. <br />
+            The system has been created for multiple users including: an administrator(s), teachers and students. All users will be able to access the K4K House via the web.<br />
+            From the homepage, users may register to be added into the system.
+        </p>
+     
+        <p>1. To Register: a user will click on the “register” button and enter information into the required fields and submit.</p>
+        <p>2. To Log-in: after registering, a user may click on “Log-In” and then enter their username and password.</p>
+
+    </div>
+    <div style="padding-left: 10%;">
+        <h2>Home</h2>
+        </div>
+        <div style="padding-left: 15%;">
+            <em><b><u><a href="/Home/Index">Home</a></u></b></em>
+            <p>This will take you to the Home Page.</p>
+        </div>
+    <div style="padding-left: 10%;">
+        <h2>Reports</h2> </div>
+    <div style="padding-left: 15%;">
+        <em><b><u><a href="/Order">View Orders</a></b></em></u>
+        <p>This shows a table of all orders places by students for products. It has the First Name, Last Name, and Order Date.</p>
+
+        <em><b><u><a href="/Report">Report 1</a></b></em></u>
+        <p>This is a report which shows a list of each student’s First Name, Last Name, and Point Total.</p>
+
+        <em><b><u><a href="/Report/TestReport">Report 2</a></em></b></u>
+        <p>This report will be generated.</p></div>
+        <div style="padding-left: 10%;">
+            <h2>Products</h2>
+        </div>
+    <div style="padding-left: 15%;">
+        <em><b><u><a href="/Product">Modify Awards</a></em></u></b>
+        <p>From here you can create a new product or search for one from the search bar. The table lists all of the currently available products giving their Product Name, Price, Category Name, and Status</p>
+
+        <em><u><b><a href="/Category">Add Product Category</a></b></u></em>
+        <p>From here you can create a new category to put products in. The table lists all of the currently available categories giving their Category Name and Status.</p>
+        </div>
+        <div style="padding-left: 10%;">
+            <h2>Activites</h2>
+        </div>
+    <div style="padding-left: 15%;">
+        <em><u><b><a href="/ActivityTransaction">View Completed Activities</a></b></u></em>
+        <p> Here an administrator can add a completed activity. The table lists all currently completed activities giving the Student Name, Activity Date, Activity Name, Points Earned, and an option to modify the completed activity.</p>
+
+        <em><u><b><a href="/ActivityTransaction/Create">Input Completed Activities</a></b></u></em>
+        <p>From this tab an administrator can create a new activity transaction by selecting the user from a drop down, the date, and the activity from a drop down menu.</p>
+
+        <em><b><u><a href="/ActivityTransaction/Activity">Add Reward Activity</a></u></b></em>
+        <p>This table details all of the currently eligible activities giving the Activity Name, Description, and Point Value. <br />The administrator can click Add Activity to add a new one to the table. The administrator would then input the Activity Name, Description, and Point Value and select Create.</p>
+        </div>
+        <div style="padding-left: 10%;">
+            <h2>Toolbox</h2>
+        </div>
+    <div style="padding-left: 15%;">
+        <em><b><u><a href="/User">View Student Accounts</a></u></b></em>
+        <p>The administrator will see a table showing each Student Name, First Name, Last Name, Email Address, Point Total, and School Name.</p>
+        <em><b><u><a href="/Roles">Edit User Roles</a></u></b></em>
+        <p>
+            From this page you can Edit Roles, Create New Roles, and go Home. If you click Edit Roles you can view a table that shows each User ID, Username, <br />and a
+            checked box telling which type of user it is. If you click Create New Roles you can type in a new role to add and click the Add
+            button. If you click Home it sends you to the Home Page
+        </p>
+
+        <em><b><u><a href="/School">Add/Remove Schools</a></u></b></em>
+        <p>By selecting Create New there will be fields to enter a School Name, Address, City, State, Zip Code, and Phone Number. After selecting create it will add the new school to the table.</p>
+
+        <em><b><u><a href="/FrontPage">Edit Front Page Text</a></u></b></em>
+        <p>This option will bring up a list of items an Admin can click on and change.</p>
+        <em><b><u><a href="/FrontPage">Admin Panel</a></u></b></em>
+        <p>This will take the Admin to an Admin panel.</p>
+        </div>
+    </div>
+</body>

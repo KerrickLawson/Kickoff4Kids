@@ -4,6 +4,44 @@
     ViewBag.Title = "Edit";
 }
 
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Category</legend>
+
+        @Html.HiddenFor(model => model.CategoryId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CategoryName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CategoryName)
+            @Html.ValidationMessageFor(model => model.CategoryName)
+        </div>
+
+        <p>
+            <input class="btn btn-warning" type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+@model Kickoff4Kids420.Models.Category
+
+@{
+    ViewBag.Title = "Edit";
+}
+
 <div class="breadcrumbs margin-bottom-40">
     <div class="container">
         <h1 class="pull-left">Edit Category</h1>

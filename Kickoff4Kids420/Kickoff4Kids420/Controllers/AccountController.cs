@@ -9,10 +9,11 @@ using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using Kickoff4Kids420.Models;
+using Postal;
 
 namespace Kickoff4Kids420.Controllers
 {
-    [Authorize]   
+    [Authorize]
     public class AccountController : Controller
     {
         private Kickoff4KidsDb db = new Kickoff4KidsDb();
@@ -63,8 +64,8 @@ namespace Kickoff4Kids420.Controllers
             //}
             //else
             //{
-                return RedirectToAction("Index", "Home");
-            
+            return RedirectToAction("Index", "Home");
+
         }
         //
         // POST: /Account/LogOff
@@ -80,8 +81,8 @@ namespace Kickoff4Kids420.Controllers
 
         //
         // GET: /Account/Register
-
         [AllowAnonymous]
+
         public ActionResult Register()
         {
             ViewBag.SchoolId = new SelectList(db.Schools, "SchoolId", "SchoolName");
@@ -99,35 +100,86 @@ namespace Kickoff4Kids420.Controllers
             if (ModelState.IsValid)
             {
                 model.PointTotal = 0;
+                model.CumulativePointTotal = 0;
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password, 
+                    string confirmationToken =
+                        WebSecurity.CreateUserAndAccount(model.UserName, model.Password,
                         new
                         {
                             FirstName = model.FirstName,
                             LastName = model.LastName,
                             EmailAddress = model.EmailAddress,
                             SchoolId = model.SchoolId,
-                            PointTotal = model.PointTotal
-                        });
+                            PointTotal = model.PointTotal,
+                            CumulativePointTotal = model.CumulativePointTotal
+                        }, true);
                     // Student Role: Sets all users registering from the site as a Student role
                     if (!Roles.RoleExists("Student"))
                         Roles.CreateRole("Student");
                     MigrateShoppingCart(model.UserName);
                     Roles.AddUserToRole(model.UserName, "student");
                     WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+
+
+                    //Email confirmation token required before adding student to database
+                    dynamic email = new Email("RegEmail");
+                    email.To = model.EmailAddress;
+                    email.UserName = model.UserName;
+                    email.ConfirmationToken = confirmationToken;
+                    email.Send();
+
+                    //return RedirectToAction("RegisterStepTwo", "Account");
                 }
                 catch (MembershipCreateUserException e)
                 {
                     ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
                 }
+
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return RedirectToAction("Index", "Home");
         }
+
+
+        //private string ErrorCodeToString(MembershipCreateStatus membershipCreateStatus)
+        //{
+        //    throw new NotImplementedException();
+        //}    
+
+        [AllowAnonymous]
+        public ActionResult RegisterStepTwo()
+        {
+            return View();
+
+        }
+        [AllowAnonymous]
+        public ActionResult RegisterConfirmation(string Id)
+        {
+            if (WebSecurity.ConfirmAccount(Id))
+            {
+                return RedirectToAction("ConfirmationSuccess");
+            }
+            return RedirectToAction("ConfirmationFailure");
+        }
+
+        [AllowAnonymous]
+        public ActionResult ConfirmationSuccess()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult ConfirmationFailure()
+        {
+            return View();
+        }
+
+
+
+
 
         //
         // POST: /Account/Disassociate

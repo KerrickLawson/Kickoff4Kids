@@ -59,6 +59,7 @@ namespace Kickoff4Kids420.Controllers
             order.UserProfiles = user;
             order.FirstName = user.FirstName;
             order.LastName = user.LastName;
+            order.IsFulfilled = false;
             
             //Save Order
             db.Orders.Add(order);

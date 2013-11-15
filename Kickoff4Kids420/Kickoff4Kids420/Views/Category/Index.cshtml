@@ -1,7 +1,9 @@
-﻿@model IEnumerable<Kickoff4Kids420.Models.Category>
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Kickoff4Kids420.Models.Category>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Product Categories";
 }
 
 <div class="breadcrumbs margin-bottom-40">
@@ -10,7 +12,7 @@
     </div>
 </div>
     <div class="container">
-        <div class="panel panel-red">
+        <div class="panel panel-red margin-bottom-40">
             <div class="panel-heading">
                 <h2 class="panel-title">Product Categories</h2>
             </div>
@@ -19,30 +21,66 @@
                     @Html.ActionLink("Create New", "Create")
                 </p>
             </div>
-            <div class="span4">
-                <table class="table table-striped table-hover table-bordered">
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CategoryName)
-                        </th>
-                        <th>Status</th>
-                    </tr>
 
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CategoryName)
-                            </td>
-                            <td>
-                                @Html.ActionLink(" ", "Edit", new { id = item.CategoryId }, new { @class = "icon-edit" }) |
-                                @Html.ActionLink(" ", "Details", new { id = item.CategoryId }, new { @class = "icon-info" }) |
-                                @Html.ActionLink(" ", "Delete", new { id = item.CategoryId }, new { @class = "icon-trash" })
-                            </td>
-                        </tr>
-                    }
 
-                </table>
-            </div>
-        </div>
+             @using (Html.BeginForm())
+    {
+        <p>
+            Search by Name: @Html.TextBox("SearchString")
+            <input type="submit" value="Go!" />
+        </p>
+    }
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CategoryName)
+            </th>
+            
+            <th>Status</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.CategoryId }, new { @class = "icon-edit" }) |
+                    @Html.ActionLink(" ", "Delete", new { id = item.CategoryId }, new { @class = "icon-trash" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @if (Model.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "Index", new { page = 1 })
+            @Html.Raw(" ");
+            @Html.ActionLink("< Prev", "Index", new { page = Model.PageNumber - 1 })
+        }
+        else
+        {
+            @:<<
+            @Html.Raw(" ");
+            @:< Prev
+    }
+
+        @if (Model.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "Index", new { page = Model.PageNumber + 1 })
+            @Html.Raw(" ");
+            @Html.ActionLink(">>", "Index", new { page = Model.PageCount })
+        }
+        else
+        {
+            @:Next >
+            @Html.Raw(" ")
+            @:>>
+    }
     </div>
+
+       </div></div>

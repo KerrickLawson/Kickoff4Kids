@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Kickoff4Kids420.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Kickoff4Kids420.Controllers
 {
@@ -16,10 +18,44 @@ namespace Kickoff4Kids420.Controllers
         //
         // GET: /Category/
 
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString, int? page)
         {
-            return View(db.Categories.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Category_Name_desc" : "";
+            var category = from p in db.Categories
+                           select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                category = category.Where(p => p.CategoryName.ToUpper().Contains(searchString.ToUpper()));
+
+            }
+            switch (sortOrder)
+            {
+                case "Category_Name_desc":
+                    category = category.OrderByDescending(p => p.CategoryName);
+                    break;
+                default:
+                    category = category.OrderBy(p => p.CategoryName);
+                    break;
+            }
+
+            if (Request.HttpMethod != "GET")
+            {
+                page = 1;
+            }
+            int pageSize = 2;
+            int pageNumber = (page ?? 1);
+            //var products = db.Products.Include(p => p.Categories);
+            return View(category.ToPagedList(pageNumber, pageSize));
         }
+
+
+
+
+        //public ActionResult Index()
+        //{
+        //    return View(db.Categories.ToList());
+        //}
 
         //
         // GET: /Category/Details/5

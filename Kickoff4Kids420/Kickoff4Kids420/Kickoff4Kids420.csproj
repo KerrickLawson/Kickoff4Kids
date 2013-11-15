@@ -24,6 +24,8 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,6 +47,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Postal">
+      <HintPath>..\packages\postal.0.8.2\lib\net45\Postal.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.3.2.0\lib\net40\RazorEngine.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -191,6 +205,7 @@
     <Compile Include="Controllers\ActivityTransactionController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
+    <Compile Include="Controllers\FrontPageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OrderDetailController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -209,6 +224,7 @@
     <Compile Include="Models\ActivityTransaction.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\FrontPage.cs" />
     <Compile Include="Models\Kickoff4KidsDb.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Product.cs" />
@@ -222,8 +238,13 @@
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Kickoff4Kids420.Models.Kickoff4KidsDb.mdf" />
+    <Content Include="App_Data\Kickoff4Kids420.Models.Kickoff4KidsDb_log.ldf">
+      <DependentUpon>Kickoff4Kids420.Models.Kickoff4KidsDb.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\app.css" />
     <Content Include="Content\Images\1.png" />
+    <Content Include="Images\apple.png" />
     <Content Include="Content\Images\arrows.png" />
     <Content Include="Content\basic.css" />
     <Content Include="Content\bootstrap-responsive.css" />
@@ -244,6 +265,9 @@
     <Content Include="Content\header2-red.css" />
     <Content Include="Content\Images\breadcrumbs.png" />
     <Content Include="Content\Images\html5andcss3.png" />
+    <Content Include="Images\K4KNew.png" />
+    <Content Include="Images\KickOffForKids.png" />
+    <Content Include="Images\students.png" />
     <Content Include="Content\page_404_error.css" />
     <Content Include="Content\page_log_reg_v1.css" />
     <Content Include="Content\page_pricing.css" />
@@ -372,6 +396,10 @@
     <Content Include="Content\font-awesome\scss\_path.scss" />
     <Content Include="Content\font-awesome\scss\_variables.scss" />
     <Content Include="Content\social\Thumbs.db" />
+    <None Include="Properties\PublishProfiles\kickoff4kidshouse - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\kickoff4kidshouse - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\KickoffTesting - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\KickoffTesting - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Images\K4Klogo.PNG" />
     <Content Include="Images\KickOffForKids2.png" />
@@ -383,6 +411,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\contact.js" />
     <Content Include="Scripts\Custom\JavaScript2.js" />
+    <Content Include="Scripts\Custom\k4korder.js" />
     <Content Include="Scripts\Custom\visualize.jQuery.js" />
     <Content Include="Scripts\Custom\highcharts.js" />
     <Content Include="Scripts\hover-dropdown.min.js" />
@@ -498,9 +527,21 @@
     <Content Include="Views\OrderDetail\Index.cshtml" />
     <Content Include="Views\OrderDetail\Details.cshtml" />
     <Content Include="Views\Home\Gallery.cshtml" />
+    <Content Include="Views\Report\CurentStudentSchoolTotal.cshtml" />
+    <Content Include="Views\Home\Help.cshtml" />
+    <Content Include="Views\FrontPage\Edit.cshtml" />
+    <Content Include="Views\FrontPage\Index.cshtml" />
+    <Content Include="Views\Home\AdminPanel.cshtml" />
+    <Content Include="Views\Home\Terms.cshtml" />
+    <Content Include="Views\Home\Privacy.cshtml" />
+    <Content Include="Views\Emails\_ViewStart.cshtml" />
+    <Content Include="Views\RegEmail.cshtml" />
+    <Content Include="Views\Account\ConfirmationFailure.cshtml" />
+    <Content Include="Views\Account\ConfirmationSuccess.cshtml" />
+    <Content Include="Views\Order\UnfulfilledOrders.cshtml" />
+    <Content Include="Views\Order\FulfilledOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Filters\" />
   </ItemGroup>
   <ItemGroup>
@@ -534,6 +575,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

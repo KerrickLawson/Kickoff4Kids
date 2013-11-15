@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -19,9 +21,10 @@ namespace Kickoff4Kids420.Models
         public string City { get; set; }
         public string State { get; set; }
         [DisplayName("Zip Code")]
+
         public int ZipCode { get; set; }
         [DisplayName("Phone Number")]
-        public int PhoneNumber { get; set; }
+        public String PhoneNumber { get; set; }
         public virtual ICollection<UserProfile> UserProfiles { get; set; }
     }
 }

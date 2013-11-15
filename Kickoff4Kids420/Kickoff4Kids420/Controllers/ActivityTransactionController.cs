@@ -58,6 +58,7 @@ namespace Kickoff4Kids420.Controllers
                 int points = act.PointValue;
                 //Add Points
                 updUserProfile.PointTotal += points;
+                updUserProfile.CumulativePointTotal += points;
 
                 db.ActivityTransactions.Add(activitytransaction);
                 db.SaveChanges();
