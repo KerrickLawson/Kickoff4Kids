@@ -1,60 +1,47 @@
-﻿@model Kickoff4Kids420.Models.OrderDetail
+﻿@model IEnumerable<Kickoff4Kids420.Models.OrderDetail>
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Index";
 }
+
 <div class="breadcrumbs margin-bottom-40">
     <div class="container">
-        <h1 class="pull-left">Details for @Model.Order.FirstName @Model.Order.LastName 's order</h1>
+        <h1 class="pull-left">Details for Order</h1>
     </div>
 </div>
 <div class="container">
-
-    <div class="container">
-        <div class="headline"><h2>Order #@Model.OrderId</h2></div>
-        <dl>
-            <dt>UserName</dt>
-            <dd>@Html.DisplayFor(model => model.Order.UserName)</dd>
-            <dt>Product Name</dt>
-            <dd>@Html.DisplayFor(model => model.Product.ProductName)</dd>
-            <dt>Quantity</dt>
-            <dd>@Html.DisplayFor(model => model.Quantity)</dd>
-            <dt>Unit Price</dt>
-            <dd>@Html.DisplayFor(model => model.UnitPrice)</dd>
-        </dl>
+<div class="panel panel-red margin-bottom-40">
+    <div class="panel-heading">
+        <h1 class="panel-title">Items Purchased</h1>
     </div>
-    @*<fieldset>
-            <legend>OrderDetail</legend>
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+        </tr>
 
-            <div class="display-label">
-                 @Html.DisplayNameFor(model => model.Order.UserName)
-            </div>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.Order.UserName)
-            </div>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+            </tr>
+        }
 
-            <div class="display-label">
-                 @Html.DisplayNameFor(model => model.Product.ProductName)
-            </div>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.Product.ProductName)
-            </div>
-
-            <div class="display-label">
-                 @Html.DisplayNameFor(model => model.Quantity)
-            </div>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.Quantity)
-            </div>
-
-            <div class="display-label">
-                 @Html.DisplayNameFor(model => model.UnitPrice)
-            </div>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.UnitPrice)
-            </div>
-        </fieldset>*@
-    <p class="lead">
-        @Html.ActionLink("Back to Orders", "Index", "Order")
-    </p>
-</div>
+    </table>
+    </div>
+</div> 

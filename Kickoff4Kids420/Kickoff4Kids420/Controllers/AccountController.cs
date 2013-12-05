@@ -9,6 +9,7 @@ using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using Kickoff4Kids420.Models;
+using Kickoff4Kids420.ViewModels;
 using Postal;
 
 namespace Kickoff4Kids420.Controllers
@@ -97,6 +98,7 @@ namespace Kickoff4Kids420.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterModel model)
         {
+            ViewBag.SchoolId = new SelectList(db.Schools, "SchoolId", "SchoolName");
             if (ModelState.IsValid)
             {
                 model.PointTotal = 0;
@@ -104,6 +106,7 @@ namespace Kickoff4Kids420.Controllers
                 // Attempt to register the user
                 try
                 {
+                    
                     string confirmationToken =
                         WebSecurity.CreateUserAndAccount(model.UserName, model.Password,
                         new
@@ -113,8 +116,9 @@ namespace Kickoff4Kids420.Controllers
                             EmailAddress = model.EmailAddress,
                             SchoolId = model.SchoolId,
                             PointTotal = model.PointTotal,
-                            CumulativePointTotal = model.CumulativePointTotal
-                        }, true);
+                            CumulativePointTotal = model.CumulativePointTotal,
+                            //ConfirmationToken = model.ConfirmationToken
+                        }, true);//need to set to true for validation token to work
                     // Student Role: Sets all users registering from the site as a Student role
                     if (!Roles.RoleExists("Student"))
                         Roles.CreateRole("Student");
@@ -124,13 +128,15 @@ namespace Kickoff4Kids420.Controllers
 
 
                     //Email confirmation token required before adding student to database
+                    //set confirmation token for email resend
+                    //model.ConfirmationToken = confirmationToken;
                     dynamic email = new Email("RegEmail");
                     email.To = model.EmailAddress;
                     email.UserName = model.UserName;
                     email.ConfirmationToken = confirmationToken;
                     email.Send();
-
-                    //return RedirectToAction("RegisterStepTwo", "Account");
+                    
+                    return RedirectToAction("RegisterStepTwo", "Account");
                 }
                 catch (MembershipCreateUserException e)
                 {
@@ -140,7 +146,7 @@ namespace Kickoff4Kids420.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return RedirectToAction("Index", "Home");
+            return View();
         }
 
 
@@ -160,23 +166,156 @@ namespace Kickoff4Kids420.Controllers
         {
             if (WebSecurity.ConfirmAccount(Id))
             {
-                return RedirectToAction("ConfirmationSuccess");
+                return RedirectToAction("ConfirmationSuccess", "Account");
             }
-            return RedirectToAction("ConfirmationFailure");
+            return RedirectToAction("ConfirmationFailure", "Account");
         }
-
+        //Confirm token message
         [AllowAnonymous]
         public ActionResult ConfirmationSuccess()
         {
             return View();
         }
-
+        //Failed token message
         [AllowAnonymous]
         public ActionResult ConfirmationFailure()
         {
             return View();
         }
 
+       
+        //View to get email address for username lookup
+        [AllowAnonymous]
+        public ActionResult ForgotUsername()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        public ActionResult UsernameSent()
+        {
+            return View();
+        }
+        //Grabs email address, looks up username, emails username if email is registered to a known user
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgotUsername(string emailAddress)
+        {
+            var UserName = (from u in db.UserProfiles
+                           where u.EmailAddress == emailAddress
+                           select u.UserName).First();
+
+            if (UserName == null)
+            {
+                ViewBag.message = "Email address not found.";
+                return View();
+            }
+
+            dynamic email = new Email("ForgotUsernameEmail");
+            email.To = emailAddress;
+            email.UserName = UserName;
+            email.Send();
+
+            return RedirectToAction("UsernameSent");
+
+
+        }
+        //View to get username from user for password reset
+        [AllowAnonymous]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+        //Input username that is checked for existence, then looks up email address and sends password reset token to known email address
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgotPassword(ResetPasswordConfirmationViewModel model)
+        {
+            
+            //check user existance
+            var userNameExists = WebSecurity.UserExists(model.UserName);
+            if (!userNameExists)
+            {
+                ViewBag.message = "User Name does not exist.";
+            }
+            else
+            { 
+                ViewBag.message = "An error occured.  Please try again later."; 
+            }
+            if (userNameExists)
+            {
+                try
+                {
+
+                    string emailAddress = (from u in db.UserProfiles
+                                           where u.UserName == model.UserName
+                                           select u.EmailAddress).FirstOrDefault();
+
+                    ViewBag.message = null;
+                    //generate password token
+                    var passwordToken = WebSecurity.GeneratePasswordResetToken(model.UserName);
+                    //Generate email
+                    dynamic email = new Email("ForgotPasswordEmail");
+                    email.To = emailAddress;
+                    email.UserName = model.UserName;
+                    email.PasswordResetToken = passwordToken;
+                    email.Send();
+
+                    return RedirectToAction("PasswordSent", "Account");
+
+
+                }
+                catch (Exception ex)
+                {
+
+                    ViewBag.message = ex.Message;
+                        
+
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+
+            return View();
+
+        }
+        [AllowAnonymous]
+        public ActionResult PasswordSent()
+        {
+            return View();
+        }
+        
+        //reset password token accepted and input into model
+        [AllowAnonymous]
+        public ActionResult ResetPasswordConfirmation(string Id)
+        {
+            ResetPasswordConfirmationViewModel model = new ResetPasswordConfirmationViewModel() { resetPasswordToken = Id };
+            return View(model);
+        }
+       
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult ResetPasswordConfirmation(ResetPasswordConfirmationViewModel model)
+        {
+            if (WebSecurity.ResetPassword(model.resetPasswordToken, model.password))
+               
+            {
+                return RedirectToAction("PasswordResetSuccess", "Account");
+            }
+            return RedirectToAction("PasswordResetFailure", "Account");
+        }
+        [AllowAnonymous]
+        public ActionResult PasswordResetSuccess()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        public ActionResult PasswordResetFailure()
+        {
+            return View();
+        }
 
 
 

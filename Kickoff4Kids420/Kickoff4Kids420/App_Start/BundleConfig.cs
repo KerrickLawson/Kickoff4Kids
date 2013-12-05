@@ -39,15 +39,16 @@ namespace Kickoff4Kids420
                       "~/Content/page_log_reg_v1.css"
                       ));
             bundles.Add(new StyleBundle("~/pricing/css").Include(
-                        "~/Content/page_pricing.css"
+                        "~/Content/page_pricing.css",
+                        "~/Content/site.css"
                 ));
             bundles.Add(new StyleBundle("~/404/css").Include(
                         "~/Content/page_404_error.css"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
-                    "~/Scripts/Custom/k4kcart.js",
-                    "~/Scripts/Custom/k4korder.js"
+                    "~/Scripts/Custom/k4kcart.js"
+                    //"~/Scripts/Custom/k4korder.js"
                     
                 ));
             bundles.Add(new ScriptBundle("~/bundles/index").Include(                   

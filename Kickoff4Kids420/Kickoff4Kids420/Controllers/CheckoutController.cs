@@ -10,7 +10,7 @@ using Kickoff4Kids420.ViewModels;
 
 namespace Kickoff4Kids420.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Student")]
     public class CheckoutController : Controller
     {
         Kickoff4KidsDb db = new Kickoff4KidsDb();

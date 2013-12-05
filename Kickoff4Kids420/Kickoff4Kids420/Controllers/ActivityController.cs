@@ -6,9 +6,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Kickoff4Kids420.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Kickoff4Kids420.Controllers
 {
+    [Authorize]
     public class ActivityController : Controller
     {
         private Kickoff4KidsDb db = new Kickoff4KidsDb();
@@ -16,9 +19,52 @@ namespace Kickoff4Kids420.Controllers
         //
         // GET: /Activity/
 
-        public ActionResult Index()
+        public ActionResult Index(string currentActivity, string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.Activities.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Activity_Name_desc" : "";
+            ViewBag.PointSortParm = sortOrder == "Points" ? "Points_desc" : "Points";
+
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var activities = from a in db.Activities
+                             select a;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                activities = activities.Where(a => a.ActivityName.ToUpper().Contains(searchString.ToUpper()));
+
+            }
+            switch (sortOrder)
+            {
+                case "Activity_Name_desc":
+                    activities = activities.OrderByDescending(p => p.ActivityName);
+                    break;
+                case "Points":
+                    activities = activities.OrderBy(p => p.PointValue);
+                    break;
+                case "Points_desc":
+                    activities = activities.OrderByDescending(p => p.PointValue);
+                    break;
+                default:
+                    activities = activities.OrderBy(p => p.ActivityName);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(activities.ToPagedList(pageNumber, pageSize));
         }
 
         //

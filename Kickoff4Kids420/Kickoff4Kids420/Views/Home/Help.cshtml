@@ -7,82 +7,391 @@
 
 
 
-<body>
-<div style="padding-left: 10%;">
-    
-    <h1>Help Guide</h1></div>
-    <div style="padding-left: 15%;">
-        <p>
-            The Kickoff 4 Kids House is an interactive, web-based system to reward students for good behavior, good grades and extracurricular involvement. <br />
-            The system has been created for multiple users including: an administrator(s), teachers and students. All users will be able to access the K4K House via the web.<br />
-            From the homepage, users may register to be added into the system.
-        </p>
-     
-        <p>1. To Register: a user will click on the “register” button and enter information into the required fields and submit.</p>
-        <p>2. To Log-in: after registering, a user may click on “Log-In” and then enter their username and password.</p>
-
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Help Guide</h1>
     </div>
-    <div style="padding-left: 10%;">
-        <h2>Home</h2>
-        </div>
-        <div style="padding-left: 15%;">
-            <em><b><u><a href="/Home/Index">Home</a></u></b></em>
-            <p>This will take you to the Home Page.</p>
-        </div>
-    <div style="padding-left: 10%;">
-        <h2>Reports</h2> </div>
-    <div style="padding-left: 15%;">
-        <em><b><u><a href="/Order">View Orders</a></b></em></u>
-        <p>This shows a table of all orders places by students for products. It has the First Name, Last Name, and Order Date.</p>
+</div>
 
-        <em><b><u><a href="/Report">Report 1</a></b></em></u>
-        <p>This is a report which shows a list of each student’s First Name, Last Name, and Point Total.</p>
+<!--=== Content Part ===-->
+<div class="container">
+    <!-- General Questions -->
+    <div class="headline"><h2>General Questions</h2></div>
+    <div class="panel-group acc-v1 margin-bottom-40" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        1. Reports
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    View Orders
+                    <p>From the REPORTS tab, this shows a table of all orders places by students for products. It has the First Name, Last Name, and Order Date. </p>
+                    <p>
+                        To go to page click
+                        <em><b><u><a href="/Order">View Orders</a></b></u></em>
+                    </p>
 
-        <em><b><u><a href="/Report/TestReport">Report 2</a></em></b></u>
-        <p>This report will be generated.</p></div>
-        <div style="padding-left: 10%;">
-            <h2>Products</h2>
+                    <div id="report1"> Report 1 </div>
+                    <p>From the REPORTS tab, this page displays a report detailing each student’s First Name, Last Name, and Cumulative Point Total. </p>
+                    <p>
+                        To go to page click
+                        <em><b><u><a href="/Report">Report 1</a></b></u></em>
+                    </p>
+
+                    <div id="report2"> Report 2 </div>
+                    <p>From the REPORTS tab, This page displays a report detailing all student information. </p>
+                    <p>
+                        To go to page click
+                        <em><b><u><a href="/Report/TestReport">Report 2</a></b></u></em>
+                    </p>
+                </div>
+            </div>
         </div>
-    <div style="padding-left: 15%;">
-        <em><b><u><a href="/Product">Modify Awards</a></em></u></b>
-        <p>From here you can create a new product or search for one from the search bar. The table lists all of the currently available products giving their Product Name, Price, Category Name, and Status</p>
 
-        <em><u><b><a href="/Category">Add Product Category</a></b></u></em>
-        <p>From here you can create a new category to put products in. The table lists all of the currently available categories giving their Category Name and Status.</p>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        2. Products
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div id="modifyawards">
+                        Modify Awards
+                        <p>From the PRODUCTS tab, this page allows you to create a new product or search for an existing product from the search bar. The table shown will list all currently available products by their Product Name, Price, Category Name, and Status. </p>
+                        <p>
+                            To go to page click
+                            <em><b><u><a href="/Product">Modify Awards</a></b></u></em>
+                        </p>
+
+                        <div id="prodcategory"> Add Product Category </div>
+                        <p>From the PRODUCTS tab, this page allows you to create a new category of products for which they will be classified by. The table lists all added categories by their Category Name and Status.</p>
+                        <p>
+                            To go to page click
+                            <em><b><u><a href="/Category">Add Product Category</a></b></u></em>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div style="padding-left: 10%;">
-            <h2>Activites</h2>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        3. Activites
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div id="viewcompleted"> View Completed Activities </div>
+                    <p>From the ACTIVITIES tab, this page allows you to add a completed student activity by clicking “Add New”. You will then be directed to the New Activity Transaction page. From there, you will select a User Profile, an Activity Date and an Activity and click Create or you can select Back to Completed Activities. The table lists all completed activities by Student Name, Activity Date, Activity Name, Points Earned, and an option to modify the completed activity. </p>
+                    <p>
+                        To go to page click
+                        <em><b><u><a href="/ActivityTransaction">View Completed Activities</a></b></u></em>
+                    </p>
+
+                    <div id="inputcompleted"> Input Completed Activity </div>
+                    <p>From the ACTIVITIES tab, this page will allow you to create a new activity transaction by selecting the user from a drop down, the date, and the activity from a drop down menu. </p>
+                    <p>
+                        To go to page click
+                        <em><b><u><a href="/ActivityTransaction/Create">Input Completed Activity</a></b></u></em>
+                    </p>
+
+                    <div id="addreward"> Add Reward Activity </div>
+                    <p>From the ACTIVITIES tab, this page will display a table detailing all currently eligible activities by Activity Name, Description, and Point Value. You can click Add Activity to add a new one to the table. You would then input the Activity Name, Description, and Point Value and select Create. These activities will then be available for teachers to select when a student has completed an activity from the list.  </p>
+                    <p>
+                        To go to page click
+                        <em><b><u><a href="/ActivityTransaction/Activity">Add Reward Activity</a></b></u></em>
+                    </p>
+                </div>
+            </div>
         </div>
-    <div style="padding-left: 15%;">
-        <em><u><b><a href="/ActivityTransaction">View Completed Activities</a></b></u></em>
-        <p> Here an administrator can add a completed activity. The table lists all currently completed activities giving the Student Name, Activity Date, Activity Name, Points Earned, and an option to modify the completed activity.</p>
 
-        <em><u><b><a href="/ActivityTransaction/Create">Input Completed Activities</a></b></u></em>
-        <p>From this tab an administrator can create a new activity transaction by selecting the user from a drop down, the date, and the activity from a drop down menu.</p>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                        4. ToolBox
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div id="viewacct"> View Student Accounts </div>
+                    <p>
+                        From the TOOLBOX tab, this page will display a table showing each participating student by: Student Name, First Name, Last Name, Email Address, Point Total, and School Name.
+                    </p>
+                    <p>
+                        To go to page click
+                        <em><u><b><a href="/User">View Student Accounts</a></b></u></em>
+                    </p>
 
-        <em><b><u><a href="/ActivityTransaction/Activity">Add Reward Activity</a></u></b></em>
-        <p>This table details all of the currently eligible activities giving the Activity Name, Description, and Point Value. <br />The administrator can click Add Activity to add a new one to the table. The administrator would then input the Activity Name, Description, and Point Value and select Create.</p>
+                    <div id="editroles"> Edit User Roles </div>
+                    <p>From the TOOLBOX tab,this page will allow you to select: Edit Roles, Create New Roles, or Go Home. By clicking Edit Roles, you will be directed to a table displaying all users by: User ID, Username, and a checked-box according to their user-type. By clicking Create New Roles you can type in a new role to add and click the Add button. -If you click Home it sends you to the Home Page.</p>
+                    <p>
+                        To go to page click
+                        <em><u><b><a href="/Roles">Edit User Roles</a></b></u></em>
+                    </p>
+
+                    <div id="add/removeschools"> Add/Remove Schools </div>
+                    <p>From the TOOLBOX tab, you have the option of adding and removing schools. In order to Add a school to the system, you will select Create New. You will then be directed to a set of fields where you can enter a School Name, Address, City, State, Zip Code, and Phone Number. After selecting create the new school will be added to the table.  </p>
+                    <p>
+                        To go to page click
+                        <em><u><b><a href="/School">Add/Remove Schools</a></b></u></em>
+                    </p>
+
+                    <div id="editfrpage"> Edit Front Page Text </div>
+                    <p>From the TOOLBOX tab, you will have the option to edit the contents of the Home Page. Perhaps you want to display an upcoming community service event or tennis tryouts; this would be the area to do so. The initial page displays the current text and if you click Edit Front Page Text, you will be directed to fields in which you can modify. These fields are denoted by the area in which the text will appear on the page.  </p>
+                    <p>
+                        To go to page click
+                        <em><u><b><a href="/FrontPage">Edit Front Page Text</a></b></u></em>
+                    </p>
+
+                    <div id="adminpanel"> Admin Panel </div>
+                    <p>Don’t have a damn clue what this does…..Mark???! Do you know? </p>
+                    <p>
+                        To go to page click
+                        <em><u><b><a href="/FrontPage">Admin Panel</a></b></u></em>
+                    </p>
+                </div>
+            </div>
         </div>
-        <div style="padding-left: 10%;">
-            <h2>Toolbox</h2>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                        5. 
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseFive" class="panel-collapse collapse">
+                <div class="panel-body">
+                    
+                </div>
+            </div>
         </div>
-    <div style="padding-left: 15%;">
-        <em><b><u><a href="/User">View Student Accounts</a></u></b></em>
-        <p>The administrator will see a table showing each Student Name, First Name, Last Name, Email Address, Point Total, and School Name.</p>
-        <em><b><u><a href="/Roles">Edit User Roles</a></u></b></em>
-        <p>
-            From this page you can Edit Roles, Create New Roles, and go Home. If you click Edit Roles you can view a table that shows each User ID, Username, <br />and a
-            checked box telling which type of user it is. If you click Create New Roles you can type in a new role to add and click the Add
-            button. If you click Home it sends you to the Home Page
-        </p>
 
-        <em><b><u><a href="/School">Add/Remove Schools</a></u></b></em>
-        <p>By selecting Create New there will be fields to enter a School Name, Address, City, State, Zip Code, and Phone Number. After selecting create it will add the new school to the table.</p>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                        6. 
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseSix" class="panel-collapse collapse">
+                <div class="panel-body">
+                   
+                </div>
+            </div>
+        </div>
 
-        <em><b><u><a href="/FrontPage">Edit Front Page Text</a></u></b></em>
-        <p>This option will bring up a list of items an Admin can click on and change.</p>
-        <em><b><u><a href="/FrontPage">Admin Panel</a></u></b></em>
-        <p>This will take the Admin to an Admin panel.</p>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+                        7. 
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseSeven" class="panel-collapse collapse">
+                <div class="panel-body">
+                    
+                </div>
+            </div>
         </div>
     </div>
-</body>
+</div><!--/acc-v1-->
+<!-- End General Questions -->
+@*
+
+    <div class="container">
+        <div class="row servive-block margin-bottom-10">
+            <div class="col-md-3 col-sm-6">
+                <div class="servive-block-in service-block-colored service-block-red">
+                    <h4>Reports</h4>
+                    <p>
+                        <ul class="list-unstyled">
+                            <li><a href="#vieworders">View Orders</a></li>
+                            <li><a href="#report1">Report 1</a></li>
+                            <li><a href="#report2">Report 2</a></li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="col-md-3 col-sm-6">
+                <div class="servive-block-in">
+                    <h4>Products</h4>
+                    <p>
+                        <ul class="list-unstyled">
+                            <li><a href="#modifyawards">Modify Awards</a></li>
+                            <li><a href="#prodcategory">Add Product Category</a></li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="col-md-3 col-sm-6">
+                <div class="servive-block-in">
+                    <h4>Activities</h4>
+                    <p>
+                        <ul class="list-unstyled">
+                            <li><a href="#viewcompleted">View Completed Activities</a></li>
+                            <li><a href="#inputcompleted">Input Completed Activities</a></li>
+                            <li><a href="#addreward">Add Reward</a></li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="col-md-3 col-sm-6">
+                <div class="servive-block-in">
+                    <h4>Toolbox</h4>
+                    <p>
+                        <ul class="list-unstyled">
+                            <li><a href="#viewacct">View Account</a></li>
+                            <li><a href="#editroles">Edit User Roles</a></li>
+                            <li><a href="#add/removeschools">Add/Remove Schools</a></li>
+                            <li><a href="#editfrpage">Edit Front Page Text</a></li>
+                            <li><a href="#adminpanel">Admin Panel</a></li>
+
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div style="padding-left: 10%;">
+        <h5>REPORTS</h5>
+    </div>
+    <div style="padding-left: 15%;">
+        <div id="vieworders">
+            View Orders
+            <p>From the REPORTS tab, this shows a table of all orders places by students for products. It has the First Name, Last Name, and Order Date. </p>
+            <p>
+                To go to page click
+                <em><b><u><a href="/Order">View Orders</a></b></u></em>
+            </p>
+
+            <div id="report1"> Report 1 </div>
+            <p>From the REPORTS tab, this page displays a report detailing each student’s First Name, Last Name, and Cumulative Point Total. </p>
+            <p>
+                To go to page click
+                <em><b><u><a href="/Report">Report 1</a></b></u></em>
+            </p>
+
+            <div id="report2"> Report 2 </div>
+            <p>From the REPORTS tab, This page displays a report detailing all student information. </p>
+            <p>
+                To go to page click
+                <em><b><u><a href="/Report/TestReport">Report 2</a></b></u></em>
+            </p>
+        </div>
+    </div>
+
+
+    <div style="padding-left: 10%;">
+        <h5>PRODUCTS</h5>
+    </div>
+    <div style="padding-left: 15%;">
+        <div id="modifyawards">
+            Modify Awards
+            <p>From the PRODUCTS tab, this page allows you to create a new product or search for an existing product from the search bar. The table shown will list all currently available products by their Product Name, Price, Category Name, and Status. </p>
+            <p>
+                To go to page click
+                <em><b><u><a href="/Product">Modify Awards</a></b></u></em>
+            </p>
+
+            <div id="prodcategory"> Add Product Category </div>
+            <p>From the PRODUCTS tab, this page allows you to create a new category of products for which they will be classified by. The table lists all added categories by their Category Name and Status.</p>
+            <p>
+                To go to page click
+                <em><b><u><a href="/Category">Add Product Category</a></b></u></em>
+            </p>
+        </div>
+    </div>
+
+    <div style="padding-left: 10%;">
+        <h5>ACTIVITIES</h5>
+    </div>
+    <div style="padding-left: 15%;">
+        <div id="viewcompleted"> View Completed Activities </div>
+        <p>From the ACTIVITIES tab, this page allows you to add a completed student activity by clicking “Add New”. You will then be directed to the New Activity Transaction page. From there, you will select a User Profile, an Activity Date and an Activity and click Create or you can select Back to Completed Activities. The table lists all completed activities by Student Name, Activity Date, Activity Name, Points Earned, and an option to modify the completed activity. </p>
+        <p>
+            To go to page click
+            <em><b><u><a href="/ActivityTransaction">View Completed Activities</a></b></u></em>
+        </p>
+
+        <div id="inputcompleted"> Input Completed Activity </div>
+        <p>From the ACTIVITIES tab, this page will allow you to create a new activity transaction by selecting the user from a drop down, the date, and the activity from a drop down menu. </p>
+        <p>
+            To go to page click
+            <em><b><u><a href="/ActivityTransaction/Create">Input Completed Activity</a></b></u></em>
+        </p>
+
+        <div id="addreward"> Add Reward Activity </div>
+        <p>From the ACTIVITIES tab, this page will display a table detailing all currently eligible activities by Activity Name, Description, and Point Value. You can click Add Activity to add a new one to the table. You would then input the Activity Name, Description, and Point Value and select Create. These activities will then be available for teachers to select when a student has completed an activity from the list.  </p>
+        <p>
+            To go to page click
+            <em><b><u><a href="/ActivityTransaction/Activity">Add Reward Activity</a></b></u></em>
+        </p>
+    </div>
+
+
+    <div style="padding-left: 10%;">
+        <h5>TOOLBOX</h5>
+    </div>
+    <div style="padding-left: 15%;">
+        <div id="viewacct"> View Student Accounts </div>
+        <p>
+            From the TOOLBOX tab, this page will display a table showing each participating student by: Student Name, First Name, Last Name, Email Address, Point Total, and School Name.
+        </p>
+        <p>
+            To go to page click
+            <em><u><b><a href="/User">View Student Accounts</a></b></u></em>
+        </p>
+
+        <div id="editroles"> Edit User Roles </div>
+        <p>From the TOOLBOX tab,this page will allow you to select: Edit Roles, Create New Roles, or Go Home. By clicking Edit Roles, you will be directed to a table displaying all users by: User ID, Username, and a checked-box according to their user-type. By clicking Create New Roles you can type in a new role to add and click the Add button. -If you click Home it sends you to the Home Page.</p>
+        <p>
+            To go to page click
+            <em><u><b><a href="/Roles">Edit User Roles</a></b></u></em>
+        </p>
+
+        <div id="add/removeschools"> Add/Remove Schools </div>
+        <p>From the TOOLBOX tab, you have the option of adding and removing schools. In order to Add a school to the system, you will select Create New. You will then be directed to a set of fields where you can enter a School Name, Address, City, State, Zip Code, and Phone Number. After selecting create the new school will be added to the table.  </p>
+        <p>
+            To go to page click
+            <em><u><b><a href="/School">Add/Remove Schools</a></b></u></em>
+        </p>
+
+        <div id="editfrpage"> Edit Front Page Text </div>
+        <p>From the TOOLBOX tab, you will have the option to edit the contents of the Home Page. Perhaps you want to display an upcoming community service event or tennis tryouts; this would be the area to do so. The initial page displays the current text and if you click Edit Front Page Text, you will be directed to fields in which you can modify. These fields are denoted by the area in which the text will appear on the page.  </p>
+        <p>
+            To go to page click
+            <em><u><b><a href="/FrontPage">Edit Front Page Text</a></b></u></em>
+        </p>
+
+        <div id="adminpanel"> Admin Panel </div>
+        <p>Don’t have a damn clue what this does…..Mark???! Do you know? </p>
+        <p>
+            To go to page click
+            <em><u><b><a href="/FrontPage">Admin Panel</a></b></u></em>
+        </p>
+    </div>
+*@

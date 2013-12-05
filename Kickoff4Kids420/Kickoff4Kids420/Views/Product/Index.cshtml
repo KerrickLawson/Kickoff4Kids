@@ -1,11 +1,10 @@
-﻿@*model IEnumerable<Kickoff4Kids420.Models.Product>*@
-@using PagedList
+﻿@using PagedList
 @using PagedList.Mvc
 @model PagedList.IPagedList<Kickoff4Kids420.Models.Product>
 
 
 @{
-    ViewBag.Title = "Available Products!";
+    ViewBag.Title = "Available Products";
 }
 <div class="breadcrumbs margin-bottom-40">
     <div class="container">
@@ -13,85 +12,65 @@
     </div>
 </div>
 <div class="container">
-<div class="panel panel-red margin-bottom-40">
-    <div class="panel-heading">
-        <h1 class="panel-title">Products</h1>
-    </div>
-    <div class= "span2">
-        <p class="icon-plus-sign">
-           @Html.ActionLink("Create New", "Create")
-        </p>
-    </div>
-
-    @using (Html.BeginForm())
-    {
-        <p>
-            Search by Name: @Html.TextBox("SearchString")
-            <input type="submit" value="Go!" />
-        </p>
-    }
-    <table class="table table-bordered table-hover table-striped">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.First().ProductName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().Categories.CategoryName)
-            </th>
-            <th>Status</th>
-        </tr>
-
-        @foreach (var item in Model)
+    <div class="panel panel-red">
+        <div class="panel-heading">
+            <h1 class="panel-title margin-bottom-15">Products</h1>
+        </div>
+        <br />
+        @using (Html.BeginForm("Index", "Product", FormMethod.Get))
         {
+            <ul class="list-inline">
+
+                <li>
+                    Category: @Html.DropDownList("productCategory", "All")
+                <li />
+                <li>
+                    Search by Name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                    <input type="submit" value="Go!" />
+                </li>
+                <li>
+                    @Html.ActionLink("Create New", "Create", null, new { @class = "btn-u btn-u" })
+                </li>
+            </ul>
+        }
+
+        <table class="table table-bordered table-hover table-striped margin-bottom-40">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Categories.CategoryName)
-                </td>
-                <td>
-                    @Html.ActionLink(" ", "Edit", new { id = item.ProductId }, new { @class = "icon-edit" }) |
-                    @Html.ActionLink(" ", "Delete", new { id = item.ProductId }, new { @class = "icon-trash" })
-                </td>
+                <th>
+                    @Html.ActionLink("Product Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter, productCategory = Request.QueryString["productCategory"] })
+                </th>
+                <th>
+                    @Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter, productCategory = Request.QueryString["productCategory"] })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Categories.CategoryName)
+                </th>
+                <th>Status</th>
             </tr>
-        }
 
-    </table>
-    <div>
-        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-        @if (Model.HasPreviousPage)
-        {
-            @Html.ActionLink("<<", "Index", new { page = 1 })
-            @Html.Raw(" ");
-            @Html.ActionLink("< Prev", "Index", new { page = Model.PageNumber - 1 })
-        }
-        else
-        {
-            @:<<
-            @Html.Raw(" ");
-            @:< Prev
-    }
-
-        @if (Model.HasNextPage)
-        {
-            @Html.ActionLink("Next >", "Index", new { page = Model.PageNumber + 1 })
-            @Html.Raw(" ");
-            @Html.ActionLink(">>", "Index", new { page = Model.PageCount })
-        }
-        else
-        {
-            @:Next >
-            @Html.Raw(" ")
-            @:>>
-    }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Categories.CategoryName)
+                    </td>
+                    <td>
+                        @Html.ActionLink(" ", "Edit", new { id = item.ProductId }, new { @class = "icon-edit" }) |
+                        @Html.ActionLink(" ", "Delete", new { id = item.ProductId }, new { @class = "icon-trash" })
+                    </td>
+                </tr>
+            }
+        </table>
     </div>
 </div>
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, productCategory = Request.QueryString["productCategory"] }),
+    new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true })
 </div>
 

@@ -62,13 +62,18 @@
                 <h3>@item.ProductName @*<span>@item.</span>*@</h3>
                 <h4>@item.Price <span>Points</span></h4>
             </div>            
-            @*<ul class="pricing-content list-unstyled">
-                <li><i class="icon-tags"></i> At vero eos</li>
-                <li><i class="icon-asterisk"></i> No Support</li>
-                <li><i class="icon-heart"></i> Fusce condimentum</li>
-                <li><i class="icon-star"></i> Ut non libero</li>
-                <li><i class="icon-shopping-cart"></i> Consecte adiping elit</li>
-            </ul>*@
+            @if (item.PictureUrl != null)
+        {
+            <ul class="pricing-content list-unstyled hidden-phone hidden-sm hidden-xs product-img">
+                <li> <img alt="@item.ProductName" src="@item.PictureUrl" /> </li>
+            </ul>
+        }
+    @if (item.PictureUrl == null)
+        {
+             <ul class="pricing-content list-unstyled hidden-phone hidden-sm hidden-xs product-img">
+                <li> <img alt="@item.ProductName" src="/Content/Images/question-mark.jpg" /> </li>
+               </ul>
+        }
             <div class="pricing-footer">
                 @*<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .</p>*@
                 @*<button type="submit" class="btn-u-red">@Html.ActionLink("Add to Cart", "AddToCart", "ShoppingCart", new { id = item.ProductId }, "")</button>*@

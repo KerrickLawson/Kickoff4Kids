@@ -6,19 +6,67 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Kickoff4Kids420.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Kickoff4Kids420.Controllers
 {
+    [RequireHttps]
+    [Authorize(Roles = "Admin")]
     public class SchoolController : Controller
     {
         private Kickoff4KidsDb db = new Kickoff4KidsDb();
 
         //
-        // GET: /Default1/
+        // GET: /School/
 
-        public ActionResult Index()
+        public ActionResult Index(string currentSchool, string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.Schools.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "School_Name_desc" : "";
+            ViewBag.CodeSortParm = sortOrder == "School_Address" ? "School_Address_desc" : "School_Address";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var schools = from s in db.Schools
+                          select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                schools = schools.Where(s => s.SchoolName.ToUpper().Contains(searchString.ToUpper()));
+
+            }
+            switch (sortOrder)
+            {
+                case "School_Name_desc":
+                    schools = schools.OrderByDescending(s => s.SchoolName);
+                    break;
+                case "School_Address":
+                    schools = schools.OrderBy(s => s.SchoolAddress);
+                    break;
+                case "School_Address_desc":
+                    schools = schools.OrderByDescending(s => s.SchoolAddress);
+                    break;
+                default:
+                    schools = schools.OrderBy(s => s.SchoolName);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(schools.ToPagedList(pageNumber, pageSize));
+
+
         }
 
         //

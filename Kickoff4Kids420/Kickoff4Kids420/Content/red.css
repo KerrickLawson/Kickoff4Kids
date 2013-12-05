@@ -459,3 +459,13 @@ ul.blog-tags a:hover {
 .reg-block {
 	border-top: solid 2px #e74c3c;
 }
+.servive-block .servive-block-in h4 a:hover {
+    color: black;
+    
+}
+.servive-block .servive-block-in h4 a {
+    color: white;
+}
+td {
+    text-transform: capitalize;
+}

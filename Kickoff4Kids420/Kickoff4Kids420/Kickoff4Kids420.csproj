@@ -16,10 +16,10 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>44301</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
@@ -200,7 +200,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\ActivityController.cs" />
     <Compile Include="Controllers\ActivityTransactionController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -234,6 +236,9 @@
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ConfirmationViewModel.cs" />
+    <Compile Include="ViewModels\ProductReportViewModel.cs" />
+    <Compile Include="ViewModels\ReportViewModel.cs" />
+    <Compile Include="ViewModels\ResetPasswordConfirmationViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
   </ItemGroup>
@@ -244,6 +249,7 @@
     </Content>
     <Content Include="Content\app.css" />
     <Content Include="Content\Images\1.png" />
+    <Content Include="Content\Images\question-mark.jpg" />
     <Content Include="Images\apple.png" />
     <Content Include="Content\Images\arrows.png" />
     <Content Include="Content\basic.css" />
@@ -513,7 +519,6 @@
     <Content Include="Views\Category\Delete.cshtml" />
     <Content Include="Views\Checkout\Complete.cshtml" />
     <Content Include="Views\ShoppingCart\_UserCart.cshtml" />
-    <Content Include="Views\Report\TestReport.cshtml" />
     <Content Include="Views\Product\Shop.cshtml" />
     <Content Include="Views\Shared\_AdminMenu.cshtml" />
     <Content Include="Views\Shared\_TeacherMenu.cshtml" />
@@ -527,7 +532,7 @@
     <Content Include="Views\OrderDetail\Index.cshtml" />
     <Content Include="Views\OrderDetail\Details.cshtml" />
     <Content Include="Views\Home\Gallery.cshtml" />
-    <Content Include="Views\Report\CurentStudentSchoolTotal.cshtml" />
+    <Content Include="Views\Report\CurrentStudentSchoolTotal.cshtml" />
     <Content Include="Views\Home\Help.cshtml" />
     <Content Include="Views\FrontPage\Edit.cshtml" />
     <Content Include="Views\FrontPage\Index.cshtml" />
@@ -535,11 +540,27 @@
     <Content Include="Views\Home\Terms.cshtml" />
     <Content Include="Views\Home\Privacy.cshtml" />
     <Content Include="Views\Emails\_ViewStart.cshtml" />
-    <Content Include="Views\RegEmail.cshtml" />
     <Content Include="Views\Account\ConfirmationFailure.cshtml" />
     <Content Include="Views\Account\ConfirmationSuccess.cshtml" />
     <Content Include="Views\Order\UnfulfilledOrders.cshtml" />
     <Content Include="Views\Order\FulfilledOrders.cshtml" />
+    <Content Include="Views\Emails\RegEmail.cshtml" />
+    <Content Include="Views\Report\SchoolPointReport.cshtml" />
+    <Content Include="Views\Report\Top10Products.cshtml" />
+    <Content Include="Views\Report\Top10Students.cshtml" />
+    <Content Include="Views\Account\RegisterStepTwo.cshtml" />
+    <Content Include="Views\Order\StudentOrdersResult.cshtml" />
+    <Content Include="Views\ActivityTransaction\IndividualStudentActivity.cshtml" />
+    <Content Include="Views\Emails\ForgotPasswordEmail.cshtml" />
+    <Content Include="Views\Emails\ForgotUsernameEmail.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\PasswordResetFailure.cshtml" />
+    <Content Include="Views\Account\PasswordResetSuccess.cshtml" />
+    <Content Include="Views\Account\UsernameSent.cshtml" />
+    <Content Include="Views\Account\ForgotUsername.cshtml" />
+    <Content Include="Views\Account\PasswordSent.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Report\ParticipatingStudentCountPerSchool.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />
@@ -565,7 +586,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>10676</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:10676/</IISUrl>
+          <IISUrl>https://localhost:44301/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -33,3 +33,7 @@ input[type="checkbox"].input-validation-error {
   background-color: white;
   border-style:none;
 }
+ul li img {
+    height: 100px;
+    width: 175px
+}

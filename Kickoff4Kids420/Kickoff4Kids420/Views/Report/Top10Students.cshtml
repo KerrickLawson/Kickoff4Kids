@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Kickoff4Kids420.ViewModels.ReportViewModel>
+
+@{
+    ViewBag.Title = "Top 10 Students";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Top 10 Students</h1>
+    </div>
+</div>
+<div class="container">
+<div class="panel panel-red">
+    <div class="panel-heading">
+        <h1 class="panel-title">Top Students</h1>
+    </div>
+    <table class="table table-striped table-hover table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SchoolName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentPoints)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentLastName)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (Roles.IsUserInRole(item.UserName, "student"))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SchoolName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StudentPoints)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StudentFirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StudentLastName)
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+</div>
+</div>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Kickoff4Kids420.Models.ActivityTransaction>
+
+@{
+    ViewBag.Title = "Completed Activities";
+}
+
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Completed Activities</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="panel panel-red margin-bottom-40">
+        <div class="panel-heading">
+            <h1 class="panel-title">Activities Completed By @User.Identity.Name</h1>
+        </div>
+        <br />
+        <table class="table table-bordered table-hover table-striped">
+            <tr>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                    @*
+                        @Html.DisplayNameFor(model => model.LastName)
+                    *@
+                </th>
+                <th>
+                    Activity
+                </th>
+                <th>
+                    Completion Date
+                </th>
+            </tr>
+
+            @foreach (var item in Model.Where(item => item.UserProfiles.UserName.ToLower() == User.Identity.Name.ToLower()))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserProfiles.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserProfiles.LastName)
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Activity.ActivityName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ActivityDate)
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>

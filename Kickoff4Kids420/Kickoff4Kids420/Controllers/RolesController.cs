@@ -1,10 +1,17 @@
 using System.Collections.Generic;
+using System;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using Kickoff4Kids420.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Kickoff4Kids420.Controllers
 {
+    [RequireHttps]
+    [Authorize(Roles = "Admin")]
     public class RolesController : Controller
     {
         //
@@ -16,19 +23,45 @@ namespace Kickoff4Kids420.Controllers
             return View();
         }
 
-         
-        
-        public ActionResult Users()
+
+
+        public ActionResult Users(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            IEnumerable<UserProfile> users;
+
+            ViewBag.CurrentSort = sortOrder;
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            IEnumerable<UserProfile> user;
             using (var db = new Kickoff4KidsDb())
             {
-                users = db.UserProfiles.ToList();
+                 user = from u in db.UserProfiles.ToList()
+                            select u;
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    user = user.Where(u => u.UserName.ToUpper().Contains(searchString.ToUpper()));
+
+                }
+                //users = db.UserProfiles.ToList();
+
             }
 
             ViewBag.Roles = System.Web.Security.Roles.GetAllRoles();
-            
-            return View(users);
+
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(user.ToPagedList(pageNumber, pageSize));
         }
        
         public ActionResult Roles()

@@ -22,18 +22,18 @@
                 </div>
 
                 <label>UserName</label>
-                <input type="text" value="" id="UserName" name="UserName" class="form-control margin-bottom-20">
+                <input type="text" value="" id="UserName" name="UserName" class="form-control margin-bottom-20" required>
 
                 <label>First Name</label>
-                <input type="text" value="" id="FirstName" name="FirstName" class="form-control margin-bottom-20">
+                <input type="text" value="" id="FirstName" name="FirstName" class="form-control margin-bottom-20" required>
 
                 <label>Last Name</label>
-                <input type="text" value="" id="LastName" name="LastName" class="form-control margin-bottom-20">
+                <input type="text" value="" id="LastName" name="LastName" class="form-control margin-bottom-20" required>
 
 
 
                 <label>Email Address</label>
-                <input type="text" value="" id="EmailAddress" name="EmailAddress" class="form-control margin-bottom-20">
+                <input type="text" value="" id="EmailAddress" name="EmailAddress" class="form-control margin-bottom-20" required>
 
                 <div class="form-group margin-bottom-5">
                     @Html.LabelFor(model => model.SchoolId, "Schools")
@@ -45,21 +45,26 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <label>Password</label>
-                        <input type="password" id="Password" name="Password" class="form-control margin-bottom-20">
+                        <input type="password" id="Password" name="Password" class="form-control margin-bottom-20" required>
                     </div>
                     <div class="col-sm-6">
                         <label>Confirm Password</label>
-                        <input type="password" id="Password" name="ConfirmPassword" class="form-control margin-bottom-20">
+                        <input type="password" id="Password" name="ConfirmPassword" class="form-control margin-bottom-20" required>
                     </div>
                 </div>
-
+                @*<div class="row">
+                    <div class="col-sm-6">
+                        <label>School Code</label>
+                        <input type="text" id="Password" name="Password" class="form-control margin-bottom-20" pattern="/^school$/" required>
+                    </div>
+                </div>*@
                 <hr>
 
                 <div class="row">
                     <div class="col-lg-6">
                         <label class="checkbox">
-                            <input type="checkbox">
-                            I read <a href="page_terms.html" class="color-green">Terms and Conditions</a>
+                            <input type="checkbox" required>
+                            I read <a href="/Home/Terms" class="color-green">Terms and Conditions</a>
                         </label>
                     </div>
                     <div class="col-lg-6 text-right">

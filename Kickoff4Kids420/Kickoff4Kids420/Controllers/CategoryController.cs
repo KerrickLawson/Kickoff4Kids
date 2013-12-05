@@ -11,6 +11,7 @@ using PagedList.Mvc;
 
 namespace Kickoff4Kids420.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         private Kickoff4KidsDb db = new Kickoff4KidsDb();
@@ -43,11 +44,11 @@ namespace Kickoff4Kids420.Controllers
             {
                 page = 1;
             }
-            int pageSize = 2;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
-            //var products = db.Products.Include(p => p.Categories);
             return View(category.ToPagedList(pageNumber, pageSize));
         }
+
 
 
 

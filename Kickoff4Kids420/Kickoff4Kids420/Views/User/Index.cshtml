@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Kickoff4Kids420.Models.UserProfile>
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Kickoff4Kids420.Models.UserProfile>
 
 @{
     ViewBag.Title = "Index";
@@ -13,26 +15,43 @@
         <div class="panel-heading">
             <h2 class="panel-title">Students</h2>
         </div>
+        <br />
+        @using (Html.BeginForm("Index", "User", FormMethod.Get))
+        {
+            <ul class="list-inline">
+
+                <li>
+                    Category: @Html.DropDownList("studentUser", "All")
+                <li />
+                <li>
+                    Search by Name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                    <input type="submit" value="Go!" />
+                </li>
+                <li>
+                    @Html.ActionLink("Add Student", "Create", null, new { @class = "btn-u btn-u" })
+                </li>
+            </ul>
+        }
 
         <table class="table table-striped table-hover table-bordered">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.UserName)
+                    @Html.ActionLink("User Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter, studentUser = Request.QueryString["studentUser"] })
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FirstName)
+                    @Html.DisplayNameFor(model => model.First().FirstName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.LastName)
+                    @Html.DisplayNameFor(model => model.First().LastName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.EmailAddress)
+                    @Html.DisplayNameFor(model => model.First().EmailAddress)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PointTotal)
+                    @Html.ActionLink("Point Total", "Index", new { sortOrder = ViewBag.PointSortParm, currentFilter = ViewBag.CurrentFilter, studentUser = Request.QueryString["studentUser"] })
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Schools.SchoolName)
+                    @Html.DisplayNameFor(model => model.First().Schools.SchoolName)
                 </th>
                 <th></th>
             </tr>
@@ -69,6 +88,11 @@
             }
 
         </table>
+
+
     </div>
 </div>
-
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, studentUser = Request.QueryString["studentUser"] }),
+    new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true })
+</div>

@@ -87,6 +87,8 @@ namespace Kickoff4Kids420.Models
         public string EmailAddress { get; set; }
         public int PointTotal { get; set; }
         public int CumulativePointTotal { get; set; }
+        
+        //public string ConfirmationToken { get; set; }
 
         
     }

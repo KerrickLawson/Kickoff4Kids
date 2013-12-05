@@ -12,17 +12,41 @@ using PagedList.Mvc;
 
 namespace Kickoff4Kids420.Controllers
 {
+    [RequireHttps]
     public class ProductController : Controller
     {
         private Kickoff4KidsDb db = new Kickoff4KidsDb();
-
         //
         // GET: /Product/
-
-        public ActionResult Index(string sortOrder, string searchString, int? page)
+        [Authorize(Roles = "Admin")]
+ public ActionResult Index(string productCategory, string sortOrder, string currentFilter,string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Product_Name_desc" : "";
-            ViewBag.CategorySortParm = sortOrder == "Category" ? "Category_desc" : "Category";
+            ViewBag.PriceSortParm = sortOrder == "Price" ? "Price_desc" : "Price";
+
+            // for drop down filter
+            var CategoryList = new List<string>();
+            var CategoryQry = from d in db.Categories
+                              orderby d.CategoryName
+                              select d.CategoryName;
+
+            CategoryList.AddRange(CategoryQry.Distinct());
+            ViewBag.productCategory = new SelectList(CategoryList);
+            //
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+                
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             var products = from p in db.Products
                            select p;
 
@@ -31,35 +55,37 @@ namespace Kickoff4Kids420.Controllers
                 products = products.Where(p => p.ProductName.ToUpper().Contains(searchString.ToUpper()));
 
             }
+            // for dropdown filter
+            if (!String.IsNullOrEmpty(productCategory))
+            {
+                products = products.Where(x => x.Categories.CategoryName == productCategory);
+            }
+            //
             switch (sortOrder)
             {
                 case "Product_Name_desc":
                     products = products.OrderByDescending(p => p.ProductName);
                     break;
-                case "Category":
-                    products = products.OrderBy(p => p.Categories);
+                case "Price":
+                    products = products.OrderBy(p => p.Price);
                     break;
-                case "Category_desc":
-                    products = products.OrderByDescending(p => p.Categories);
+                case "Price_desc":
+                    products = products.OrderByDescending(p => p.Price);
                     break;
                 default:
                     products = products.OrderBy(p => p.ProductName);
                     break;
             }
 
-            if (Request.HttpMethod != "GET")
-            {
-                page = 1;
-            }
-            int pageSize = 2;
+            int pageSize = 3;
             int pageNumber = (page ?? 1);
-            //var products = db.Products.Include(p => p.Categories);
             return View(products.ToPagedList(pageNumber, pageSize));
+
         }
 
         //
         // GET: /Product/Details/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int id = 0)
         {
             Product product = db.Products.Find(id);
@@ -69,7 +95,8 @@ namespace Kickoff4Kids420.Controllers
             }
             return View(product);
         }
-//Shop products ordered bu name
+        //Shop products ordered by name
+        [Authorize(Roles = "Admin, Student")]
         public ActionResult Shop()
         {
             var products = db.Products
@@ -80,7 +107,7 @@ namespace Kickoff4Kids420.Controllers
 
         //
         // GET: /Product/Create
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName");
@@ -92,6 +119,7 @@ namespace Kickoff4Kids420.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Product product)
         {
             if (ModelState.IsValid)
@@ -107,7 +135,7 @@ namespace Kickoff4Kids420.Controllers
 
         //
         // GET: /Product/Edit/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id = 0)
         {
             Product product = db.Products.Find(id);
@@ -124,6 +152,7 @@ namespace Kickoff4Kids420.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(Product product)
         {
             if (ModelState.IsValid)
@@ -138,7 +167,7 @@ namespace Kickoff4Kids420.Controllers
 
         //
         // GET: /Product/Delete/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id = 0)
         {
             Product product = db.Products.Find(id);
@@ -154,6 +183,7 @@ namespace Kickoff4Kids420.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);

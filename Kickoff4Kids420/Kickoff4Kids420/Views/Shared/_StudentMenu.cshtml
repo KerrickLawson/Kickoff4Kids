@@ -7,11 +7,17 @@
     </a>
     <ul class="dropdown-menu">
         <li>
-            @Html.ActionLink("Report 1", "Index", "Report")
+            @Html.ActionLink("View Your Order History", "StudentOrdersResult", "Order")
+
         </li>
         <li>
-           @Html.ActionLink("Report 2", "TestReport", "Report")
-       </li>
+            @Html.ActionLink("View Your Activity History", "IndividualStudentActivity", "ActivityTransaction")
+
+        </li>
+        <li>
+            @Html.ActionLink("View School Points Reports ", "SchoolPointReport", "Report")
+        </li>
+
     </ul>
 </li>
 <li class="dropdown">

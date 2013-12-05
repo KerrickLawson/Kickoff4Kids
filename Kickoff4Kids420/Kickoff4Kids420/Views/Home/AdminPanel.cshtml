@@ -1,5 +1,79 @@
 ﻿@{
-    ViewBag.Title = "AdminPanel";
+    ViewBag.Title = "Administrator Panel";
 }
 
-<h2>AdminPanel</h2>
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Administrator Common Functions</h1>
+    </div>
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+<!--=== Content Part ===-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 md-margin-bottom-50">
+            <!-- Our Services -->
+            <div class="servive-block servive-block-in margin-bottom-20">
+                <div class="servive-block-in servive-block-colored servive-block-grey">
+                    <h4>@Html.ActionLink("Add School to Program","Create","School")</h4>
+                    <p><i class="icon-check"></i></p>
+                    <p>Enter a new school as a participant in the Kickoff4Kids House program.</p>
+                </div>
+            </div> 
+        </div>       
+        <div class="col-md-4 md-margin-bottom-50">
+            <!-- Our Services -->
+            <div class="servive-block servive-block-in margin-bottom-20">
+                <div class="servive-block-in servive-block-colored servive-block-green">
+                    <h4>@Html.ActionLink("Add Product to Catalog", "Create", "Product")</h4>
+                    <p><i class="icon-camera"></i></p>
+                    <p>Enter a product that will be available for a student reward. </p>
+                </div>
+            </div><!--/welcome-block-->
+            <!-- End Our Services -->
+        </div>
+        <div class="col-md-4 md-margin-bottom-50">
+            <div class="servive-block servive-block-in margin-bottom-20">
+                <div class="servive-block-in servive-block-colored servive-block-red">
+                    <h4>@Html.ActionLink("Add Available Activity", "Create", "Activity")</h4>
+                    <p><i class="icon-home"></i></p>
+                    <p>Enter an activity that can be performed by students to earn points.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 md-margin-bottom-50">
+            <!-- Our Services -->
+            <div class="servive-block servive-block-in margin-bottom-20">
+                <div class="servive-block-in servive-block-colored servive-block-blue">
+                    <h4>@Html.ActionLink("View Unfulfilled Orders", "UnFulfilledOrders", "Order")</h4>
+                    <p><i class="icon-bullhorn"></i></p>
+                    <p>View recent student orders that have not yet been fulfilled.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 md-margin-bottom-50">
+            <!-- Our Services -->
+            <div class="servive-block servive-block-in margin-bottom-20">
+                <div class="servive-block-in servive-block-colored servive-block-orange">
+                    <h4>@Html.ActionLink("Modify Front Page Text", "Index", "FrontPage")</h4>
+                    <p><i class="icon-gear"></i></p>
+                    <p>Edit the text on the Kickoff4Kids House front page. Customize any way you like.</p>
+                </div>
+            </div><!--/welcome-block-->
+            <!-- End Our Services -->
+        </div>
+        <div class="col-md-4 md-margin-bottom-50">
+            <div class="servive-block servive-block-in margin-bottom-20">
+                <div class="servive-block-in servive-block-colored servive-block-sea">
+                    <h4>@Html.ActionLink("View Documentation", "Help", "Home")</h4>
+                    <p><i class="icon-lightbulb"></i></p>
+                    <p>Documentation for the common activities performed on the site.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

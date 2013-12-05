@@ -28,6 +28,8 @@ namespace Kickoff4Kids420.Models
         public int? PointTotal { get; set; }
         [DefaultValue(DEFAULT_VALUE)]
         public int? CumulativePointTotal { get; set; }
+
+        //public string ConfirmationToken { get; set; }
         
         public virtual School Schools { get; set; }
         public virtual ICollection<Order> Orders { get; set; }

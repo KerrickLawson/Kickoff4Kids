@@ -9,13 +9,15 @@ using Kickoff4Kids420.Models;
 
 namespace Kickoff4Kids420.Controllers
 {
+    [RequireHttps]
+    
     public class OrderDetailController : Controller
     {
         private Kickoff4KidsDb db = new Kickoff4KidsDb();
 
         //
         // GET: /OrderDetail/
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var orderdetails = db.OrderDetails.Include(o => o.Product).Include(o => o.Order);
@@ -27,12 +29,22 @@ namespace Kickoff4Kids420.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            OrderDetail orderdetail = db.OrderDetails.Find(id);
-            if (orderdetail == null)
+            //var orderDetails = new List<OrderDetail>();
+            //foreach (var orderDetail in orderDetails.Where(orderDetail => orderDetail.OrderId == id))
+            //{
+            //    orderDetails.Add(orderDetail);
+            //}
+            //OrderDetail orderdetail = db.OrderDetails.Find(id);
+            var orderdetails = db.OrderDetails.Where(orderDetail => orderDetail.OrderId == id).Include(o => o.Product).Include(o => o.Order);
+            foreach (var order in orderdetails)
+            {
+                if (order.OrderId != id){}
+            }
+            if (orderdetails == null)
             {
                 return HttpNotFound();
             }
-            return View(orderdetail);
+            return View(orderdetails.ToList());
         }
 
 

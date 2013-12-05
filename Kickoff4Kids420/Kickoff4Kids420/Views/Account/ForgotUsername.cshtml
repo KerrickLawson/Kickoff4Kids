@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Forgot Username";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Forgot Username</h1>
+    </div>
+</div>
+<div class="container">
+       <br />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <fieldset>
+            <ul style="list-style-type: none; margin-left:-40px">
+                <li>
+                    @Html.Label("Email Address", new { @for = "EmailAddress" })
+                    @Html.TextBox("EmailAddress", "", new { @class = "required" })
+                    <span style="color:red;">@ViewBag.message</span>
+                </li>
+            </ul>
+            <p>
+                <input class="btn-u btn-u-red" type="submit" value="Recover" />
+            </p>
+        </fieldset>
+
+    }
+</div>
+

@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Username Seny";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">User Name Retrieval</h1>
+    </div>
+</div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <fieldset>
+            <legend>Your Username has been emailed to the supplied email address.</legend>
+        </fieldset>
+    }

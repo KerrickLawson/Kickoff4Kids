@@ -38,7 +38,13 @@
                         @Html.EditorFor(model => model.Price)
                         @Html.ValidationMessageFor(model => model.Price)
                     </div>
-
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PictureUrl)
+                    </div>
+                    <div class="editor-field margin-bottom-10">
+                        @Html.EditorFor(model => model.PictureUrl)
+                        @Html.ValidationMessageFor(model => model.PictureUrl)
+                    </div>
                     <div class="editor-label">
                         @Html.LabelFor(model => model.CategoryId, "Categories")
                     </div>

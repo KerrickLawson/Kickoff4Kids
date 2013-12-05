@@ -6,11 +6,17 @@
     </a>
     <ul class="dropdown-menu">
         <li>
-            @Html.ActionLink("Report 1", "Index", "Report")
-            </li>
-            <li>
-                @Html.ActionLink("Report 2", "TestReport", "Report")
-            </li>
+            @Html.ActionLink("View Top Products", "Top10Products", "Report")
+        </li>
+        <li>
+            @Html.ActionLink("View School Points Reports ", "SchoolPointReport", "Report")
+        </li>
+        <li>
+            @Html.ActionLink("View School Unspent Points", "CurrentStudentSchoolTotal", "Report")
+        </li>
+        <li>
+            @Html.ActionLink("View Top Students", "Top10Students", "Report")
+        </li>
     </ul>
 </li>
 <li class="dropdown">

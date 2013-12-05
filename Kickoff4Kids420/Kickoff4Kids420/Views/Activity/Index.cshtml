@@ -1,9 +1,10 @@
-﻿@model IEnumerable<Kickoff4Kids420.Models.Activity>
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Kickoff4Kids420.Models.Activity>
 
 @{
     ViewBag.Title = "Index";
 }
-@*Test*@
 <div class="breadcrumbs margin-bottom-40">
     <div class="container">
         <h1 class="pull-left">Currently Eligible Activities</h1>
@@ -14,48 +15,58 @@
         <div class="panel-heading">
             <h2 class="panel-title">Current Activities</h2>
         </div>
+        <br />
+        @using (Html.BeginForm("Index", "Activity", FormMethod.Get))
+        {
+            <ul class="list-inline">
+                <li>
+                    Search by Name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                    <input type="submit" value="Go!" />
+                </li>
+                <li>
+                    @Html.ActionLink("Add Activity", "Create", null, new { @class = "btn-u btn-u" })
+                </li>
+            </ul>
+        }
 
-        <div class=" span2">
-            <p class="icon-plus-sign">
-                @Html.ActionLink("Add Activity", "Create")
-            </p>
-        </div>
-        <div class="span8">
-            <table class="table table-bordered table-hover table-striped">
+        <table class="table table-bordered table-hover table-striped">
+            <tr>
+                <th>
+                    @Html.ActionLink("Activity Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Description)
+                </th>
+                <th>
+                    @Html.ActionLink("Point Value", "Index", new { sortOrder = ViewBag.PointSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
                 <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ActivityName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Description)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.PointValue)
-                    </th>
-                    <th></th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ActivityName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PointValue)
+                    </td>
+                    <td class="span2">
+                        @Html.ActionLink(" ", "Edit", new { id = item.ActivityId }, new { @class = "icon-edit" }) |
+                        @Html.ActionLink(" ", "Delete", new { id = item.ActivityId }, new { @class = "icon-trash" })
+                    </td>
                 </tr>
+            }
 
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ActivityName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PointValue)
-                        </td>
-                        <td class="span2">
-                            @Html.ActionLink(" ", "Edit", new { id = item.ActivityId }, new { @class = "icon-edit" }) |
-                            @Html.ActionLink(" ", "Delete", new { id = item.ActivityId }, new { @class = "icon-trash" })
-                        </td>
-                    </tr>
-                }
-
-            </table>
-            </div>
-        
+        </table>
     </div>
+</div>
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }),
+    new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true })
 </div>

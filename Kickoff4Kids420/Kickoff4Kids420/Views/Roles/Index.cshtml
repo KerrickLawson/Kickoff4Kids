@@ -4,18 +4,35 @@
     ViewBag.Title = "Role Manager";
 }
 
-<h2 class="well-large">Manage User Roles</h2>
-
-
-<ul>
-    <li>
-        @Html.ActionLink("Edit Roles", "Users", "Roles")
-    </li>
-    <li>
-        @Html.ActionLink("Create New Roles", "Roles", "Roles")
-    </li>
-    <li>
-        @Html.ActionLink("Home", "Index", "Home")
-    </li>
-        
-</ul>
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Manage User Roles</h1>
+    </div>
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+<!--=== Content Part ===-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 md-margin-bottom-50">
+            <!-- Our Services -->
+            <div class="servive-block servive-block-in margin-bottom-20">
+                <div class="servive-block-in servive-block-colored servive-block-grey">
+                    <h4>@Html.ActionLink("Edit Roles", "Users", "Roles")</h4>
+                    <p><i class="icon-user"></i></p>
+                    <p>View current users and their associated roles.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 md-margin-bottom-50">
+            <!-- Our Services -->
+            <div class="servive-block servive-block-in margin-bottom-20">
+                <div class="servive-block-in servive-block-colored servive-block-green">
+                    <h4>@Html.ActionLink("Create New Roles", "Roles", "Roles")</h4>
+                    <p><i class="icon-check"></i></p>
+                    <p>Create a new user role. </p>
+                </div>
+            </div><!--/welcome-block-->
+            <!-- End Our Services -->
+        </div> 
+    </div>
+</div>

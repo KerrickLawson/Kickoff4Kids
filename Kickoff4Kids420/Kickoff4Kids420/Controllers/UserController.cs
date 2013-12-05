@@ -7,9 +7,13 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Kickoff4Kids420.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Kickoff4Kids420.Controllers
 {
+    [RequireHttps]
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private Kickoff4KidsDb db = new Kickoff4KidsDb();
@@ -17,10 +21,67 @@ namespace Kickoff4Kids420.Controllers
         //
         // GET: /User/
 
-        public ActionResult Index()
+        public ActionResult Index(string studentUser, string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var userprofiles = db.UserProfiles.Include(u => u.Schools);
-            return View(userprofiles.ToList());
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Student_Name_desc" : "";
+            ViewBag.PointSortParm = sortOrder == "Point" ? "Point_desc" : "Point";
+
+            // for drop down filter
+            var StudentList = new List<string>();
+            var StudentListQry = from s in db.Schools
+                                 orderby s.SchoolName
+                                 select s.SchoolName;
+
+            StudentList.AddRange(StudentListQry.Distinct());
+            ViewBag.studentUser = new SelectList(StudentList);
+            //
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var students = from s in db.UserProfiles.Include(s => s.Schools)
+                           select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(s => s.UserName.ToUpper().Contains(searchString.ToUpper()));
+
+            }
+            // for dropdown filter
+            if (!String.IsNullOrEmpty(studentUser))
+            {
+                students = students.Where(x => x.Schools.SchoolName == studentUser);
+            }
+            switch (sortOrder)
+            {
+                case "Student_Name_desc":
+                    students = students.OrderByDescending(s => s.UserName);
+                    break;
+                case "Point":
+                    students = students.OrderBy(s => s.PointTotal);
+                    break;
+                case "Point_desc":
+                    students = students.OrderByDescending(s => s.PointTotal);
+                    break;
+                default:
+                    students = students.OrderBy(s => s.UserName);
+                    break;
+            }
+
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(students.ToPagedList(pageNumber, pageSize));
+
         }
 
         //

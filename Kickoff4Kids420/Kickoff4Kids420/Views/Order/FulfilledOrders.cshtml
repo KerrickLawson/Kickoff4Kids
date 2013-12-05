@@ -1,7 +1,12 @@
-﻿@model IEnumerable<Kickoff4Kids420.Models.Order>
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Kickoff4Kids420.Models.Order>
+
 @{
     ViewBag.Title = "Fulfilled Orders";
 }
+
+
 <div class="breadcrumbs margin-bottom-40">
     <div class="container">
         <h1 class="pull-left">Fulfilled Orders</h1>
@@ -12,22 +17,37 @@
         <div class="panel-heading">
             <h1 class="panel-title">Currently Fulfilled Orders</h1>
         </div>
+        <br />
+        @using (Html.BeginForm("FulfilledOrders", "Order", FormMethod.Get))
+        {
+            <ul class="list-inline">
+
+                <li>
+                    Search by Name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                    <input type="submit" value="Go!" />
+                </li>
+            </ul>
+        }
         <table class="table table-bordered table-hover table-striped">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.FirstName)
+                    @Html.ActionLink("First Name", "FulfilledOrders", new { sortOrder = ViewBag.FNameSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.LastName)
+                    Last Name
+                    @*
+                        @Html.DisplayNameFor(model => model.LastName)
+                    *@
                 </th>
                 <th>
                     Fulfilled?
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.OrderDate)
+                    @Html.ActionLink("Order Date", "FulfilledOrders", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th></th>
             </tr>
+
             @foreach (var item in Model)
             {
                 if (item.IsFulfilled)
@@ -44,6 +64,7 @@
                             {
                                 <input type="hidden" value="@item.OrderId" name="OrderId" />
                                 <input type="checkbox" name="ischecked" onclick=" this.form.submit(); " value="true" checked="@item.IsFulfilled" />
+
                             }
                         </td>
                         <td>
@@ -56,6 +77,12 @@
                     </tr>
                 }
             }
+
         </table>
+
     </div>
+</div>
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("FulfilledOrders", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }),
+    new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true })
 </div>

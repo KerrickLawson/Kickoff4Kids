@@ -9,6 +9,8 @@ using Kickoff4Kids420.Models;
 
 namespace Kickoff4Kids420.Controllers
 {
+    [RequireHttps]
+    [Authorize(Roles = "Admin")]
     public class FrontPageController : Controller
     {
         private Kickoff4KidsDb db = new Kickoff4KidsDb();

@@ -3,7 +3,7 @@
 @model PagedList.IPagedList<Kickoff4Kids420.Models.Category>
 
 @{
-    ViewBag.Title = "Product Categories";
+    ViewBag.Title = "Index";
 }
 
 <div class="breadcrumbs margin-bottom-40">
@@ -11,76 +11,41 @@
         <h1 class="pull-left">Currently Available Categories</h1>
     </div>
 </div>
-    <div class="container">
-        <div class="panel panel-red margin-bottom-40">
-            <div class="panel-heading">
-                <h2 class="panel-title">Product Categories</h2>
-            </div>
-            <div class="span2">
-                <p class="icon-plus-sign">
-                    @Html.ActionLink("Create New", "Create")
-                </p>
-            </div>
+<div class="container">
+    <div class="panel panel-red margin-bottom-40">
+        <div class="panel-heading">
+            <h2 class="panel-title">Product Categories</h2>
+        </div>
+        <br />
+        <div class="container margin-bottom-10">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn-u btn-u" })
+        </div>
 
-
-             @using (Html.BeginForm())
-    {
-        <p>
-            Search by Name: @Html.TextBox("SearchString")
-            <input type="submit" value="Go!" />
-        </p>
-    }
-    <table class="table table-bordered table-hover table-striped">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.First().CategoryName)
-            </th>
-            
-            <th>Status</th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+        <table class="table table-striped table-hover table-bordered">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoryName)
-                </td>
-                
-                <td>
-                    @Html.ActionLink(" ", "Edit", new { id = item.CategoryId }, new { @class = "icon-edit" }) |
-                    @Html.ActionLink(" ", "Delete", new { id = item.CategoryId }, new { @class = "icon-trash" })
-                </td>
+                <th>
+                    @Html.ActionLink("Category Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>Status</th>
             </tr>
-        }
 
-    </table>
-    <div>
-        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-        @if (Model.HasPreviousPage)
-        {
-            @Html.ActionLink("<<", "Index", new { page = 1 })
-            @Html.Raw(" ");
-            @Html.ActionLink("< Prev", "Index", new { page = Model.PageNumber - 1 })
-        }
-        else
-        {
-            @:<<
-            @Html.Raw(" ");
-            @:< Prev
-    }
-
-        @if (Model.HasNextPage)
-        {
-            @Html.ActionLink("Next >", "Index", new { page = Model.PageNumber + 1 })
-            @Html.Raw(" ");
-            @Html.ActionLink(">>", "Index", new { page = Model.PageCount })
-        }
-        else
-        {
-            @:Next >
-            @Html.Raw(" ")
-            @:>>
-    }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        @Html.ActionLink(" ", "Edit", new { id = item.CategoryId }, new { @class = "icon-edit" }) |
+                        @Html.ActionLink(" ", "Details", new { id = item.CategoryId }, new { @class = "icon-info" }) |
+                        @Html.ActionLink(" ", "Delete", new { id = item.CategoryId }, new { @class = "icon-trash" })
+                    </td>
+                </tr>
+            }
+        </table>
     </div>
-
-       </div></div>
+</div>
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }),
+    new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true })
+</div>

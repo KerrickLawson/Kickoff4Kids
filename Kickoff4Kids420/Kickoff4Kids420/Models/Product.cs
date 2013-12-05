@@ -13,7 +13,7 @@ namespace Kickoff4Kids420.Models
         public string ProductName { get; set; }
         public int Price { get; set; }
         public int CategoryId { get; set; }
-        public byte[] Picture { get; set; }
+        public string PictureUrl { get; set; }
         public virtual Category Categories{ get; set; }
 
         

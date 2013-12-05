@@ -27,16 +27,29 @@
 <div class="purchase">
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
-                <span>@Model.MainText</span>
+            @if (!Request.IsAuthenticated)
+{
+    <div class="col-md-9">
+
+        <span>@Model.MainText</span>
+    </div>
+                <div class="col-md-3">
+                    <a href="/Account/Register" class="btn-buy hover-effect">@Model.MainButton</a>             
+                </div>
+            
+                }
+                @if (Request.IsAuthenticated)
+            {
+            <div class="col-md-12">
+                <span>Welcome @User.Identity.Name! Thank your for your participation in the Kickoff 4 Kids Program!</span>
+            </div>
+            }
                 @*<p>The Foundation’s mission is to give hope to kids, communities and to build unity amongst the children of Louisville, KY.</p>*@
             </div>
-            <div class="col-md-3">
-                <a href="/Account/Register" class="btn-buy hover-effect">@Model.MainButton</a>
-            </div>
+            
         </div>
     </div>
-</div>
+
 <div class="container">
     <div class="row">
         <div class="col-md-4">

@@ -8,6 +8,7 @@ namespace Kickoff4Kids420
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+
         }
     }
 }
