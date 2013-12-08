@@ -113,31 +113,52 @@ namespace Kickoff4Kids420.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ActivityTransaction activitytransaction)
+        public ActionResult Create(int[] userId, int[] activityId, DateTime activityDate)
         {
             if (ModelState.IsValid)
             {
+                foreach (int i in userId)
+                {
+                    UserProfile updUserProfile = db.UserProfiles.Find(i);
+                    foreach (int x in activityId)
+                    {
+                        Activity act = db.Activities.Find(x);
+                        int points = act.PointValue;
+                        updUserProfile.PointTotal += points;
+                        updUserProfile.CumulativePointTotal += points;
+                        var activityTransaction = new ActivityTransaction
+                        {
+                            UserId = i,
+                            ActivityDate = activityDate,
+                            ActivityId = x
+                        };
+                        db.ActivityTransactions.Add(activityTransaction);
+                        db.SaveChanges();
+                    }
+                }
                 //Fetch User Profile
-                UserProfile updUserProfile = db.UserProfiles.Find(activitytransaction.UserId);
+                //UserProfile updUserProfile = db.UserProfiles.Find(activitytransaction.UserId);
                 //Fetch Activity
-                Activity act = db.Activities.Find(activitytransaction.ActivityId);
+               // Activity act = db.Activities.Find(activitytransaction.ActivityId);
                 //Fetch point value for completed activity
-                int points = act.PointValue;
+                //int points = act.PointValue;
                 //Add Points
-                updUserProfile.PointTotal += points;
-                updUserProfile.CumulativePointTotal += points;
+                //updUserProfile.PointTotal += points;
+                //updUserProfile.CumulativePointTotal += points;
 
-                db.ActivityTransactions.Add(activitytransaction);
-                db.SaveChanges();
+                //db.ActivityTransactions.Add(activitytransaction);
+               // db.SaveChanges();
                 
                 //AddStudentPoints(updUserProfile, points);
                 
                 return RedirectToAction("Index");
             }
-
-            ViewBag.UserId = new SelectList(db.UserProfiles, "UserId", "UserName", activitytransaction.UserId);
-            ViewBag.ActivityId = new SelectList(db.Activities, "ActivityId", "ActivityName", activitytransaction.ActivityId);
-            return View(activitytransaction);
+            var usernames = Roles.GetUsersInRole("Student");
+            var studentUsers = db.UserProfiles
+                 .Where(x => usernames.Contains(x.UserName)).ToList();
+            ViewBag.UserId = new MultiSelectList(studentUsers, "UserId", "UserName");
+            ViewBag.ActivityId = new MultiSelectList(db.Activities, "ActivityId", "ActivityName");
+            return RedirectToAction("Index");
         }
         //public void AddStudentPoints(UserProfile user, int points)
         //{
